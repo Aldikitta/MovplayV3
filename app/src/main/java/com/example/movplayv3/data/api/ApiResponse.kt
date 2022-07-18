@@ -17,3 +17,9 @@ fun <T> ApiResponse<T>.onFailure(onResult: ApiResponse.Failure<*>.() -> Unit): A
         onResult(this)
     return this
 }
+
+fun <T> ApiResponse<T>.onException(onResult: ApiResponse.Exception<*>.() -> Unit): ApiResponse<T> {
+    if (this is ApiResponse.Exception<*>)
+        onResult(this)
+    return this
+}
