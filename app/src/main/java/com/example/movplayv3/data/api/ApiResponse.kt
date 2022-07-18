@@ -5,3 +5,9 @@ sealed class ApiResponse<out T> {
     class Failure<T>(val apiError: ApiError) : ApiResponse<T>()
     class Exception<T>(val exception: Throwable) : ApiResponse<T>()
 }
+
+fun <T> ApiResponse<T>.onSuccess(onResult: ApiResponse.Success<T>.() -> Unit): ApiResponse<T> {
+    if (this is ApiResponse.Success)
+        onResult(this)
+    return this
+}
