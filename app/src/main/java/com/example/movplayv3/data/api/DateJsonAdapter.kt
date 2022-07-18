@@ -27,8 +27,13 @@ class DateJsonAdapter : JsonAdapter<Date>() {
         }
 
         val serverDateFormat = serverDateFormat.parseOrNull(dateString)
-        if(serverDateFormat != null){
+        if (serverDateFormat != null) {
             return serverDateFormat
+        }
+
+        val isoDate = isoDateFormat.parseOrNull(dateString)
+        if (isoDate != null) {
+            return isoDate
         }
 
         return null
