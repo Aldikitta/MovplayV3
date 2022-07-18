@@ -1,10 +1,7 @@
 package com.example.movplayv3.data.api
 
 import android.annotation.SuppressLint
-import com.squareup.moshi.FromJson
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.JsonReader
-import com.squareup.moshi.JsonWriter
+import com.squareup.moshi.*
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,12 +32,14 @@ class DateJsonAdapter : JsonAdapter<Date>() {
         if (isoDate != null) {
             return isoDate
         }
-
         return null
     }
 
+    @ToJson
     override fun toJson(writer: JsonWriter, value: Date?) {
-        TODO("Not yet implemented")
+        if (value != null) {
+            writer.value(value.toString())
+        }
     }
 }
 
