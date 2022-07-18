@@ -1,10 +1,12 @@
 package com.example.movplayv3.data.api
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.squareup.moshi.JsonDataException
 import org.json.JSONException
 import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.*
+import retrofit2.awaitResponse
+import java.io.IOException
 
 sealed class ApiResponse<out T> {
     class Success<T>(val data: T?) : ApiResponse<T>()
@@ -69,4 +71,46 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
         }
 
     })
+}
+
+suspend fun <T : Any> Call<T>.awaitResponse(): ApiResponse<T>{
+    return try {
+        val response = awaitResponse()
+
+        if (response.isSuccessful){
+            return ApiResponse.Success(response.body())
+        }
+
+        val code = response.code()
+        val errorBody = response.errorBody()?.toString()
+
+        val message = errorBody?.let {body ->
+            try {
+                JSONObject(body).getString("status_message")
+            } catch (e: JSONException){
+                null
+            }
+        }
+        val statusCode = errorBody?.let {body ->
+            try {
+                JSONObject(body).getInt("status_code")
+            } catch (e: JSONException){
+                null
+            }
+        }
+
+        val apiError = ApiError(
+            errorCode = code,
+            statusMessage = message,
+            statusCode = statusCode
+        )
+        return ApiResponse.Failure(apiError)
+    } catch (e: IOException){
+        ApiResponse.Exception(e)
+    } catch (e: HttpException){
+        ApiResponse.Exception(e)
+    } catch (e: JsonDataException){
+        FirebaseCrashlytics.getInstance().recordException(e)
+        ApiResponse.Exception(e)
+    }
 }
