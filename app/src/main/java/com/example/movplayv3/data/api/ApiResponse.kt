@@ -1,5 +1,7 @@
 package com.example.movplayv3.data.api
 
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,10 +37,21 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
                 onResult(ApiResponse.Success(response.body()))
                 return
             }
+
+            val code = response.code()
+            val errorBody = response.errorBody()?.toString()
+
+            val message = errorBody?.let { body ->
+                try {
+                    JSONObject(body).getString("status_message")
+                } catch (e: JSONException) {
+                    null
+                }
+            }
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
-            TODO("Not yet implemented")
+            onResult(ApiResponse.Exception(t))
         }
 
     })
