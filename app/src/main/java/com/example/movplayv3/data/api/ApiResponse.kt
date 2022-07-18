@@ -29,9 +29,12 @@ fun <T> ApiResponse<T>.onException(onResult: ApiResponse.Exception<*>.() -> Unit
 }
 
 inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) -> Unit) {
-    enqueue(object: Callback<T>{
+    enqueue(object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {
-            TODO("Not yet implemented")
+            if (response.isSuccessful) {
+                onResult(ApiResponse.Success(response.body()))
+                return
+            }
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
