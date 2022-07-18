@@ -1,5 +1,9 @@
 package com.example.movplayv3.data.api
 
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 sealed class ApiResponse<out T> {
     class Success<T>(val data: T?) : ApiResponse<T>()
     class Failure<T>(val apiError: ApiError) : ApiResponse<T>()
@@ -22,4 +26,17 @@ fun <T> ApiResponse<T>.onException(onResult: ApiResponse.Exception<*>.() -> Unit
     if (this is ApiResponse.Exception<*>)
         onResult(this)
     return this
+}
+
+inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) -> Unit) {
+    enqueue(object: Callback<T>{
+        override fun onResponse(call: Call<T>, response: Response<T>) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onFailure(call: Call<T>, t: Throwable) {
+            TODO("Not yet implemented")
+        }
+
+    })
 }
