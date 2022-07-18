@@ -55,6 +55,13 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
                     null
                 }
             }
+
+            val apiError = ApiError(
+                errorCode = code,
+                statusMessage = message,
+                statusCode = statusCode
+            )
+            onResult(ApiResponse.Failure(apiError))
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
