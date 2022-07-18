@@ -48,6 +48,13 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
                     null
                 }
             }
+            val statusCode = errorBody?.let { body ->
+                try {
+                    JSONObject(body).getInt("status_code")
+                } catch (e: JSONException) {
+                    null
+                }
+            }
         }
 
         override fun onFailure(call: Call<T>, t: Throwable) {
