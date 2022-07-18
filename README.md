@@ -1,3 +1,3 @@
 # MovplayV3
 
-Detail soon
+Detail soon (working on progress)
