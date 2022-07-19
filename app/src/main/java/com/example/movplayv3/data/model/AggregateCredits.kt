@@ -42,3 +42,12 @@ data class Role(
     @Json(name = "episode_count")
     val episodeCount: Int
 )
+
+@JsonClass(generateAdapter = true)
+data class Job(
+    @Json(name = "credit_id")
+    val creditId: String,
+    @Json(name = "episode_count")
+    val episodeCount: Int,
+    val job: String
+)
