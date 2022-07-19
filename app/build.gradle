@@ -86,12 +86,15 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     //OkHttp
-    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.9"
-    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9"
+    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.10"
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.10"
 
     //Firebase
 //    implementation "com.google.firebase:firebase-bom:30.3.0"
     implementation "com.google.firebase:firebase-crashlytics-ktx:18.2.11"
     implementation "com.google.firebase:firebase-analytics-ktx:21.1.0"
     implementation "com.google.firebase:firebase-perf-ktx:20.1.0"
+
+    //Coil
+    implementation "io.coil-kt:coil-compose:2.1.0"
 }
