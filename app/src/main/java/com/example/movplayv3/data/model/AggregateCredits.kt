@@ -28,3 +28,17 @@ data class Cast(
     @Json(name = "total_episode_count")
     val totalEpisodeCount: Int
 )
+
+@JsonClass(generateAdapter = true)
+data class Crew(
+    val adult: Boolean
+)
+
+@JsonClass(generateAdapter = true)
+data class Role(
+    val character: String,
+    @Json(name = "credit_id")
+    val creditId: String,
+    @Json(name = "episode_count")
+    val episodeCount: Int
+)
