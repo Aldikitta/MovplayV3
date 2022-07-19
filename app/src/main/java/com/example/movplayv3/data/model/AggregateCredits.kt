@@ -27,7 +27,12 @@ data class Cast(
     val roles: List<Role>,
     @Json(name = "total_episode_count")
     val totalEpisodeCount: Int
-)
+) : Member {
+    override val firstLine: String = name
+    override val secondLine: String = roles.joinToString(separator = ", ") { role ->
+        role.character
+    }
+}
 
 @JsonClass(generateAdapter = true)
 data class Crew(
