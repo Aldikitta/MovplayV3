@@ -10,4 +10,8 @@
     <string name="status_post_production_label">Post production</string>
     <string name="status_released_label">Released</string>
     <string name="status_cancelled_label">Cancelled</string>
+
+    <string name="movie_provider_type_rent_label">Rent</string>
+    <string name="movie_provider_type_buy_label">Buy</string>
+    <string name="movie_provider_type_stream_label">Stream</string>
 </resources>
