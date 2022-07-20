@@ -1,6 +1,7 @@
 package com.example.movplayv3.data.model.movie
 
 import androidx.annotation.StringRes
+import com.example.movplayv3.R
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -23,7 +24,15 @@ enum class MovieStatus(val value: String) {
 
     @Json(name = "Cancelled")
     Cancelled("Cancelled");
+
     @StringRes
 
-
+    fun getLabel(): Int = when (this) {
+        Rumored -> R.string.status_rumored_label
+        Planned -> R.string.status_planned_label
+        InProduction -> R.string.status_planned_label
+        PostProduction -> R.string.status_post_production_label
+        Released -> R.string.status_released_label
+        Cancelled -> R.string.status_cancelled_label
+    }
 }
