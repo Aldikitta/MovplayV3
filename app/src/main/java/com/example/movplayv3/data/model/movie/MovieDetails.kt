@@ -3,6 +3,7 @@ package com.example.movplayv3.data.model.movie
 import com.example.movplayv3.data.model.Collection
 import com.example.movplayv3.data.model.DetailPresentable
 import com.example.movplayv3.data.model.Genre
+import com.example.movplayv3.data.model.ProductionCompany
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.util.*
@@ -30,10 +31,9 @@ data class MovieDetails(
     override val posterPath: String?,
     @Json(name = "production_companies")
     val productionCompanies: List<ProductionCompany>,
+    @Json(name = "production_countries")
+    val productionCountries: List<ProductionCountry>,
 
-//    @Json(name = "production_countries")
-//    val productionCountries: List<ProductionCountry>,
-//
 //    @Json(name = "release_date")
 //    val releaseDate: Date?,
 //
