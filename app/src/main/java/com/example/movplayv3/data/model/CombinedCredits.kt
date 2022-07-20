@@ -25,8 +25,17 @@ data class CombinedCreditsCast(
 
 @JsonClass(generateAdapter = true)
 data class CombinedCreditsCrew(
-
-)
+    override val id: Int,
+    val department: String,
+    val job: String,
+    override val title: String,
+    @Json(name = "media_type")
+    override val mediaType: MediaType,
+    @Json(name = "poster_path")
+    override val posterPath: String?
+) : CreditPresentable {
+    override val infoText: String = job
+}
 
 interface CreditPresentable {
     val id: Int
