@@ -1,8 +1,9 @@
-package com.example.movplayv3.data.model
+package com.example.movplayv3.data.model.movie
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.movplayv3.data.model.Presentable
 import java.util.*
 
 @Entity
