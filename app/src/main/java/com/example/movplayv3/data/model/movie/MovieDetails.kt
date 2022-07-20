@@ -1,9 +1,7 @@
 package com.example.movplayv3.data.model.movie
 
+import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.Collection
-import com.example.movplayv3.data.model.DetailPresentable
-import com.example.movplayv3.data.model.Genre
-import com.example.movplayv3.data.model.ProductionCompany
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.util.*
@@ -33,17 +31,12 @@ data class MovieDetails(
     val productionCompanies: List<ProductionCompany>,
     @Json(name = "production_countries")
     val productionCountries: List<ProductionCountry>,
-
-//    @Json(name = "release_date")
-//    val releaseDate: Date?,
-//
-//    val revenue: Long,
-//
-//    val runtime: Int?,
-//
-//    @Json(name = "spoken_languages")
-//    val spokenLanguages: List<SpokenLanguage>,
-//
+    @Json(name = "release_date")
+    val releaseDate: Date?,
+    val revenue: Long,
+    val runtime: Int?,
+    @Json(name = "spoken_languages")
+    val spokenLanguages: List<SpokenLanguage>,
 //    val status: MovieStatus,
 //
 //    val tagline: String?,
