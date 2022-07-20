@@ -11,3 +11,10 @@ fun Date.formatted(format: String = "dd.MM.yyyy"): String {
 fun Date.yearString() = formatted(format = "yyyy")
 
 fun Date.timeString() = formatted(format = "HH:mm")
+
+fun yearRangeString(from: Date?, to: Date?): String {
+    return listOf(from, to)
+        .mapNotNull { date -> date?.yearString() }
+        .distinct()
+        .joinToString(separator = " - ")
+}
