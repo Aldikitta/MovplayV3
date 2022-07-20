@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Part(
     override val id: Int,
-    override val adult: Boolean,
+    override val adult: Boolean?,
     @Json(name = "genre_ids")
     val genreIds: List<Int>,
     @Json(name = "original_language")
@@ -25,4 +25,7 @@ data class Part(
     override val voteAverage: Float,
     @Json(name = "vote_count")
     override val voteCount: Int
-)
+) : DetailPresentable {
+    override val backdropPath: String? = null
+}
+

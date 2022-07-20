@@ -15,5 +15,5 @@ interface DetailPresentable : Presentable {
     val overview: String?
     val backdropPath: String?
     val voteAverage: Float
-    val voteAccount: Int
+    val voteCount: Int
 }
