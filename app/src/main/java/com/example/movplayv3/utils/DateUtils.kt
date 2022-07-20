@@ -27,6 +27,10 @@ fun createDateDialog(
     minDate: Date? = null,
     maxDate: Date? = null,
     onDateSelected: (Date) -> Unit = {}
-): DatePickerDialog{
-
+): DatePickerDialog {
+    val (initYear, initMonth, initDayOfMonth) = Calendar.getInstance().apply {
+        time = initialDate ?: Date()
+    }.run {
+        Triple(get(Calendar.YEAR), get(Calendar.MONTH), get(Calendar.DAY_OF_MONTH))
+    }
 }
