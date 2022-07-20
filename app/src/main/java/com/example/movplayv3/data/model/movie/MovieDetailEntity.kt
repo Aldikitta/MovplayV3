@@ -1,4 +1,9 @@
 package com.example.movplayv3.data.model.movie
 
-class MovieDetailEntity {
-}
+import com.squareup.moshi.JsonClass
+
+@Entity
+data class MovieDetailEntity (
+    override val id: Int,
+
+        )
