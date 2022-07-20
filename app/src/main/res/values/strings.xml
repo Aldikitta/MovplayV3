@@ -3,4 +3,11 @@
 
     <string name="favourite_type_movie_label">Movies</string>
     <string name="favourite_type_tv_show_label">Tv Shows</string>
+
+    <string name="status_rumored_label">Rumored</string>
+    <string name="status_planned_label">Planned</string>
+    <string name="status_in_production_label">In production</string>
+    <string name="status_post_production_label">Post production</string>
+    <string name="status_released_label">Released</string>
+    <string name="status_cancelled_label">Cancelled</string>
 </resources>
