@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Collection(
     val id: Int,
-    val name: String,
+    val name: String?,
     @Json(name = "poster_path")
     val posterPath: String?,
     @Json(name = "backdrop_path")
