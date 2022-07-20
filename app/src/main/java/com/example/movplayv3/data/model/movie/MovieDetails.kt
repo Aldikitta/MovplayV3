@@ -38,16 +38,11 @@ data class MovieDetails(
     @Json(name = "spoken_languages")
     val spokenLanguages: List<SpokenLanguage>,
     val status: MovieStatus,
-//
-//    val tagline: String?,
-//
-//    override val title: String,
-//
-//    val video: Boolean,
-//
-//    @Json(name = "vote_average")
-//    override val voteAverage: Float,
-//
-//    @Json(name = "vote_count")
-//    override val voteCount: Int
+    val tagline: String?,
+    override val title: String,
+    val video: Boolean,
+    @Json(name = "vote_average")
+    override val voteAverage: Float,
+    @Json(name = "vote_count")
+    override val voteCount: Int
 ) : DetailPresentable
