@@ -28,10 +28,9 @@ data class MovieDetails(
     val popularity: Float,
     @Json(name = "poster_path")
     override val posterPath: String?,
+    @Json(name = "production_companies")
+    val productionCompanies: List<ProductionCompany>,
 
-//    @Json(name = "production_companies")
-//    val productionCompanies: List<ProductionCompany>,
-//
 //    @Json(name = "production_countries")
 //    val productionCountries: List<ProductionCountry>,
 //
