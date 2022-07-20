@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ImageConfig(
+data class ImagesConfig(
     @Json(name = "base_url")
     val baseUrl: String,
     @Json(name = "secure_base_url")
