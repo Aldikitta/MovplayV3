@@ -2,6 +2,7 @@ package com.example.movplayv3.utils
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.widget.DatePicker
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -33,4 +34,16 @@ fun createDateDialog(
     }.run {
         Triple(get(Calendar.YEAR), get(Calendar.MONTH), get(Calendar.DAY_OF_MONTH))
     }
+
+    return DatePickerDialog(
+        context,
+        { _: DatePicker, year: Int, month: Int, dayOfMonth: Int ->
+            val date = Calendar.getInstance().apply {
+                set(Calendar.YEAR, year)
+                set(Calendar.MONTH, month)
+                set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            }.time
+            onDateSelected(date)
+        }, initYear, initMonth, initDayOfMonth
+    )
 }
