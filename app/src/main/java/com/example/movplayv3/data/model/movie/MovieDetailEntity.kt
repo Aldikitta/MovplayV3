@@ -1,9 +1,10 @@
 package com.example.movplayv3.data.model.movie
 
-import com.squareup.moshi.JsonClass
+import androidx.room.Entity
+import androidx.room.Index
 
-@Entity
-data class MovieDetailEntity (
+@Entity(indices = [Index(value = ["language"])])
+data class MovieDetailEntity(
     override val id: Int,
 
-        )
+    )
