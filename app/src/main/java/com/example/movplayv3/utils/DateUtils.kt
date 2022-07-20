@@ -1,5 +1,7 @@
 package com.example.movplayv3.utils
 
+import android.app.DatePickerDialog
+import android.content.Context
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,4 +19,14 @@ fun yearRangeString(from: Date?, to: Date?): String {
         .mapNotNull { date -> date?.yearString() }
         .distinct()
         .joinToString(separator = " - ")
+}
+
+fun createDateDialog(
+    context: Context,
+    initialDate: Date?,
+    minDate: Date? = null,
+    maxDate: Date? = null,
+    onDateSelected: (Date) -> Unit = {}
+): DatePickerDialog{
+
 }

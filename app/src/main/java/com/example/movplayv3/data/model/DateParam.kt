@@ -1,5 +1,6 @@
 package com.example.movplayv3.data.model
 
+import com.example.movplayv3.utils.formatted
 import com.squareup.moshi.JsonClass
 import java.util.*
 
