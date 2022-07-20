@@ -45,5 +45,15 @@ fun createDateDialog(
             }.time
             onDateSelected(date)
         }, initYear, initMonth, initDayOfMonth
-    )
+    ).apply {
+        val datePicker = datePicker
+
+        minDate?.let { date ->
+            datePicker.minDate = date.time
+        }
+
+        maxDate?.let { date ->
+            datePicker.maxDate = date.time
+        }
+    }
 }
