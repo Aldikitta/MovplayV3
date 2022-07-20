@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class SearchResult(
     override val id: Int,
     @Json(name = "name")
-    val tvSeriesName: String?,
+    val tvShowName: String?,
     @Json(name = "title")
     val movieTitle: String?,
     @Json(name = "media_type")
@@ -15,4 +15,10 @@ data class SearchResult(
     val overview: String?,
     @Json(name = "poster_path")
     override val posterPath: String?
-)
+) : Presentable {
+    override val title: String = when {
+        !movieTitle.isNullOrEmpty() -> movieTitle
+        !tvShowName.isNullOrEmpty() -> tvShowName
+        else -> ""
+    }
+}
