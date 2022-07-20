@@ -37,7 +37,7 @@ data class MovieDetails(
     val runtime: Int?,
     @Json(name = "spoken_languages")
     val spokenLanguages: List<SpokenLanguage>,
-//    val status: MovieStatus,
+    val status: MovieStatus,
 //
 //    val tagline: String?,
 //
