@@ -8,3 +8,7 @@ data class MovieEntity(
     override val id: Int,
     val type: MovieEntityType,
 )
+
+enum class MovieEntityType {
+    Discover, Upcoming, Trending, TopRated, Popular
+}
