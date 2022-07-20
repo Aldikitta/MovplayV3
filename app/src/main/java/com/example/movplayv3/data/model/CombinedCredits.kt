@@ -2,7 +2,6 @@ package com.example.movplayv3.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import okhttp3.MediaType
 
 @JsonClass(generateAdapter = true)
 data class CombinedCredits(
@@ -17,7 +16,22 @@ data class CombinedCreditsCast(
     val character: String?,
     override val title: String?,
     @Json(name = "media_type")
-    override val mediaType: ,
+    override val mediaType: MediaType,
     @Json(name = "poster_path")
     override val posterPath: String?
+) : CreditPresentable {
+    override val infoText: String? = character
+}
+
+@JsonClass(generateAdapter = true)
+data class CombinedCreditsCrew(
+
 )
+
+interface CreditPresentable {
+    val id: Int
+    val posterPath: String?
+    val infoText: String?
+    val title: String?
+    val mediaType: MediaType
+}
