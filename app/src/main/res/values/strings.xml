@@ -23,4 +23,11 @@
     <string name="sort_type_vote_average_label">Score</string>
     <string name="sort_type_title_label">Title</string>
     <string name="sort_type_vote_count_label">Vote count</string>
+
+    <string name="tv_series_status_returning_label">Returning series</string>
+    <string name="tv_series_status_planned_label">Planned</string>
+    <string name="tv_series_status_in_production_label">In production</string>
+    <string name="tv_series_status_ended_label">Ended</string>
+    <string name="tv_series_status_cancelled_label">Cancelled</string>
+    <string name="tv_series_status_pilot_label">Pilot</string>
 </resources>
