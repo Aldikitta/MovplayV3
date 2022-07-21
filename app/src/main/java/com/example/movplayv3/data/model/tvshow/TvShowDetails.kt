@@ -73,7 +73,7 @@ data class TvShowDetails(
     @Json(name = "spoken_languages")
     val spokenLanguages: List<SpokenLanguage>,
 
-    val status: TvSeriesStatus,
+    val status: TvShowStatus,
 
     val tagline: String,
 
