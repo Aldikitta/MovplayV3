@@ -30,4 +30,12 @@
     <string name="tv_series_status_ended_label">Ended</string>
     <string name="tv_series_status_cancelled_label">Cancelled</string>
     <string name="tv_series_status_pilot_label">Pilot</string>
+
+    <string name="tv_series_type_documentary_label">Documentary</string>
+    <string name="tv_series_type_news_label">News</string>
+    <string name="tv_series_type_miniseries_label">Miniseries</string>
+    <string name="tv_series_type_reality_label">Reality</string>
+    <string name="tv_series_type_scripted_label">Scripted</string>
+    <string name="tv_series_type_talk_show_label">Talk show</string>
+    <string name="tv_series_type_video_label">Video</string>
 </resources>
