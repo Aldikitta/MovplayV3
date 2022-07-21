@@ -17,3 +17,12 @@ data class Video(
     @Json(name = "iso_3166_1")
     val region: String,
 )
+
+@JsonClass(generateAdapter = false)
+enum class VideoSite(val value: String) {
+    @Json(name = "YouTube")
+    YouTube("YouTube"),
+
+    @Json(name = "Vimeo")
+    Vimeo("Vimeo")
+}
