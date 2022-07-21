@@ -7,7 +7,11 @@ enum class SortType {
     Popularity, VoteCount, ReleaseDate, VoteAverage, OriginalTitle;
 
     fun toSortTypeParam(order: SortOrder) = when (this) {
-
+        Popularity -> if (order == SortOrder.Desc) SortTypeParam.PopularityDesc else SortTypeParam.PopularityAsc
+        ReleaseDate -> if (order == SortOrder.Desc) SortTypeParam.ReleaseDateDesc else SortTypeParam.ReleaseDateAsc
+        VoteAverage -> if (order == SortOrder.Desc) SortTypeParam.VoteAverageDesc else SortTypeParam.VoteAverageAsc
+        OriginalTitle -> if (order == SortOrder.Desc) SortTypeParam.OriginalTitleDesc else SortTypeParam.OriginalTitleAsc
+        VoteCount -> if (order == SortOrder.Desc) SortTypeParam.VoteCountDesc else SortTypeParam.VoteCountAsc
     }
 
     @StringRes
