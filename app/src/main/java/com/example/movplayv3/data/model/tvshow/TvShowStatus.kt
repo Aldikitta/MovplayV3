@@ -1,6 +1,7 @@
 package com.example.movplayv3.data.model.tvshow
 
 import androidx.annotation.StringRes
+import com.example.movplayv3.R
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
