@@ -14,4 +14,7 @@
     <string name="movie_provider_type_rent_label">Rent</string>
     <string name="movie_provider_type_buy_label">Buy</string>
     <string name="movie_provider_type_stream_label">Stream</string>
+
+    <string name="snack_bar_network_connected_label">Connected to network</string>
+    <string name="snack_bar_network_disconnected_label">Network connection lost</string>
 </resources>
