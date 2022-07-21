@@ -3,7 +3,7 @@ package com.example.movplayv3.data.model
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = false)
 enum class MediaType(val value: String) {
     @Json(name = "movie")
     Movie("movie"),
