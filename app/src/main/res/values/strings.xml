@@ -17,4 +17,10 @@
 
     <string name="snack_bar_network_connected_label">Connected to network</string>
     <string name="snack_bar_network_disconnected_label">Network connection lost</string>
+
+    <string name="sort_type_popularity_label">Popularity</string>
+    <string name="sort_type_release_date_label">Date</string>
+    <string name="sort_type_vote_average_label">Score</string>
+    <string name="sort_type_title_label">Title</string>
+    <string name="sort_type_vote_count_label">Vote count</string>
 </resources>
