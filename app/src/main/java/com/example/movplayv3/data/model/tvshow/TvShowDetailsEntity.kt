@@ -8,7 +8,7 @@ import com.example.movplayv3.data.model.DetailPresentable
 import com.squareup.moshi.JsonClass
 
 @Entity(indices = [Index(value = ["language"])])
-data class TvSeriesDetailEntity(
+data class TvShowDetailEntity(
     override val id: Int,
     @ColumnInfo(name = "poster_path")
     override val posterPath: String?,
