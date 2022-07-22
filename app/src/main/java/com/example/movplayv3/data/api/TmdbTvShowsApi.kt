@@ -12,7 +12,7 @@ interface TmdbTvShowsApi {
     fun getConfig(): Call<Config>
 
     @GET("discover/tv")
-    suspend fun discoverTvSeries(
+    suspend fun discoverTvShows(
         @Query("page") page: Int,
         @Query("language") isoCode: String,
         @Query("region") region: String,

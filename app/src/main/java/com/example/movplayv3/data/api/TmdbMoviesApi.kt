@@ -31,4 +31,11 @@ interface TmdbMoviesApi {
         @Query("release_date.lte")
         toReleaseDate: DateParam?
     ): MoviesResponse
+
+    @GET("movie/popular")
+    suspend fun getPopularMovies(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): MoviesResponse
 }
