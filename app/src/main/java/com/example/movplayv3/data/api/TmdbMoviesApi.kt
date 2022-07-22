@@ -101,4 +101,10 @@ interface TmdbMoviesApi {
     fun getMovieImages(
         @Path("movie_id") movieId: Int
     ): Call<ImagesResponse>
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReviews(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int
+    ): ReviewsResponse
 }
