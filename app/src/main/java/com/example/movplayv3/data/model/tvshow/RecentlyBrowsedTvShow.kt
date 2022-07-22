@@ -7,7 +7,7 @@ import com.example.movplayv3.data.model.Presentable
 import java.util.*
 
 @Entity
-data class RecentlyBrowsedTvSeries(
+data class RecentlyBrowsedTvShow(
     @PrimaryKey
     override val id: Int,
 
