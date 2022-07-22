@@ -117,4 +117,9 @@ interface TmdbMoviesApi {
     fun getMovieGenres(
         @Query("language") isoCode: String
     ): Call<GenresResponse>
+
+    @GET("movie/{movie_id}/watch/providers")
+    fun getMovieWatchProviders(
+        @Path("movie_id") movieId: Int
+    ): Call<WatchProvidersResponse>
 }
