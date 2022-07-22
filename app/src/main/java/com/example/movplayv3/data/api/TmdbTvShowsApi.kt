@@ -130,4 +130,9 @@ interface TmdbTvShowsApi {
         @Path("tv_id") movieId: Int,
         @Query("page") page: Int
     ): ReviewsResponse
+
+    @GET("tv/{tv_id}/reviews")
+    fun getTvShowsReview(
+        @Path("tv_id") tvSeriesId: Int
+    ): Call<ReviewsResponse>
 }
