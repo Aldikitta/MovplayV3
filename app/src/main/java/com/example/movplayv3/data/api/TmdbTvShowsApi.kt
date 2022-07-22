@@ -65,13 +65,13 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}")
     fun getTvShowsDetails(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Query("language") isoCode: String
     ): Call<TvShowDetails>
 
     @GET("tv/{tv_id}/similar")
     suspend fun getSimilarTvShows(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Query("page") page: Int,
         @Query("language") isoCode: String,
         @Query("region") region: String
@@ -79,7 +79,7 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/recommendations")
     suspend fun getTvShowsRecommendations(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Query("page") page: Int,
         @Query("language") isoCode: String,
         @Query("region") region: String
@@ -87,7 +87,7 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/season/{season_number}")
     fun getTvSeasons(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String
     ): Call<TvSeasonsResponse>
@@ -101,26 +101,26 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/season/{season_number}")
     fun getSeasonDetails(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String
     ): Call<SeasonDetails>
 
     @GET("tv/{tv_id}/season/{season_number}/aggregate_credits")
     fun getSeasonCredits(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String,
     ): Call<AggregatedCredits>
 
     @GET("tv/{tv_id}/images")
     fun getTvShowsImages(
-        @Path("tv_id") tvSeriesId: Int
+        @Path("tv_id") tvShowsId: Int
     ): Call<ImagesResponse>
 
     @GET("tv/{tv_id}/season/{season_number}/episode/{episode_number}/images")
     fun getEpisodeImages(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Path("season_number") seasonNumber: Int,
         @Path("episode_number") episodeNumber: Int
     ): Call<ImagesResponse>
@@ -133,7 +133,7 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/reviews")
     fun getTvShowsReview(
-        @Path("tv_id") tvSeriesId: Int
+        @Path("tv_id") tvShowsId: Int
     ): Call<ReviewsResponse>
 
     @GET("genre/tv/list")
@@ -143,12 +143,12 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/watch/providers")
     fun getTvShowsWatchProviders(
-        @Path("tv_id") tvSeriesId: Int
+        @Path("tv_id") tvShowsId: Int
     ): Call<WatchProvidersResponse>
 
     @GET("tv/{tv_id}/external_ids")
     fun getTvShowsExternalIds(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
     ): Call<ExternalIds>
 
     @GET("watch/providers/tv")
@@ -159,13 +159,13 @@ interface TmdbTvShowsApi {
 
     @GET("tv/{tv_id}/videos")
     fun getTvShowsVideos(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Query("language") isoCode: String
     ): Call<VideosResponse>
 
     @GET("tv/{tv_id}/season/{season_number}/videos")
     fun getSeasonVideos(
-        @Path("tv_id") tvSeriesId: Int,
+        @Path("tv_id") tvShowsId: Int,
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String
     ): Call<VideosResponse>
