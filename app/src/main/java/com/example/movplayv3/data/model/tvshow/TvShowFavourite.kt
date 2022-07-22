@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.model.movie
+package com.example.movplayv3.data.model.tvshow
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,14 +7,15 @@ import com.example.movplayv3.data.model.Presentable
 import java.util.*
 
 @Entity
-data class MovieFavorite(
+data class TvShowFavourite(
     @PrimaryKey
     override val id: Int,
     @ColumnInfo(name = "poster_path")
     override val posterPath: String?,
-    override val title: String,
-    @ColumnInfo(name = "original_title")
-    val originalTitle: String,
+    val name: String,
     @ColumnInfo(name = "added_date")
     val addedDate: Date
-) : Presentable
+) : Presentable {
+    @Transient
+    override val title: String = name
+}
