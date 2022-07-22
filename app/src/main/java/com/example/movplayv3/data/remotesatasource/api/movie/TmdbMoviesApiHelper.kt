@@ -82,4 +82,8 @@ interface TmdbMoviesApiHelper {
 
     fun getMoviesGenres(isoCode: String = DeviceLanguage.default.languageCode): Call<GenresResponse>
 
+    fun getMovieWatchProviders(
+        movieId: Int
+    ): Call<WatchProvidersResponse>
+
 }
