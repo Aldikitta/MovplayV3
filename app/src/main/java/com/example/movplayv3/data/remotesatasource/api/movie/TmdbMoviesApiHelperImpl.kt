@@ -73,7 +73,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMovieDetails(movieId: Int, isoCode: String): Call<MovieDetails> {
-//        return tmdbMoviesApi.getMovieDetails(movieId, isoCode)
+        return tmdbMoviesApi.getMovieDetails(movieId, isoCode)
     }
 
     override fun getMovieCredits(movieId: Int, isoCode: String): Call<Credits> {
