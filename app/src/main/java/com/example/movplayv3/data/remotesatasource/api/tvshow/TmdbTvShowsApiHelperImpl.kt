@@ -74,7 +74,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
     }
 
     override fun getTvShowDetails(tvShowId: Int, isoCode: String): Call<TvShowDetails> {
-//        return tmdbTvShowsApi.getTvShowDetails(tvShowId, isoCode)
+        return tmdbTvShowsApi.getTvShowDetails(tvShowId, isoCode)
     }
 
     override suspend fun getSimilarTvShows(
