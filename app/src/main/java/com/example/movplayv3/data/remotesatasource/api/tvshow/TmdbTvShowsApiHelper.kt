@@ -84,4 +84,9 @@ interface TmdbTvShowsApiHelper {
 
     fun getTvSeriesImages(tvSeriesId: Int): Call<ImagesResponse>
 
+    fun getEpisodeImages(
+        tvSeriesId: Int,
+        seasonNumber: Int,
+        episodeNumber: Int
+    ): Call<ImagesResponse>
 }
