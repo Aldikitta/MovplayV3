@@ -45,4 +45,11 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): TvShowsResponse
+
+    @GET("tv/popular")
+    suspend fun getPopularTvShows(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
