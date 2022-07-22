@@ -139,4 +139,12 @@ interface TmdbMoviesApi {
         @Path("movie_id") movieId: Int,
         @Query("language") isoCode: String
     ): Call<VideosResponse>
+
+    @GET("discover/movie")
+    suspend fun getOtherMoviesOfDirector(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String,
+        @Query("with_crew") directorId: Int
+    ): MoviesResponse
 }
