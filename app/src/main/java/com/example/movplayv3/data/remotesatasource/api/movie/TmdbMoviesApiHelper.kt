@@ -86,4 +86,8 @@ interface TmdbMoviesApiHelper {
         movieId: Int
     ): Call<WatchProvidersResponse>
 
+    fun getMovieExternalIds(
+        movieId: Int
+    ): Call<ExternalIds>
+
 }
