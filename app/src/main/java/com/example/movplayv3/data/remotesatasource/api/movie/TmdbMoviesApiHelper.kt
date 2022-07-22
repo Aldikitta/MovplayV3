@@ -79,4 +79,7 @@ interface TmdbMoviesApiHelper {
     suspend fun getMovieReviews(movieId: Int, page: Int): ReviewsResponse
 
     fun getMovieReview(movieId: Int): Call<ReviewsResponse>
+
+    fun getMoviesGenres(isoCode: String = DeviceLanguage.default.languageCode): Call<GenresResponse>
+
 }
