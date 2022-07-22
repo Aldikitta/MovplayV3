@@ -45,7 +45,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-        TODO("Not yet implemented")
+        return tmdbMoviesApi.getPopularMovies(page, isoCode, region)
     }
 
     override suspend fun getUpcomingMovies(
