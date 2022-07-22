@@ -95,7 +95,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-//        return tmdbMoviesApi.getMoviesRecommendations(movieId, page, isoCode, region)
+        return tmdbMoviesApi.getMoviesRecommendations(movieId, page, isoCode, region)
     }
 
     override suspend fun getTrendingMovies(
