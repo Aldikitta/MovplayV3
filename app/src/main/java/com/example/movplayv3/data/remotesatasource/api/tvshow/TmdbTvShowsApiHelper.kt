@@ -18,4 +18,10 @@ interface TmdbTvShowsApiHelper {
         fromAirDate: DateParam? = null,
         toAirDate: DateParam? = null
     ): TvShowsResponse
+
+    suspend fun getTopRatedTvShows(
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): TvShowsResponse
 }
