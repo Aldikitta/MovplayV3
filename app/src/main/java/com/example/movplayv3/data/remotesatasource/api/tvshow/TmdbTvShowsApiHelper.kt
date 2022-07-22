@@ -108,4 +108,9 @@ interface TmdbTvShowsApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): Call<AllWatchProvidersResponse>
+
+    fun getTvSeriesVideos(
+        tvSeriesId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+    ): Call<VideosResponse>
 }
