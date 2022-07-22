@@ -30,4 +30,9 @@ interface TmdbOthersApiHelper {
         personId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<CombinedCredits>
+
+    fun getPersonExternalIds(
+        personId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<ExternalIds>
 }
