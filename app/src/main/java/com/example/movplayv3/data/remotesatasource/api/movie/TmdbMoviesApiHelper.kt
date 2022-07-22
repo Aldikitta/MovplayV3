@@ -73,4 +73,7 @@ interface TmdbMoviesApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): MoviesResponse
+
+    fun getMovieImages(movieId: Int): Call<ImagesResponse>
+
 }
