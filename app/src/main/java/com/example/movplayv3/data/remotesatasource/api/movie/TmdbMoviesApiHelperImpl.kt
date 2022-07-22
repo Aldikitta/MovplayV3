@@ -123,7 +123,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMovieWatchProviders(movieId: Int): Call<WatchProvidersResponse> {
-//        return tmdbMoviesApi.getMovieWatchProviders(movieId)
+        return tmdbMoviesApi.getMovieWatchProviders(movieId)
     }
 
     override fun getMovieExternalIds(movieId: Int): Call<ExternalIds> {
