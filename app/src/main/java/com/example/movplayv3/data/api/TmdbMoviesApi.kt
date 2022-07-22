@@ -52,4 +52,11 @@ interface TmdbMoviesApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): MoviesResponse
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlayingMovies(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): MoviesResponse
 }
