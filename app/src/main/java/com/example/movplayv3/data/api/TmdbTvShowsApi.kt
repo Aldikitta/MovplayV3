@@ -75,4 +75,12 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): TvShowsResponse
+
+    @GET("tv/{tv_id}/recommendations")
+    suspend fun getTvShowsRecommendations(
+        @Path("tv_id") tvSeriesId: Int,
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
