@@ -62,7 +62,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-//        return tmdbTvShowsApi.getPopularTvShows(page, isoCode, region)
+        return tmdbTvShowsApi.getPopularTvShows(page, isoCode, region)
     }
 
     override suspend fun getAiringTodayTvShows(
