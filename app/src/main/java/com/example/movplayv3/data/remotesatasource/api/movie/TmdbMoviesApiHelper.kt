@@ -1,6 +1,7 @@
 package com.example.movplayv3.data.remotesatasource.api.movie
 
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MoviesResponse
 import retrofit2.Call
 
@@ -42,4 +43,9 @@ interface TmdbMoviesApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): MoviesResponse
+
+    fun getMovieDetails(
+        movieId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<MovieDetails>
 }
