@@ -48,4 +48,11 @@ interface TmdbTvShowsApiHelper {
         tvSeriesId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<TvShowDetails>
+
+    suspend fun getSimilarTvShows(
+        tvSeriesId: Int,
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): TvShowsResponse
 }
