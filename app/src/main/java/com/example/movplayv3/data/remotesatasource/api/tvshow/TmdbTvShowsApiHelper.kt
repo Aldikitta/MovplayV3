@@ -55,4 +55,11 @@ interface TmdbTvShowsApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
+
+    suspend fun getTvShowsRecommendations(
+        tvSeriesId: Int,
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): TvShowsResponse
 }
