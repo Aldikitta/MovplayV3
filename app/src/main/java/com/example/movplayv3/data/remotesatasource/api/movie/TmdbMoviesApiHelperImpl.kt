@@ -69,15 +69,15 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-        TODO("Not yet implemented")
+        return tmdbMoviesApi.getNowPlayingMovies(page, isoCode, region)
     }
 
     override fun getMovieDetails(movieId: Int, isoCode: String): Call<MovieDetails> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieDetails(movieId, isoCode)
     }
 
     override fun getMovieCredits(movieId: Int, isoCode: String): Call<Credits> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieCredits(movieId, isoCode)
     }
 
     override suspend fun getSimilarMovies(
@@ -86,7 +86,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getSimilarMovies(movieId, page, isoCode, region)
     }
 
     override suspend fun getMoviesRecommendations(
@@ -95,7 +95,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMoviesRecommendations(movieId, page, isoCode, region)
     }
 
     override suspend fun getTrendingMovies(
@@ -103,42 +103,42 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getTrendingMovies(page, isoCode, region)
     }
 
     override fun getMovieImages(movieId: Int): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieImages(movieId)
     }
 
     override suspend fun getMovieReviews(movieId: Int, page: Int): ReviewsResponse {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieReviews(movieId, page)
     }
 
     override fun getMovieReview(movieId: Int): Call<ReviewsResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieReview(movieId)
     }
 
     override fun getMoviesGenres(isoCode: String): Call<GenresResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieGenres(isoCode)
     }
 
     override fun getMovieWatchProviders(movieId: Int): Call<WatchProvidersResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieWatchProviders(movieId)
     }
 
     override fun getMovieExternalIds(movieId: Int): Call<ExternalIds> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieExternalIds(movieId)
     }
 
     override fun getAllMoviesWatchProviders(
         isoCode: String,
         region: String
     ): Call<AllWatchProvidersResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getAllMoviesWatchProviders(isoCode, region)
     }
 
     override fun getMovieVideos(movieId: Int, isoCode: String): Call<VideosResponse> {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getMovieVideos(movieId, isoCode)
     }
 
     override suspend fun getOtherMoviesOfDirector(
@@ -147,6 +147,6 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         region: String,
         directorId: Int
     ): MoviesResponse {
-        TODO("Not yet implemented")
+//        return tmdbMoviesApi.getOtherMoviesOfDirector(page, isoCode, region, directorId)
     }
 }
