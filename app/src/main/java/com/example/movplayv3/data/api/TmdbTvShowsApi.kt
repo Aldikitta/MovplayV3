@@ -67,4 +67,12 @@ interface TmdbTvShowsApi {
         @Path("tv_id") tvSeriesId: Int,
         @Query("language") isoCode: String
     ): Call<TvShowDetails>
+
+    @GET("tv/{tv_id}/similar")
+    suspend fun getSimilarTvShows(
+        @Path("tv_id") tvSeriesId: Int,
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
