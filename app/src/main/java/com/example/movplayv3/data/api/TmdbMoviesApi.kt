@@ -73,4 +73,12 @@ interface TmdbMoviesApi {
         @Path("movie_id") movieId: Int,
         @Query("language") isoCode: String
     ): Call<Credits>
+
+    @GET("movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): MoviesResponse
 }
