@@ -69,4 +69,10 @@ interface TmdbTvShowsApiHelper {
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<TvSeasonsResponse>
+
+    suspend fun getTrendingTvSeries(
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): TvShowsResponse
 }
