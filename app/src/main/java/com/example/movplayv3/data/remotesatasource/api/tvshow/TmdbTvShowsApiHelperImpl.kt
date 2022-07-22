@@ -159,7 +159,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
     }
 
     override fun getTvShowVideos(tvShowId: Int, isoCode: String): Call<VideosResponse> {
-//        return tmdbTvShowsApi.getTvShowVideos(tvShowId, isoCode)
+        return tmdbTvShowsApi.getTvShowVideos(tvShowId, isoCode)
     }
 
     override fun getSeasonVideos(
