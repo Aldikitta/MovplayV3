@@ -67,4 +67,10 @@ interface TmdbMoviesApi {
         @Path("movie_id") movieId: Int,
         @Query("language") isoCode: String
     ): Call<MovieDetails>
+
+    @GET("movie/{movie_id}/credits")
+    fun getMovieCredits(
+        @Path("movie_id") movieId: Int,
+        @Query("language") isoCode: String
+    ): Call<Credits>
 }
