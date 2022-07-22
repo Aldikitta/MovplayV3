@@ -1,9 +1,6 @@
 package com.example.movplayv3.data.remotesatasource.api
 
-import com.example.movplayv3.data.model.CollectionResponse
-import com.example.movplayv3.data.model.Config
-import com.example.movplayv3.data.model.DeviceLanguage
-import com.example.movplayv3.data.model.SearchResponse
+import com.example.movplayv3.data.model.*
 import retrofit2.Call
 
 interface TmdbOthersApiHelper {
@@ -23,4 +20,9 @@ interface TmdbOthersApiHelper {
         collectionId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<CollectionResponse>
+
+    fun getPersonDetails(
+        personId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<PersonDetails>
 }
