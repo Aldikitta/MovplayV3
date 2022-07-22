@@ -2,6 +2,7 @@ package com.example.movplayv3.data.api
 
 import androidx.annotation.FloatRange
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.tvshow.TvSeasonsResponse
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.model.tvshow.TvShowsResponse
 import retrofit2.Call
@@ -83,4 +84,11 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): TvShowsResponse
+
+    @GET("tv/{tv_id}/season/{season_number}")
+    fun getTvSeasons(
+        @Path("tv_id") tvSeriesId: Int,
+        @Path("season_number") seasonNumber: Int,
+        @Query("language") isoCode: String
+    ): Call<TvSeasonsResponse>
 }
