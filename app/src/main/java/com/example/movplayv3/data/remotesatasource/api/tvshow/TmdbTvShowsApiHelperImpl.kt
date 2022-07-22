@@ -128,7 +128,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse> {
-//        return tmdbTvShowsApi.getEpisodeImages(tvShowId, seasonNumber, episodeNumber)
+        return tmdbTvShowsApi.getEpisodeImages(tvShowId, seasonNumber, episodeNumber)
     }
 
     override suspend fun getTvShowReviews(tvShowId: Int, page: Int): ReviewsResponse {
