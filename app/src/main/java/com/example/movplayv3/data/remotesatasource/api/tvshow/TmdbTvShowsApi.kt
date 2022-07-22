@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.remotesatasource.api
+package com.example.movplayv3.data.remotesatasource.api.tvshow
 
 import androidx.annotation.FloatRange
 import com.example.movplayv3.data.model.*
