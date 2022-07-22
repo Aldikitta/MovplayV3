@@ -2,9 +2,11 @@ package com.example.movplayv3.data.api
 
 import androidx.annotation.FloatRange
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MoviesResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TmdbMoviesApi {
@@ -59,4 +61,10 @@ interface TmdbMoviesApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): MoviesResponse
+
+    @GET("movie/{movie_id}")
+    fun getMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("language") isoCode: String
+    ): Call<MovieDetails>
 }
