@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 import java.util.*
 
 @JsonClass(generateAdapter = true)
-data class VideoResponse(
+data class VideosResponse(
     val id: Int,
     val result: List<Video>
 )
