@@ -96,4 +96,9 @@ interface TmdbMoviesApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): MoviesResponse
+
+    @GET("movie/{movie_id}/images")
+    fun getMovieImages(
+        @Path("movie_id") movieId: Int
+    ): Call<ImagesResponse>
 }
