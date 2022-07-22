@@ -112,4 +112,9 @@ interface TmdbTvShowsApi {
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String,
     ): Call<AggregatedCredits>
+
+    @GET("tv/{tv_id}/images")
+    fun getTvShowsImages(
+        @Path("tv_id") tvSeriesId: Int
+    ): Call<ImagesResponse>
 }
