@@ -7,7 +7,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface TmdbApi {
+interface TmdbMoviesApi {
     @GET("configuration")
     fun getConfig(): Call<Config>
 
