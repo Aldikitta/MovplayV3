@@ -127,7 +127,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMovieExternalIds(movieId: Int): Call<ExternalIds> {
-//        return tmdbMoviesApi.getMovieExternalIds(movieId)
+        return tmdbMoviesApi.getMovieExternalIds(movieId)
     }
 
     override fun getAllMoviesWatchProviders(
