@@ -127,4 +127,10 @@ interface TmdbMoviesApi {
     fun getMovieExternalIds(
         @Path("movie_id") movieId: Int,
     ): Call<ExternalIds>
+
+    @GET("watch/providers/movie")
+    fun getAllMoviesWatchProviders(
+        @Query("language") isoCode: String,
+        @Query("watch_region") region: String
+    ): Call<AllWatchProvidersResponse>
 }
