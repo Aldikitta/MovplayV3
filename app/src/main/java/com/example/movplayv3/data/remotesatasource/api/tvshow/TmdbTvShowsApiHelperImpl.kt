@@ -108,7 +108,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-//        return tmdbTvShowsApi.getTrendingTvShows(page, isoCode, region)
+        return tmdbTvShowsApi.getTrendingTvShows(page, isoCode, region)
     }
 
     override fun getSeasonDetails(
