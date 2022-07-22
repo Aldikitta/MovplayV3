@@ -140,4 +140,9 @@ interface TmdbTvShowsApi {
     fun getTvShowsGenres(
         @Query("language") isoCode: String
     ): Call<GenresResponse>
+
+    @GET("tv/{tv_id}/watch/providers")
+    fun getTvShowsWatchProviders(
+        @Path("tv_id") tvSeriesId: Int
+    ): Call<WatchProvidersResponse>
 }
