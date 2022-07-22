@@ -100,7 +100,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<TvSeasonsResponse> {
-//        return tmdbTvShowsApi.getTvSeasons(tvShowId, seasonNumber, isoCode)
+        return tmdbTvShowsApi.getTvSeasons(tvShowId, seasonNumber, isoCode)
     }
 
     override suspend fun getTrendingTvShows(
