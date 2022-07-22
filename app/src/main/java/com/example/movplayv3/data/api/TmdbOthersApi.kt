@@ -1,12 +1,14 @@
 package com.example.movplayv3.data.api
 
+import com.example.movplayv3.data.model.CollectionResponse
 import com.example.movplayv3.data.model.Config
 import com.example.movplayv3.data.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TmdbSearchApi {
+interface TmdbOthersApi {
     @GET("configuration")
     fun getConfig(): Call<Config>
 
@@ -20,4 +22,10 @@ interface TmdbSearchApi {
         @Query("include_adult") includeAdult: Boolean,
         @Query("primary_release_year") releaseYear: Int?
     ): SearchResponse
+
+    @GET("collection/{collection_id}")
+    fun getCollection(
+        @Path("collection_id") collectionId: Int,
+        @Query("language") isoCode: String
+    ): Call<CollectionResponse>
 }

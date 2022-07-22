@@ -112,4 +112,9 @@ interface TmdbMoviesApi {
     fun getMovieReview(
         @Path("movie_id") movieId: Int
     ): Call<ReviewsResponse>
+
+    @GET("genre/movie/list")
+    fun getMovieGenres(
+        @Query("language") isoCode: String
+    ): Call<GenresResponse>
 }
