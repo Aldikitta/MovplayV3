@@ -38,4 +38,10 @@ interface TmdbOthersApi {
         @Path("person_id") personId: Int,
         @Query("language") isoCode: String
     ): Call<CombinedCredits>
+
+    @GET("person/{person_id}/external_ids")
+    fun getPersonExternalIds(
+        @Path("person_id") personId: Int,
+        @Query("language") isoCode: String
+    ): Call<ExternalIds>
 }
