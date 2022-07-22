@@ -162,4 +162,11 @@ interface TmdbTvShowsApi {
         @Path("tv_id") tvSeriesId: Int,
         @Query("language") isoCode: String
     ): Call<VideosResponse>
+
+    @GET("tv/{tv_id}/season/{season_number}/videos")
+    fun getSeasonVideos(
+        @Path("tv_id") tvSeriesId: Int,
+        @Path("season_number") seasonNumber: Int,
+        @Query("language") isoCode: String
+    ): Call<VideosResponse>
 }
