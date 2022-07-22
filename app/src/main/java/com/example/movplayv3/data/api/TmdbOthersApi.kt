@@ -2,6 +2,7 @@ package com.example.movplayv3.data.api
 
 import com.example.movplayv3.data.model.CollectionResponse
 import com.example.movplayv3.data.model.Config
+import com.example.movplayv3.data.model.PersonDetails
 import com.example.movplayv3.data.model.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -28,4 +29,10 @@ interface TmdbOthersApi {
         @Path("collection_id") collectionId: Int,
         @Query("language") isoCode: String
     ): Call<CollectionResponse>
+
+    @GET("person/{person_id}")
+    fun getPersonDetails(
+        @Path("person_id") personId: Int,
+        @Query("language") isoCode: String
+    ): Call<PersonDetails>
 }
