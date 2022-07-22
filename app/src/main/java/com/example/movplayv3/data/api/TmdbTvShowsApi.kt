@@ -124,4 +124,10 @@ interface TmdbTvShowsApi {
         @Path("season_number") seasonNumber: Int,
         @Path("episode_number") episodeNumber: Int
     ): Call<ImagesResponse>
+
+    @GET("tv/{tv_id}/reviews")
+    suspend fun getTvShowsReviews(
+        @Path("tv_id") movieId: Int,
+        @Query("page") page: Int
+    ): ReviewsResponse
 }
