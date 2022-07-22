@@ -89,4 +89,11 @@ interface TmdbMoviesApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): MoviesResponse
+
+    @GET("trending/movie/week")
+    suspend fun getTrendingMovies(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): MoviesResponse
 }
