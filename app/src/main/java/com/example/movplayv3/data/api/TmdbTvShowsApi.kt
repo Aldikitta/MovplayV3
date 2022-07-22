@@ -38,4 +38,11 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): TvShowsResponse
+
+    @GET("tv/on_the_air")
+    suspend fun getOnTheAirTvShows(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
