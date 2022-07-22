@@ -11,7 +11,9 @@ import javax.inject.Singleton
 class TmdbMoviesApiHelperImpl @Inject constructor(
     private val tmdbMoviesApi: TmdbMoviesApi
 ) : TmdbMoviesApiHelper {
-    override fun getConfig(): Call<Config> = tmdbMoviesApi.getConfig()
+    override fun getConfig(): Call<Config> {
+        return tmdbMoviesApi.getConfig()
+    }
 
     override suspend fun discoverMovies(
         page: Int,
@@ -23,8 +25,8 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         voteRange: ClosedFloatingPointRange<Float>,
         fromReleaseDate: DateParam?,
         toReleaseDate: DateParam?
-    ): MoviesResponse =
-        tmdbMoviesApi.discoverMovies(
+    ): MoviesResponse {
+        return tmdbMoviesApi.discoverMovies(
             page,
             isoCode,
             region,
@@ -36,6 +38,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
             fromReleaseDate = fromReleaseDate,
             toReleaseDate = toReleaseDate
         )
+    }
 
     override suspend fun getPopularMovies(
         page: Int,
