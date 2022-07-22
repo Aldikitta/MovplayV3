@@ -132,7 +132,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
     }
 
     override suspend fun getTvShowReviews(tvShowId: Int, page: Int): ReviewsResponse {
-//        return tmdbTvShowsApi.getTvShowReviews(tvShowId, page)
+        return tmdbTvShowsApi.getTvShowReviews(tvShowId, page)
     }
 
     override fun getTvShowReview(tvShowId: Int): Call<ReviewsResponse> {
