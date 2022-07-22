@@ -98,4 +98,11 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): TvShowsResponse
+
+    @GET("tv/{tv_id}/season/{season_number}")
+    fun getSeasonDetails(
+        @Path("tv_id") tvSeriesId: Int,
+        @Path("season_number") seasonNumber: Int,
+        @Query("language") isoCode: String
+    ): Call<SeasonDetails>
 }
