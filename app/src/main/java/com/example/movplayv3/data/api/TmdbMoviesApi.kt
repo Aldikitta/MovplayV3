@@ -81,4 +81,12 @@ interface TmdbMoviesApi {
         @Query("language") isoCode: String,
         @Query("region") region: String
     ): MoviesResponse
+
+    @GET("movie/{movie_id}/recommendations")
+    suspend fun getMoviesRecommendations(
+        @Path("movie_id") movieId: Int,
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): MoviesResponse
 }
