@@ -148,7 +148,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
     }
 
     override fun getTvShowExternalIds(tvShowId: Int): Call<ExternalIds> {
-//        return tmdbTvShowsApi.getTvShowExternalIds(tvShowId)
+        return tmdbTvShowsApi.getTvShowExternalIds(tvShowId)
     }
 
     override fun getAllTvShowsWatchProviders(
