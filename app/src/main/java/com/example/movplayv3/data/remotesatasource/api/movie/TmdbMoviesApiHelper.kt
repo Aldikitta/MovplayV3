@@ -48,4 +48,9 @@ interface TmdbMoviesApiHelper {
         movieId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<MovieDetails>
+
+    fun getMovieCredits(
+        movieId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<Credits>
 }
