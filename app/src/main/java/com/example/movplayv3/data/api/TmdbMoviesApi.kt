@@ -107,4 +107,9 @@ interface TmdbMoviesApi {
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int
     ): ReviewsResponse
+
+    @GET("movie/{movie_id}/reviews")
+    fun getMovieReview(
+        @Path("movie_id") movieId: Int
+    ): Call<ReviewsResponse>
 }
