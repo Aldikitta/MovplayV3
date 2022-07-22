@@ -1,6 +1,7 @@
 package com.example.movplayv3.data.remotesatasource.api.tvshow
 
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.tvshow.TvSeasonsResponse
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.model.tvshow.TvShowsResponse
 import retrofit2.Call
@@ -62,4 +63,10 @@ interface TmdbTvShowsApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
+
+    fun getTvSeasons(
+        tvSeriesId: Int,
+        seasonNumber: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<TvSeasonsResponse>
 }
