@@ -145,4 +145,9 @@ interface TmdbTvShowsApi {
     fun getTvShowsWatchProviders(
         @Path("tv_id") tvSeriesId: Int
     ): Call<WatchProvidersResponse>
+
+    @GET("tv/{tv_id}/external_ids")
+    fun getTvShowsExternalIds(
+        @Path("tv_id") tvSeriesId: Int,
+    ): Call<ExternalIds>
 }
