@@ -83,7 +83,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-//        return tmdbTvShowsApi.getSimilarTvShows(tvShowId, page, isoCode, region)
+        return tmdbTvShowsApi.getSimilarTvShows(tvShowId, page, isoCode, region)
     }
 
     override suspend fun getTvShowsRecommendations(
