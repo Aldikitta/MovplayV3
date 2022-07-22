@@ -46,7 +46,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+        return tmdbTvShowsApi.getTopRatedTvShows(page, isoCode, region)
     }
 
     override suspend fun getOnTheAirTvShows(
@@ -54,7 +54,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getOnTheAirTvShows(page, isoCode, region)
     }
 
     override suspend fun getPopularTvShows(
@@ -62,7 +62,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getPopularTvShows(page, isoCode, region)
     }
 
     override suspend fun getAiringTodayTvShows(
@@ -70,11 +70,11 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getAiringTodayTvShows(page, isoCode, region)
     }
 
     override fun getTvShowDetails(tvShowId: Int, isoCode: String): Call<TvShowDetails> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowDetails(tvShowId, isoCode)
     }
 
     override suspend fun getSimilarTvShows(
@@ -83,7 +83,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getSimilarTvShows(tvShowId, page, isoCode, region)
     }
 
     override suspend fun getTvShowsRecommendations(
@@ -92,7 +92,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowsRecommendations(tvShowId, page, isoCode, region)
     }
 
     override fun getTvSeasons(
@@ -100,7 +100,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<TvSeasonsResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvSeasons(tvShowId, seasonNumber, isoCode)
     }
 
     override suspend fun getTrendingTvShows(
@@ -108,7 +108,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): TvShowsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTrendingTvShows(page, isoCode, region)
     }
 
     override fun getSeasonDetails(
@@ -116,11 +116,11 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<SeasonDetails> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getSeasonDetails(tvShowId, seasonNumber, isoCode)
     }
 
     override fun getTvShowImages(tvShowId: Int): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowImages(tvShowId)
     }
 
     override fun getEpisodeImages(
@@ -128,38 +128,38 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getEpisodeImages(tvShowId, seasonNumber, episodeNumber)
     }
 
     override suspend fun getTvShowReviews(tvShowId: Int, page: Int): ReviewsResponse {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowReviews(tvShowId, page)
     }
 
     override fun getTvShowReview(tvShowId: Int): Call<ReviewsResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowReview(tvShowId)
     }
 
     override fun getTvShowsGenres(isoCode: String): Call<GenresResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowsGenres(isoCode)
     }
 
     override fun getTvShowWatchProviders(tvShowId: Int): Call<WatchProvidersResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowWatchProviders(tvShowId)
     }
 
     override fun getTvShowExternalIds(tvShowId: Int): Call<ExternalIds> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowExternalIds(tvShowId)
     }
 
     override fun getAllTvShowsWatchProviders(
         isoCode: String,
         region: String
     ): Call<AllWatchProvidersResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getAllTvShowsWatchProviders(isoCode, region)
     }
 
     override fun getTvShowVideos(tvShowId: Int, isoCode: String): Call<VideosResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getTvShowVideos(tvShowId, isoCode)
     }
 
     override fun getSeasonVideos(
@@ -167,7 +167,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<VideosResponse> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getSeasonVideos(tvShowId, seasonNumber, isoCode)
     }
 
     override fun getSeasonCredits(
@@ -175,6 +175,6 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<AggregatedCredits> {
-        TODO("Not yet implemented")
+//        return tmdbTvShowsApi.getSeasonCredits(tvShowId, seasonNumber, isoCode)
     }
 }
