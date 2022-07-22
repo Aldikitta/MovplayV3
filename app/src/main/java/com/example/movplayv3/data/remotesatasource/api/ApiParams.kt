@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.api
+package com.example.movplayv3.data.remotesatasource.api
 
 import kotlin.time.Duration.Companion.seconds
 

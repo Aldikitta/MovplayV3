@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.api
+package com.example.movplayv3.data.remotesatasource.api
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.squareup.moshi.JsonDataException
@@ -73,7 +73,7 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
     })
 }
 
-suspend fun <T : Any> Call<T>.awaitResponse(): ApiResponse<T>{
+suspend fun <T : Any> Call<T>.awaitResponse(): ApiResponse<T> {
     return try {
         val response = awaitResponse()
 
