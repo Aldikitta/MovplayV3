@@ -45,83 +45,83 @@ interface TmdbTvShowsApiHelper {
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
 
-    fun getTvShowsDetails(
-        tvSeriesId: Int,
+    fun getTvShowDetails(
+        tvShowId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<TvShowDetails>
 
     suspend fun getSimilarTvShows(
-        tvSeriesId: Int,
+        tvShowId: Int,
         page: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
 
     suspend fun getTvShowsRecommendations(
-        tvSeriesId: Int,
+        tvShowId: Int,
         page: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
 
     fun getTvSeasons(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<TvSeasonsResponse>
 
-    suspend fun getTrendingTvSeries(
+    suspend fun getTrendingTvShows(
         page: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
 
     fun getSeasonDetails(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<SeasonDetails>
 
-    fun getTvSeriesImages(tvSeriesId: Int): Call<ImagesResponse>
+    fun getTvShowImages(tvShowId: Int): Call<ImagesResponse>
 
     fun getEpisodeImages(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse>
 
-    suspend fun getTvSeriesReviews(tvSeriesId: Int, page: Int): ReviewsResponse
+    suspend fun getTvShowReviews(tvShowId: Int, page: Int): ReviewsResponse
 
-    fun getTvSeriesReview(tvSeriesId: Int): Call<ReviewsResponse>
+    fun getTvShowReview(tvShowId: Int): Call<ReviewsResponse>
 
-    fun getTvSeriesGenres(isoCode: String = DeviceLanguage.default.languageCode): Call<GenresResponse>
+    fun getTvShowsGenres(isoCode: String = DeviceLanguage.default.languageCode): Call<GenresResponse>
 
-    fun getTvSeriesWatchProviders(
-        tvSeriesId: Int
+    fun getTvShowWatchProviders(
+        tvShowId: Int
     ): Call<WatchProvidersResponse>
 
-    fun getTvSeriesExternalIds(
-        tvSeriesId: Int
+    fun getTvShowExternalIds(
+        tvShowId: Int
     ): Call<ExternalIds>
 
-    fun getAllTvSeriesWatchProviders(
+    fun getAllTvShowsWatchProviders(
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): Call<AllWatchProvidersResponse>
 
-    fun getTvSeriesVideos(
-        tvSeriesId: Int,
+    fun getTvShowVideos(
+        tvShowId: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
     ): Call<VideosResponse>
 
     fun getSeasonVideos(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
     ): Call<VideosResponse>
 
     fun getSeasonCredits(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<AggregatedCredits>
