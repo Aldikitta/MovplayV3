@@ -119,4 +119,10 @@ interface TmdbTvShowsApiHelper {
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode,
     ): Call<VideosResponse>
+
+    fun getSeasonCredits(
+        tvSeriesId: Int,
+        seasonNumber: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<AggregatedCredits>
 }
