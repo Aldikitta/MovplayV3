@@ -25,4 +25,9 @@ interface TmdbOthersApiHelper {
         personId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<PersonDetails>
+
+    fun getCombinedCredits(
+        personId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<CombinedCredits>
 }
