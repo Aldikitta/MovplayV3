@@ -120,7 +120,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
     }
 
     override fun getTvShowImages(tvShowId: Int): Call<ImagesResponse> {
-//        return tmdbTvShowsApi.getTvShowImages(tvShowId)
+        return tmdbTvShowsApi.getTvShowImages(tvShowId)
     }
 
     override fun getEpisodeImages(
