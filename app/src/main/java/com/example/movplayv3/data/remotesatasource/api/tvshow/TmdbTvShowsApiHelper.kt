@@ -81,4 +81,7 @@ interface TmdbTvShowsApiHelper {
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<SeasonDetails>
+
+    fun getTvSeriesImages(tvSeriesId: Int): Call<ImagesResponse>
+
 }
