@@ -53,4 +53,11 @@ interface TmdbMoviesApiHelper {
         movieId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<Credits>
+
+    suspend fun getSimilarMovies(
+        movieId: Int,
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): MoviesResponse
 }
