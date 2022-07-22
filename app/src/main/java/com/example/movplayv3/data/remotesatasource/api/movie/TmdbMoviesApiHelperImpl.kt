@@ -134,7 +134,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): Call<AllWatchProvidersResponse> {
-//        return tmdbMoviesApi.getAllMoviesWatchProviders(isoCode, region)
+        return tmdbMoviesApi.getAllMoviesWatchProviders(isoCode, region)
     }
 
     override fun getMovieVideos(movieId: Int, isoCode: String): Call<VideosResponse> {
