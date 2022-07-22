@@ -119,7 +119,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMoviesGenres(isoCode: String): Call<GenresResponse> {
-//        return tmdbMoviesApi.getMovieGenres(isoCode)
+        return tmdbMoviesApi.getMovieGenres(isoCode)
     }
 
     override fun getMovieWatchProviders(movieId: Int): Call<WatchProvidersResponse> {
