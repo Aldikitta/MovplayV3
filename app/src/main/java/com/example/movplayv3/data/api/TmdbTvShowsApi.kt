@@ -31,4 +31,11 @@ interface TmdbTvShowsApi {
         @Query("first_air_date.lte")
         toAirDate: DateParam?
     ): TvShowsResponse
+
+    @GET("tv/top_rated")
+    suspend fun getTopRatedTvShows(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
