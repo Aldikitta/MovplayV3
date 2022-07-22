@@ -75,4 +75,10 @@ interface TmdbTvShowsApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
+
+    fun getSeasonDetails(
+        tvSeriesId: Int,
+        seasonNumber: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<SeasonDetails>
 }
