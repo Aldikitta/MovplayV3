@@ -103,7 +103,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         isoCode: String,
         region: String
     ): MoviesResponse {
-//        return tmdbMoviesApi.getTrendingMovies(page, isoCode, region)
+        return tmdbMoviesApi.getTrendingMovies(page, isoCode, region)
     }
 
     override fun getMovieImages(movieId: Int): Call<ImagesResponse> {
