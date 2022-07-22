@@ -9,7 +9,7 @@ import com.example.movplayv3.data.model.Presentable
 @Entity(indices = [Index(value = ["type", "language"])])
 data class TvShowEntity(
     override val id: Int,
-    val type: TvSeriesEntityType,
+    val type: TvShowEntityType,
     @ColumnInfo(name = "poster_path")
     override val posterPath: String?,
     override val title: String,
@@ -21,6 +21,6 @@ data class TvShowEntity(
     var entityId: Int = 0
 }
 
-enum class TvSeriesEntityType {
+enum class TvShowEntityType {
     Trending, TopRated, AiringToday, Popular, Discover
 }

@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.movplayv3.data.model.movie.MovieDetailsRemoteKey
 import com.example.movplayv3.data.model.movie.MovieFavourite
+import com.example.movplayv3.utils.DateConverters
 
 @Database(
     entities = [
