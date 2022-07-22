@@ -147,6 +147,6 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         region: String,
         directorId: Int
     ): MoviesResponse {
-//        return tmdbMoviesApi.getOtherMoviesOfDirector(page, isoCode, region, directorId)
+        return tmdbMoviesApi.getOtherMoviesOfDirector(page, isoCode, region, directorId)
     }
 }
