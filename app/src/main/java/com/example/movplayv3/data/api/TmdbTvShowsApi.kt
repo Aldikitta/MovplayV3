@@ -91,4 +91,11 @@ interface TmdbTvShowsApi {
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String
     ): Call<TvSeasonsResponse>
+
+    @GET("trending/tv/week")
+    suspend fun getTrendingTvShows(
+        @Query("page") page: Int,
+        @Query("language") isoCode: String,
+        @Query("region") region: String
+    ): TvShowsResponse
 }
