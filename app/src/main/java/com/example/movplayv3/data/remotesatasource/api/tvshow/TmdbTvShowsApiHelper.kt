@@ -89,4 +89,8 @@ interface TmdbTvShowsApiHelper {
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse>
+
+    suspend fun getTvSeriesReviews(tvSeriesId: Int, page: Int): ReviewsResponse
+
+    fun getTvSeriesReview(tvSeriesId: Int): Call<ReviewsResponse>
 }
