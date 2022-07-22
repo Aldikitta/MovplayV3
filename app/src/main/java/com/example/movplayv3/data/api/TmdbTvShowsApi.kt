@@ -156,4 +156,10 @@ interface TmdbTvShowsApi {
         @Query("language") isoCode: String,
         @Query("watch_region") region: String
     ): Call<AllWatchProvidersResponse>
+
+    @GET("tv/{tv_id}/videos")
+    fun getTvShowsVideos(
+        @Path("tv_id") tvSeriesId: Int,
+        @Query("language") isoCode: String
+    ): Call<VideosResponse>
 }
