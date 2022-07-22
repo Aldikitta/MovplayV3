@@ -99,4 +99,8 @@ interface TmdbTvShowsApiHelper {
     fun getTvSeriesWatchProviders(
         tvSeriesId: Int
     ): Call<WatchProvidersResponse>
+
+    fun getTvSeriesExternalIds(
+        tvSeriesId: Int
+    ): Call<ExternalIds>
 }
