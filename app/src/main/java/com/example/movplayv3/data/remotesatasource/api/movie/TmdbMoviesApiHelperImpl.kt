@@ -138,7 +138,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMovieVideos(movieId: Int, isoCode: String): Call<VideosResponse> {
-//        return tmdbMoviesApi.getMovieVideos(movieId, isoCode)
+        return tmdbMoviesApi.getMovieVideos(movieId, isoCode)
     }
 
     override suspend fun getOtherMoviesOfDirector(
