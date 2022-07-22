@@ -150,4 +150,10 @@ interface TmdbTvShowsApi {
     fun getTvShowsExternalIds(
         @Path("tv_id") tvSeriesId: Int,
     ): Call<ExternalIds>
+
+    @GET("watch/providers/tv")
+    fun getAllTvShowsWatchProviders(
+        @Query("language") isoCode: String,
+        @Query("watch_region") region: String
+    ): Call<AllWatchProvidersResponse>
 }
