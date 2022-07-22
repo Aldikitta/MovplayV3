@@ -95,4 +95,8 @@ interface TmdbTvShowsApiHelper {
     fun getTvSeriesReview(tvSeriesId: Int): Call<ReviewsResponse>
 
     fun getTvSeriesGenres(isoCode: String = DeviceLanguage.default.languageCode): Call<GenresResponse>
+
+    fun getTvSeriesWatchProviders(
+        tvSeriesId: Int
+    ): Call<WatchProvidersResponse>
 }
