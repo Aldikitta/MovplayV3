@@ -30,4 +30,10 @@ interface TmdbTvShowsApiHelper {
         isoCode: String = DeviceLanguage.default.languageCode,
         region: String = DeviceLanguage.default.region
     ): TvShowsResponse
+
+    suspend fun getPopularTvShows(
+        page: Int,
+        isoCode: String = DeviceLanguage.default.languageCode,
+        region: String = DeviceLanguage.default.region
+    ): TvShowsResponse
 }
