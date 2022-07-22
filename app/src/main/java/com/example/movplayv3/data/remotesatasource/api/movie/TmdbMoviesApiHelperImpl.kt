@@ -23,9 +23,19 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
         voteRange: ClosedFloatingPointRange<Float>,
         fromReleaseDate: DateParam?,
         toReleaseDate: DateParam?
-    ): MoviesResponse {
-        TODO("Not yet implemented")
-    }
+    ): MoviesResponse =
+        tmdbMoviesApi.discoverMovies(
+            page,
+            isoCode,
+            region,
+            sortTypeParam,
+            genresParam,
+            watchProvidersParam,
+            voteAverageMin = voteRange.start,
+            voteAverageMax = voteRange.endInclusive,
+            fromReleaseDate = fromReleaseDate,
+            toReleaseDate = toReleaseDate
+        )
 
     override suspend fun getPopularMovies(
         page: Int,
