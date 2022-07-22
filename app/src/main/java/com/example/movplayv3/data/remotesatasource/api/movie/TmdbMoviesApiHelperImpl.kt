@@ -77,7 +77,7 @@ class TmdbMoviesApiHelperImpl @Inject constructor(
     }
 
     override fun getMovieCredits(movieId: Int, isoCode: String): Call<Credits> {
-//        return tmdbMoviesApi.getMovieCredits(movieId, isoCode)
+        return tmdbMoviesApi.getMovieCredits(movieId, isoCode)
     }
 
     override suspend fun getSimilarMovies(
