@@ -77,4 +77,6 @@ interface TmdbMoviesApiHelper {
     fun getMovieImages(movieId: Int): Call<ImagesResponse>
 
     suspend fun getMovieReviews(movieId: Int, page: Int): ReviewsResponse
+
+    fun getMovieReview(movieId: Int): Call<ReviewsResponse>
 }
