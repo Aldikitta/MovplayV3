@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class TvShowResponse(
+data class TvShowsResponse(
     val page: Int,
     @Json(name = "results")
     val tvSeries: List<TvShow>,

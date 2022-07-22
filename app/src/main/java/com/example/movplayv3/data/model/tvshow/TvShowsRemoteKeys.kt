@@ -5,7 +5,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(indices = [Index(value = ["language", "type"])])
-data class TvShowRemoteKeys(
+data class TvShowsRemoteKeys(
     @PrimaryKey(autoGenerate = false)
     val language: String,
     val type: TvSeriesEntityType,
