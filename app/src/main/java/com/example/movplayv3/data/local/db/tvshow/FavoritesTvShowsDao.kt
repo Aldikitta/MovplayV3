@@ -13,8 +13,8 @@ interface FavoritesTvShowsDao {
     @Query("SELECT * FROM TvShowFavorite ORDER BY added_date DESC ")
     fun favouriteTvShows(): DataSource.Factory<Int, TvShowFavorite>
 
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    suspend fun likeTvSeries(vararg tvSeriesDetails: TvSeriesFavourite)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun likeTvShow(vararg tvSeriesDetails: TvShowFavorite)
 //
 //    @Query("DELETE FROM TvSeriesFavourite WHERE id = :tvSeriesId")
 //    suspend fun unlikeTvSeries(tvSeriesId: Int)
