@@ -20,4 +20,19 @@ interface RecentlyBrowsedMoviesDao {
 
     @Query("DELETE FROM RecentlyBrowsedMovie WHERE id IN (SELECT id FROM RecentlyBrowsedMovie ORDER BY added_date ASC LIMIT :limit)")
     suspend fun deleteLast(limit: Int = 1)
+
+    suspend fun deleteAndAdd(
+        vararg recentlyBrowsedMovie: RecentlyBrowsedMovie,
+        maxItems: Int = 100
+    ) {
+        val addCount = recentlyBrowsedMovie.count()
+        val currentCount = recentlyBrowsedMovieCount()
+        val removeCount = (currentCount + addCount - maxItems).coerceAtLeast(0)
+
+        deleteLast(removeCount)
+        addRecentlyBrowsedMovie(*recentlyBrowsedMovie)
+    }
+
+    @Query("DELETE FROM RecentlyBrowsedMovie")
+    suspend fun clear()
 }
