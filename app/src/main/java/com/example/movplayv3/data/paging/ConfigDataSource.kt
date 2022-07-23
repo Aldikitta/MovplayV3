@@ -15,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -38,5 +39,7 @@ class ConfigDataSource @Inject constructor(
             Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH),
             0
         )
-    }
+
+        emit(activities.isNotEmpty())
+    }.flowOn(defaultDispatcher)
 }
