@@ -10,8 +10,8 @@ import com.example.movplayv3.utils.DateConverters
 
 @Database(
     entities = [
-        MovieFavourite::class,
-        TvShowFavourite::class,
+        MovieFavorite::class,
+        TvShowFavorite::class,
         RecentlyBrowsedMovie::class,
         RecentlyBrowsedTvShow::class,
         SearchQuery::class,
@@ -28,5 +28,6 @@ import com.example.movplayv3.utils.DateConverters
 )
 @TypeConverters(DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {
+    abstract fun
 
 }
