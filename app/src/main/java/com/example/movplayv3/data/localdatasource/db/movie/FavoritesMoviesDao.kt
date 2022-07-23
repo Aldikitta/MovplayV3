@@ -14,4 +14,7 @@ interface FavoritesMoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun likeMovie(vararg movieDetails: MovieFavorite)
+
+    @Query("DELETE FROM MovieFavorite WHERE id = :movieId")
+    suspend fun unlikeMovie(movieId: Int)
 }
