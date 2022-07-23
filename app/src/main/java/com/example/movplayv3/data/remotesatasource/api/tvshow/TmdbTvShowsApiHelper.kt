@@ -124,5 +124,5 @@ interface TmdbTvShowsApiHelper {
         tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
-    ): Call<com.example.movplayv3.model.AggregatedCredits>
+    ): Call<AggregatedCredits>
 }

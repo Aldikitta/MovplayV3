@@ -111,7 +111,7 @@ interface TmdbTvShowsApi {
         @Path("tv_id") tvShowId: Int,
         @Path("season_number") seasonNumber: Int,
         @Query("language") isoCode: String,
-    ): Call<com.example.movplayv3.model.AggregatedCredits>
+    ): Call<AggregatedCredits>
 
     @GET("tv/{tv_id}/images")
     fun getTvShowImages(
