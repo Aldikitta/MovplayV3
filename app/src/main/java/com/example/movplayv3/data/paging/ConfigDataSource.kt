@@ -64,6 +64,9 @@ class ConfigDataSource @Inject constructor(
     private val _movieGenres: MutableStateFlow<List<Genre>> = MutableStateFlow(emptyList())
     val movieGenres: StateFlow<List<Genre>> = _movieGenres.asStateFlow()
 
+    private val _tvShowGenres: MutableStateFlow<List<Genre>> = MutableStateFlow(emptyList())
+    val tvShowGenres: StateFlow<List<Genre>> = _tvShowGenres.asStateFlow()
+
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
 
