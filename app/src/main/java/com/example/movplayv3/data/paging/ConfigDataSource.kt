@@ -10,6 +10,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
+import com.example.movplayv3.utils.ImageUrlParser
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -53,7 +54,11 @@ class ConfigDataSource @Inject constructor(
         MutableStateFlow(getCurrentDeviceLanguage())
     val deviceLanguage: StateFlow<DeviceLanguage> = _deviceLanguage.asStateFlow()
 
-    val imageUrlParser: Flow<ImageUrlParser>
+    val imageUrlParser: Flow<ImageUrlParser?> = _config.mapLatest { config ->
+        if (config != null) {
+            ImageUrlParser(config.imagesConfig)
+        } else null
+    }.flowOn(defaultDispatcher)
 
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
