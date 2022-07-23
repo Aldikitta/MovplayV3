@@ -78,6 +78,24 @@ class ConfigDataSource @Inject constructor(
     )
     val tvShowWatchProviders: StateFlow<List<ProviderSource>> = _tvShowWatchProviders.asStateFlow()
 
+    val isInitialized: StateFlow<Boolean> = combine(
+        _config, _movieGenres, _tvShowGenres, _movieWatchProviders, _tvShowWatchProviders
+    ) { imageUrlParser, movieGenres, tvShowGenres, movieWatchProviders, tvSeriesWatchProviders ->
+        val imageUrlParserInit = imageUrlParser != null
+        val movieGenresInit = movieGenres.isNotEmpty()
+        val tvSeriesGenresInit = tvShowGenres.isNotEmpty()
+        val movieWatchProvidersInit = movieWatchProviders.isNotEmpty()
+        val tvSeriesWatchProvidersInit = tvSeriesWatchProviders.isNotEmpty()
+
+        listOf(
+            imageUrlParserInit,
+            movieGenresInit,
+            tvSeriesGenresInit,
+            movieWatchProvidersInit,
+            tvSeriesWatchProvidersInit
+        ).all { init -> init }
+    }.stateIn(externalScope, SharingStarted.WhileSubscribed(10), false)
+
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
 
@@ -89,4 +107,5 @@ class ConfigDataSource @Inject constructor(
             region = region
         )
     }
+
 }
