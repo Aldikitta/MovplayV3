@@ -6,6 +6,10 @@ class ImageUrlParser(private val imagesConfig: ImagesConfig) {
     private val secureBaseUrl = imagesConfig.secureBaseUrl
 
     private val backdropDimensions = convertCodes(imagesConfig.backdropSizes).distinct()
+    private val logoDimensions = convertCodes(imagesConfig.logoSizes).distinct()
+    private val posterDimensions = convertCodes(imagesConfig.posterSizes).distinct()
+    private val profileDimensions = convertCodes(imagesConfig.profileSizes).distinct()
+    private val stillDimensions = convertCodes(imagesConfig.stillSizes).distinct()
 
     private sealed class Dimension(val code: String) {
         object Original : Dimension(code = "original")
