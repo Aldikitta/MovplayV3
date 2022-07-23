@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.remotesatasource.api
+package com.example.movplayv3.data.remote.api
 
 import android.annotation.SuppressLint
 import com.squareup.moshi.*

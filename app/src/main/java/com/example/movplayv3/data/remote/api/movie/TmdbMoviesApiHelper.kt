@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.remotesatasource.api.movie
+package com.example.movplayv3.data.remote.api.movie
 
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.MovieDetails

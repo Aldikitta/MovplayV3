@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.remotesatasource.api
+package com.example.movplayv3.data.remote.api
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.squareup.moshi.JsonDataException

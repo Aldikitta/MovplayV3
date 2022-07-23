@@ -1,4 +1,4 @@
-package com.example.movplayv3.data.remotesatasource.api.others
+package com.example.movplayv3.data.remote.api.others
 
 import com.example.movplayv3.data.model.*
 import retrofit2.Call
