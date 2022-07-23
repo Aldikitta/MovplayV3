@@ -15,9 +15,9 @@ interface FavoritesTvShowsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun likeTvShow(vararg tvSeriesDetails: TvShowFavorite)
-//
-//    @Query("DELETE FROM TvSeriesFavourite WHERE id = :tvSeriesId")
-//    suspend fun unlikeTvSeries(tvSeriesId: Int)
+
+    @Query("DELETE FROM TvShowFavorite WHERE id = :tvSeriesId")
+    suspend fun unlikeTvSeries(tvSeriesId: Int)
 //
 //    @Query("SELECT id FROM TvSeriesFavourite")
 //    fun favouriteTvSeriesIds(): Flow<List<Int>>
