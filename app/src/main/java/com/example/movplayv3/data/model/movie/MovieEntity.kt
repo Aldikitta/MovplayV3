@@ -18,7 +18,7 @@ data class MovieEntity(
     val language: String
 ) : Presentable {
     @PrimaryKey(autoGenerate = true)
-    val entityId: Int = 0
+    var entityId: Int = 0
 }
 
 enum class MovieEntityType {

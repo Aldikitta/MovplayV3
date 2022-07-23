@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(indices = [Index(value = ["language"])])
 data class MovieDetailsRemoteKey(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     val language: String,
     val nextPage: Int?,
     val lastUpdates: Long
