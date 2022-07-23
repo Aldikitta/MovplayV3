@@ -14,10 +14,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -54,6 +51,9 @@ class ConfigDataSource @Inject constructor(
 
     private val _deviceLanguage: MutableStateFlow<DeviceLanguage> =
         MutableStateFlow(getCurrentDeviceLanguage())
+    val deviceLanguage: StateFlow<DeviceLanguage> = _deviceLanguage.asStateFlow()
+
+    val imageUrlParser: Flow<ImageUrlParser>
 
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
