@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoritesMoviesDao {
     @Query("SELECT * FROM MovieFavorite ORDER BY added_date DESC")
-    fun favoriteMovies(): DataSource.Factory<Int, MovieFavorite>
+    fun getAllFavoriteMovies(): DataSource.Factory<Int, MovieFavorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun likeMovie(vararg movieDetails: MovieFavorite)
+    suspend fun replaceDuplicateMovie(vararg movieDetails: MovieFavorite)
 
     @Query("DELETE FROM MovieFavorite WHERE id = :movieId")
-    suspend fun unlikeMovie(movieId: Int)
+    suspend fun deleteAllFavoritesMovies(movieId: Int)
 
     @Query("SELECT id FROM MovieFavorite")
     fun favouriteMoviesIds(): Flow<List<Int>>

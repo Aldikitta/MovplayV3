@@ -30,5 +30,5 @@ import com.example.movplayv3.utils.DateConverters
 @TypeConverters(DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoritesMoviesDao(): FavoritesMoviesDao
-
+//    abstract fun favoritesTvShowsDao():
 }

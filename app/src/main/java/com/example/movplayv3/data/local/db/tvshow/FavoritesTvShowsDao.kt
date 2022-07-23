@@ -11,17 +11,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FavoritesTvShowsDao {
     @Query("SELECT * FROM TvShowFavorite ORDER BY added_date DESC ")
-    fun favouriteTvShows(): DataSource.Factory<Int, TvShowFavorite>
+    fun getAllFavoriteTvShows(): DataSource.Factory<Int, TvShowFavorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun likeTvShow(vararg tvSeriesDetails: TvShowFavorite)
+    suspend fun replaceDuplicateTvShows(vararg tvShowDetails: TvShowFavorite)
 
-    @Query("DELETE FROM TvShowFavorite WHERE id = :tvSeriesId")
-    suspend fun unlikeTvSeries(tvSeriesId: Int)
+    @Query("DELETE FROM TvShowFavorite WHERE id = :tvShowId")
+    suspend fun deleteAllFavoritesTvShows(tvShowId: Int)
 
     @Query("SELECT id FROM TvShowFavorite")
-    fun favouriteTvSeriesIds(): Flow<List<Int>>
-//
-//    @Query("SELECT COUNT(id) FROM TvSeriesFavourite")
-//    fun favouriteTvSeriesCount(): Flow<Int>
+    fun favoriteTvShowIds(): Flow<List<Int>>
+
+    @Query("SELECT COUNT(id) FROM TvShowFavorite")
+    fun favoriteTvShowCount(): Flow<Int>
 }
