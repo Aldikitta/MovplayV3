@@ -8,6 +8,7 @@ import android.speech.RecognizerIntent
 import com.example.movplayv3.data.model.Config
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Genre
+import com.example.movplayv3.data.model.ProviderSource
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
@@ -66,6 +67,10 @@ class ConfigDataSource @Inject constructor(
 
     private val _tvShowGenres: MutableStateFlow<List<Genre>> = MutableStateFlow(emptyList())
     val tvShowGenres: StateFlow<List<Genre>> = _tvShowGenres.asStateFlow()
+
+    private val _movieWatchProviders: MutableStateFlow<List<ProviderSource>> = MutableStateFlow(
+        emptyList())
+    val movieWatchProviders: StateFlow<List<ProviderSource>> = _movieWatchProviders.asStateFlow()
 
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
