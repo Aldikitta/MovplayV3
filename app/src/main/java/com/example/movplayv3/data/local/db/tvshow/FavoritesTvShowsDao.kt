@@ -18,9 +18,9 @@ interface FavoritesTvShowsDao {
 
     @Query("DELETE FROM TvShowFavorite WHERE id = :tvSeriesId")
     suspend fun unlikeTvSeries(tvSeriesId: Int)
-//
-//    @Query("SELECT id FROM TvSeriesFavourite")
-//    fun favouriteTvSeriesIds(): Flow<List<Int>>
+
+    @Query("SELECT id FROM TvShowFavorite")
+    fun favouriteTvSeriesIds(): Flow<List<Int>>
 //
 //    @Query("SELECT COUNT(id) FROM TvSeriesFavourite")
 //    fun favouriteTvSeriesCount(): Flow<Int>
