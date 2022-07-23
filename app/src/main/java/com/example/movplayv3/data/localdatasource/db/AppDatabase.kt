@@ -3,6 +3,7 @@ package com.example.movplayv3.data.localdatasource.db
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.movplayv3.data.localdatasource.db.movie.FavoritesMoviesDao
 import com.example.movplayv3.model.SearchQuery
 import com.example.movplayv3.model.movie.*
 import com.example.movplayv3.model.tvshow.*
@@ -28,6 +29,6 @@ import com.example.movplayv3.utils.DateConverters
 )
 @TypeConverters(DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {
-//    abstract fun
+    abstract fun favoritesMoviesDao(): FavoritesMoviesDao
 
 }
