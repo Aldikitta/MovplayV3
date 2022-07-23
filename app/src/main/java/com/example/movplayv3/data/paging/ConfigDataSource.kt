@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
 import com.example.movplayv3.data.model.Config
+import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -48,5 +50,20 @@ class ConfigDataSource @Inject constructor(
         val packageManager = context.packageManager
         val hasCamera = packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
         emit(hasCamera)
+    }
+
+    private val _deviceLanguage: MutableStateFlow<DeviceLanguage> =
+        MutableStateFlow(getCurrentDeviceLanguage())
+
+    private fun getCurrentDeviceLanguage(): DeviceLanguage {
+        val locale = Locale.getDefault()
+
+        val languageCode = locale.toLanguageTag().ifEmpty { DeviceLanguage.default.languageCode }
+        val region = locale.country.ifEmpty { DeviceLanguage.default.region }
+
+        return DeviceLanguage(
+            languageCode = languageCode,
+            region = region
+        )
     }
 }
