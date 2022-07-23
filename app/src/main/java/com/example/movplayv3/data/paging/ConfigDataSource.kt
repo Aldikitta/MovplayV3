@@ -10,7 +10,10 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Genre
 import com.example.movplayv3.data.model.ProviderSource
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
+import com.example.movplayv3.data.remote.api.onException
+import com.example.movplayv3.data.remote.api.onSuccess
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
+import com.example.movplayv3.data.remote.api.request
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 import com.example.movplayv3.utils.ImageUrlParser
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -99,7 +102,7 @@ class ConfigDataSource @Inject constructor(
     }.stateIn(externalScope, SharingStarted.WhileSubscribed(10), false)
 
     fun init() {
-        apiHelper.getConfig().request { response ->
+        apiMovieHelper.getConfig().request { response ->
             response.onSuccess {
                 externalScope.launch(defaultDispatcher) {
                     val config = data
@@ -112,7 +115,7 @@ class ConfigDataSource @Inject constructor(
 
         externalScope.launch(defaultDispatcher) {
             deviceLanguage.collectLatest { deviceLanguage ->
-                apiHelper.getMoviesGenres(isoCode = deviceLanguage.languageCode)
+                apiMovieHelper.getMoviesGenres(isoCode = deviceLanguage.languageCode)
                     .request { response ->
                         response.onSuccess {
                             externalScope.launch(defaultDispatcher) {
@@ -125,20 +128,7 @@ class ConfigDataSource @Inject constructor(
                         }
                     }
 
-                apiHelper.getTvSeriesGenres(isoCode = deviceLanguage.languageCode)
-                    .request { response ->
-                        response.onSuccess {
-                            externalScope.launch(defaultDispatcher) {
-                                val tvSeriesGenres = data?.genres
-
-                                _tvSeriesGenres.emit(tvSeriesGenres ?: emptyList())
-                            }
-                        }.onException {
-                            FirebaseCrashlytics.getInstance().recordException(exception)
-                        }
-                    }
-
-                apiHelper.getAllMoviesWatchProviders(
+                apiMovieHelper.getAllMoviesWatchProviders(
                     isoCode = deviceLanguage.languageCode,
                     region = deviceLanguage.region
                 ).request { response ->
@@ -154,8 +144,35 @@ class ConfigDataSource @Inject constructor(
                         FirebaseCrashlytics.getInstance().recordException(exception)
                     }
                 }
+            }
+        }
 
-                apiHelper.getAllTvSeriesWatchProviders(
+        apiTvShowHelper.getConfig().request { response ->
+            response.onSuccess {
+                externalScope.launch(defaultDispatcher) {
+                    val config = data
+                    _config.emit(config)
+                }
+            }.onException {
+                FirebaseCrashlytics.getInstance().recordException(exception)
+            }
+        }
+
+        externalScope.launch(defaultDispatcher) {
+            deviceLanguage.collectLatest { deviceLanguage ->
+                apiTvShowHelper.getTvShowsGenres(isoCode = deviceLanguage.languageCode)
+                    .request { response ->
+                        response.onSuccess {
+                            externalScope.launch(defaultDispatcher) {
+                                val tvSeriesGenres = data?.genres
+
+                                _tvShowGenres.emit(tvSeriesGenres ?: emptyList())
+                            }
+                        }.onException {
+                            FirebaseCrashlytics.getInstance().recordException(exception)
+                        }
+                    }
+                apiTvShowHelper.getAllTvShowsWatchProviders(
                     isoCode = deviceLanguage.languageCode,
                     region = deviceLanguage.region
                 ).request { response ->
@@ -165,7 +182,7 @@ class ConfigDataSource @Inject constructor(
                                 provider.displayPriority
                             }
 
-                            _tvSeriesWatchProviders.emit(watchProviders ?: emptyList())
+                            _tvShowWatchProviders.emit(watchProviders ?: emptyList())
                         }
                     }.onException {
                         FirebaseCrashlytics.getInstance().recordException(exception)
