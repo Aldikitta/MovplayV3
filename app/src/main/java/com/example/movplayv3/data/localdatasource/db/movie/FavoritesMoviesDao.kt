@@ -5,7 +5,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.movplayv3.data.model.movie.MovieFavorite
+import com.example.movplayv3.model.movie.MovieFavorite
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoritesMoviesDao {
@@ -17,4 +18,7 @@ interface FavoritesMoviesDao {
 
     @Query("DELETE FROM MovieFavorite WHERE id = :movieId")
     suspend fun unlikeMovie(movieId: Int)
+
+    @Query("SELECT id FROM MovieFavorite")
+    fun favouriteMoviesIds(): Flow<List<Int>>
 }

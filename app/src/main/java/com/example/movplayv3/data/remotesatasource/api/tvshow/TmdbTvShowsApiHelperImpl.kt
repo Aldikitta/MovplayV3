@@ -174,7 +174,7 @@ class TmdbTvShowsApiHelperImpl @Inject constructor(
         tvShowId: Int,
         seasonNumber: Int,
         isoCode: String
-    ): Call<AggregatedCredits> {
+    ): Call<com.example.movplayv3.model.AggregatedCredits> {
         return tmdbTvShowsApi.getSeasonCredits(tvShowId, seasonNumber, isoCode)
     }
 }
