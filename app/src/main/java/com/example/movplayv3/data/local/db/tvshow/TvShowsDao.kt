@@ -10,8 +10,11 @@ import com.example.movplayv3.utils.TvShowEntityTypeConverters
 @Dao
 interface TvShowsDao {
     @Query("SELECT * FROM TvShowEntity WHERE type=:type AND language=:language")
-    fun getAllTvSeries(type: TvShowEntityType, language: String): PagingSource<Int, TvShowEntity>
+    fun getAllTvShows(type: TvShowEntityType, language: String): PagingSource<Int, TvShowEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addTvSeries(movies: List<TvShowEntity>)
+    suspend fun addTvShow(movies: List<TvShowEntity>)
+
+    @Query("DELETE FROM TvShowEntity WHERE type=:type AND language=:language")
+    suspend fun deleteTvShowsOfType(type: TvShowEntityType, language: String)
 }
