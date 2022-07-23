@@ -21,4 +21,7 @@ interface FavoritesMoviesDao {
 
     @Query("SELECT id FROM MovieFavorite")
     fun favouriteMoviesIds(): Flow<List<Int>>
+
+    @Query("SELECT COUNT(id) FROM MovieFavorite")
+    fun favouriteMoviesCount(): Flow<Int>
 }
