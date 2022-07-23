@@ -18,6 +18,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -95,6 +96,13 @@ class ConfigDataSource @Inject constructor(
             tvSeriesWatchProvidersInit
         ).all { init -> init }
     }.stateIn(externalScope, SharingStarted.WhileSubscribed(10), false)
+
+    fun updateLocale() {
+        externalScope.launch {
+            val deviceLanguage = getCurrentDeviceLanguage()
+            _deviceLanguage.emit(deviceLanguage)
+        }
+    }
 
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
