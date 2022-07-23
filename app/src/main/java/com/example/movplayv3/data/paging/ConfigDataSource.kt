@@ -3,6 +3,7 @@ package com.example.movplayv3.data.paging
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
 import com.example.movplayv3.data.model.Config
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
@@ -42,4 +43,10 @@ class ConfigDataSource @Inject constructor(
 
         emit(activities.isNotEmpty())
     }.flowOn(defaultDispatcher)
+
+    val hasCamera: Flow<Boolean> = flow {
+        val packageManager = context.packageManager
+        val hasCamera = packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
+        emit(hasCamera)
+    }
 }
