@@ -1,9 +1,7 @@
 package com.example.movplayv3.data.local.db.movie
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Query
-import androidx.room.TypeConverters
+import androidx.room.*
 import com.example.movplayv3.data.model.movie.MovieDetailEntity
 import com.example.movplayv3.utils.MovieEntityTypeConverters
 
@@ -12,4 +10,7 @@ import com.example.movplayv3.utils.MovieEntityTypeConverters
 interface MoviesDetailsDao {
     @Query("SELECT * FROM MovieDetailEntity WHERE language=:language")
     fun getAllMovies(language: String): PagingSource<Int, MovieDetailEntity>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addMovies(movies: List<MovieDetailEntity>)
 }
