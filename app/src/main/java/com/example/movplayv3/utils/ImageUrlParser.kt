@@ -2,6 +2,7 @@ package com.example.movplayv3.utils
 
 import android.util.Size
 import com.example.movplayv3.data.model.ImagesConfig
+import kotlin.math.abs
 
 class ImageUrlParser(private val imagesConfig: ImagesConfig) {
     private val secureBaseUrl = imagesConfig.secureBaseUrl
@@ -27,6 +28,47 @@ class ImageUrlParser(private val imagesConfig: ImagesConfig) {
         }
 
         return urlFromSource(source, path, preferredSize, strategy)
+    }
+
+    private fun urlFromSource(
+        source: List<Dimension>,
+        path: String?,
+        preferredSize: Size?,
+        strategy: MatchingStrategy = MatchingStrategy.FirstBiggerWidth
+    ): String? {
+        if (path == null) {
+            return null
+        }
+
+        if (preferredSize == null) {
+            return createSecureUrl(secureBaseUrl, Dimension.Original, path)
+        }
+
+        val preferredDimension = when (strategy) {
+            MatchingStrategy.FirstBiggerWidth -> {
+                source.filterIsInstance<Dimension.Width>()
+                    .firstOrNull { dimension -> dimension.value >= preferredSize.width }
+            }
+
+            MatchingStrategy.FirstBiggerHeight -> {
+                source.filterIsInstance<Dimension.Height>()
+                    .firstOrNull { dimension -> dimension.value >= preferredSize.height }
+            }
+
+            MatchingStrategy.LowestWidthDiff -> {
+                source.filterIsInstance<Dimension.Width>().map { dimension ->
+                    dimension to abs(preferredSize.width - dimension.value)
+                }.minByOrNull { (_, delta) -> delta }?.first
+            }
+
+            MatchingStrategy.LowestHeightDiff -> {
+                source.filterIsInstance<Dimension.Height>().map { dimension ->
+                    dimension to abs(preferredSize.height - dimension.value)
+                }.minByOrNull { (_, delta) -> delta }?.first
+            }
+        } ?: Dimension.Original
+
+        return createSecureUrl(secureBaseUrl, preferredDimension, path)
     }
 
     private sealed class Dimension(val code: String) {
@@ -67,6 +109,10 @@ class ImageUrlParser(private val imagesConfig: ImagesConfig) {
 
     private fun getValueFromCode(code: String): Int? {
         return code.filter { char -> char.isDigit() }.toIntOrNull()
+    }
+
+    private fun createSecureUrl(secureBaseUrl: String, dimension: Dimension, path: String): String {
+        return "${secureBaseUrl}${dimension.asCode()}${path}"
     }
 
     enum class MatchingStrategy {
