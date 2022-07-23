@@ -1,11 +1,10 @@
-package com.example.movplayv3.data.paging
+package com.example.movplayv3.data.paging.movie
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
-import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.squareup.moshi.JsonDataException
 import retrofit2.HttpException
