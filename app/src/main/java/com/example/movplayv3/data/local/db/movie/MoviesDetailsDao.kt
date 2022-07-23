@@ -13,4 +13,7 @@ interface MoviesDetailsDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addMovies(movies: List<MovieDetailEntity>)
+
+    @Query("DELETE FROM MovieDetailEntity WHERE language=:language")
+    suspend fun deleteMovieDetails(language: String)
 }
