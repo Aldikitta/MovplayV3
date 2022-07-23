@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.speech.RecognizerIntent
 import com.example.movplayv3.data.model.Config
 import com.example.movplayv3.data.model.DeviceLanguage
+import com.example.movplayv3.data.model.Genre
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
@@ -59,6 +60,9 @@ class ConfigDataSource @Inject constructor(
             ImageUrlParser(config.imagesConfig)
         } else null
     }.flowOn(defaultDispatcher)
+
+    private val _movieGenres: MutableStateFlow<List<Genre>> = MutableStateFlow(emptyList())
+    val movieGenres: StateFlow<List<Genre>> = _movieGenres.asStateFlow()
 
     private fun getCurrentDeviceLanguage(): DeviceLanguage {
         val locale = Locale.getDefault()
