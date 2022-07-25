@@ -19,6 +19,9 @@ class DiscoverTvShowsPagingDataSource(
     private val onlyWithOverview: Boolean = false,
     private val airDateRange: DateRange
 ) : PagingSource<Int, TvShow>() {
+    private val fromAirDate = airDateRange.from?.let(::DateParam)
+    private val toAirDate = airDateRange.to?.let(::DateParam)
+    private val sortTypeParam = sortType.toSortTypeParam(sortOrder)
     override fun getRefreshKey(state: PagingState<Int, TvShow>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
