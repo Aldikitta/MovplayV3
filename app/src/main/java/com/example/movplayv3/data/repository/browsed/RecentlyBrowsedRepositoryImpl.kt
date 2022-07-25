@@ -14,5 +14,8 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val recentlyBrowsedMoviesDao: RecentlyBrowsedMoviesDao,
     private val recentlyBrowsedTvSeriesDao: RecentlyBrowsedTvShowsDao
-) {
+) : RecentlyBrowsedRepository {
+    private companion object {
+        const val maxItems = 100
+    }
 }
