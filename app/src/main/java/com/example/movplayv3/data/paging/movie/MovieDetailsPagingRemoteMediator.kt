@@ -8,6 +8,7 @@ import androidx.room.withTransaction
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.MovieDetailEntity
+import com.example.movplayv3.data.model.movie.MovieDetailsRemoteKey
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.squareup.moshi.JsonDataException
@@ -76,6 +77,34 @@ class MovieDetailsPagingRemoteMediator(
                 val nextPage = if (result.movies.isNotEmpty()) {
                     page + 1
                 } else null
+
+                val movieDetailsEntities = result.movies.map { movie ->
+                    MovieDetailEntity(
+                        id = movie.id,
+                        title = movie.title,
+                        originalTitle = movie.originalTitle,
+                        posterPath = movie.posterPath,
+                        backdropPath = movie.backdropPath,
+                        overview = movie.overview,
+                        adult = movie.adult,
+                        voteAverage = movie.voteAverage,
+                        voteCount = movie.voteCount,
+                        language = deviceLanguage.languageCode
+                    )
+                }
+
+                movieDetailsRemoteKeysDao.insertKey(
+                    MovieDetailsRemoteKey(
+                        language = deviceLanguage.languageCode,
+                        nextPage = nextPage,
+                        lastUpdates = System.currentTimeMillis()
+                    )
+                )
+                movieDetailsDao.addMovies(movieDetailsEntities)
+
+                MediatorResult.Success(
+                    endOfPaginationReached = result.movies.isEmpty()
+                )
             }
         } catch (e: IOException) {
             MediatorResult.Error(e)
@@ -86,5 +115,4 @@ class MovieDetailsPagingRemoteMediator(
             MediatorResult.Error(e)
         }
     }
-
 }
