@@ -28,7 +28,7 @@ class ConfigRepositoryImpl @Inject constructor(
     }
 
     override fun getDeviceLanguage(): Flow<DeviceLanguage> {
-        TODO("Not yet implemented")
+        return configDataSource.deviceLanguage
     }
 
     override fun getImageUrlParser(): Flow<ImageUrlParser?> {
