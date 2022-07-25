@@ -40,14 +40,14 @@ class ConfigRepositoryImpl @Inject constructor(
     }
 
     override fun getTvShowGenres(): Flow<List<Genre>> {
-        TODO("Not yet implemented")
+        return configDataSource.tvShowGenres
     }
 
     override fun getAllMoviesWatchProviders(): Flow<List<ProviderSource>> {
-        TODO("Not yet implemented")
+        return configDataSource.movieWatchProviders
     }
 
     override fun getAllTvShowWatchProviders(): Flow<List<ProviderSource>> {
-        TODO("Not yet implemented")
+        return configDataSource.tvShowWatchProviders
     }
 }
