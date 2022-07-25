@@ -46,7 +46,9 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
     }
 
     override fun clearRecentlyBrowsedMovies() {
-        TODO("Not yet implemented")
+        externalScope.launch(defaultDispatcher) {
+            recentlyBrowsedMoviesDao.clear()
+        }
     }
 
     override fun clearRecentlyBrowsedTvShows() {
