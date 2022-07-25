@@ -87,10 +87,10 @@ class FavoritesRepositoryImpl @Inject constructor(
     }
 
     override fun getFavoriteMoviesCount(): Flow<Int> {
-        TODO("Not yet implemented")
+        return favoritesMoviesDao.favouriteMoviesCount().distinctUntilChanged()
     }
 
     override fun getFavoriteTvShowsCount(): Flow<Int> {
-        TODO("Not yet implemented")
+        return favoritesTvShowsDao.favoriteTvShowCount().distinctUntilChanged()
     }
 }
