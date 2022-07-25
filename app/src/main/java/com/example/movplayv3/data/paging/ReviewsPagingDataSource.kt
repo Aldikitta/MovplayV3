@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonDataException
 import retrofit2.HttpException
 import java.io.IOException
 
-class ReviewsDataSource(
+class ReviewsPagingDataSource(
     private val mediaId: Int,
     private inline val apiHelperMethod: suspend (Int, Int) -> ReviewsResponse
 ) : PagingSource<Int, Review>() {
