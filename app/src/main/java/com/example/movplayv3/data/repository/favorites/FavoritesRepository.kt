@@ -7,4 +7,6 @@ interface FavoritesRepository {
     fun likeMovie(movieDetails: MovieDetails)
 
     fun likeTvShow(tvShowDetails: TvShowDetails)
+
+    fun unlikeMovie(movieDetails: MovieDetails)
 }
