@@ -12,19 +12,19 @@ class ConfigRepositoryImpl @Inject constructor(
     private val configDataSource: ConfigDataSource
 ) : ConfigRepository {
     override fun isInitialized(): Flow<Boolean> {
-        TODO("Not yet implemented")
+        return configDataSource.isInitialized
     }
 
     override fun updateLocale() {
-        TODO("Not yet implemented")
+        return configDataSource.updateLocale()
     }
 
     override fun getSpeechToTextAvailable(): Flow<Boolean> {
-        TODO("Not yet implemented")
+        return configDataSource.speechToTextAvailable
     }
 
     override fun getCameraAvailable(): Flow<Boolean> {
-        TODO("Not yet implemented")
+        return configDataSource.hasCamera
     }
 
     override fun getDeviceLanguage(): Flow<DeviceLanguage> {
