@@ -24,4 +24,6 @@ interface ConfigRepository {
     fun getTvShowGenres(): Flow<List<Genre>>
 
     fun getAllMoviesWatchProviders(): Flow<List<ProviderSource>>
+
+    fun getAllTvShowWatchProviders(): Flow<List<ProviderSource>>
 }
