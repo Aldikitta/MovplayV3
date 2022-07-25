@@ -9,9 +9,8 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.squareup.moshi.JsonDataException
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class MovieDetailsResponsePagingDataSource @Inject constructor(
+class MovieDetailsResponsePagingDataSource (
     private val movieId: Int,
     private val language: String = DeviceLanguage.default.languageCode,
     private val region: String = DeviceLanguage.default.region,
