@@ -19,4 +19,8 @@ interface FavoritesRepository {
     fun favoriteMovies(): Flow<PagingData<MovieFavorite>>
 
     fun favoriteTvShows(): Flow<PagingData<TvShowFavorite>>
+
+    fun getFavoriteMoviesIds(): Flow<List<Int>>
+
+    fun getFavoriteTvShowIds(): Flow<List<Int>>
 }
