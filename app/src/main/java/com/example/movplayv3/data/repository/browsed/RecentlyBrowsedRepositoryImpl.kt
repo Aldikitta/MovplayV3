@@ -84,7 +84,9 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun recentlyBrowsedTvShows(): Flow<PagingData<RecentlyBrowsedTvShow>> {
-        TODO("Not yet implemented")
-    }
+    override fun recentlyBrowsedTvShows(): Flow<PagingData<RecentlyBrowsedTvShow>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        recentlyBrowsedTvShowsDao.recentBrowsedTvShow().asPagingSourceFactory()()
+    }.flow.flowOn(defaultDispatcher)
 }
