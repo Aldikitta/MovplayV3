@@ -1,6 +1,9 @@
 package com.example.movplayv3.data.paging.tvshow
 
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 
 class DiscoverTvShowsPagingDataSource(
@@ -15,5 +18,12 @@ class DiscoverTvShowsPagingDataSource(
     private val onlyWithScore: Boolean = false,
     private val onlyWithOverview: Boolean = false,
     private val airDateRange: DateRange
-) {
+) : PagingSource<Int, TvShow>() {
+    override fun getRefreshKey(state: PagingState<Int, TvShow>): Int? {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
+        TODO("Not yet implemented")
+    }
 }
