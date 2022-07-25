@@ -51,7 +51,7 @@ class DiscoverMoviesPagingDataSource(
             )
 
             val currentPage = movieResponse.page
-            val totalPage = movieResponse.totalPages
+            val totalPages = movieResponse.totalPages
 
             LoadResult.Page(
                 data = movieResponse.movies
@@ -65,7 +65,7 @@ class DiscoverMoviesPagingDataSource(
                         if (onlyWithOverview) movie.overview.isNotBlank() else true
                     },
                 prevKey = if (nextPage == 1) null else nextPage - 1,
-                nextKey = if (currentPage + 1 > totalPage) null else currentPage + 1
+                nextKey = if (currentPage + 1 > totalPages) null else currentPage + 1
             )
 
         } catch (e: IOException) {

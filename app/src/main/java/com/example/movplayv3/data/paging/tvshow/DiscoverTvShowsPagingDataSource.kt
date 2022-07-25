@@ -5,6 +5,10 @@ import androidx.paging.PagingState
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.squareup.moshi.JsonDataException
+import retrofit2.HttpException
+import java.io.IOException
 
 class DiscoverTvShowsPagingDataSource(
     private val apiTvShowsHelper: TmdbTvShowsApiHelper,
@@ -30,6 +34,45 @@ class DiscoverTvShowsPagingDataSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TvShow> {
-        TODO("Not yet implemented")
+        return try {
+            val nextPage = params.key ?: 1
+
+            val tvShowsResponse = apiTvShowsHelper.discoverTvShows(
+                page = nextPage,
+                isoCode = deviceLanguage.languageCode,
+                region = deviceLanguage.region,
+                sortTypeParam = sortTypeParam,
+                genresParam = genresParam,
+                watchProvidersParam = watchProvidersParam,
+                voteRange = voteRange,
+                fromAirDate = fromAirDate,
+                toAirDate = toAirDate
+            )
+
+            val currentPage = tvShowsResponse.page
+            val totalPages = tvShowsResponse.totalPages
+
+            LoadResult.Page(
+                data = tvShowsResponse.tvShows
+                    .filter { tvShow ->
+                        if (onlyWithPosters) !tvShow.posterPath.isNullOrEmpty() else true
+                    }
+                    .filter { tvShow ->
+                        if (onlyWithScore) tvShow.voteCount > 0 && tvShow.voteAverage > 0f else true
+                    }
+                    .filter { tvShow ->
+                        if (onlyWithOverview) tvShow.overview.isNotBlank() else true
+                    },
+                prevKey = if (nextPage == 1) null else nextPage - 1,
+                nextKey = if (currentPage + 1 > totalPages) null else currentPage + 1
+            )
+        } catch (e: IOException) {
+            LoadResult.Error(e)
+        } catch (e: HttpException) {
+            LoadResult.Error(e)
+        } catch (e: JsonDataException) {
+            FirebaseCrashlytics.getInstance().recordException(e)
+            LoadResult.Error(e)
+        }
     }
 }

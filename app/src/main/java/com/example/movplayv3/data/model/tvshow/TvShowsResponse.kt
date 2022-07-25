@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class TvShowsResponse(
     val page: Int,
     @Json(name = "results")
-    val tvSeries: List<TvShow>,
+    val tvShows: List<TvShow>,
     @Json(name = "total_pages")
     val totalPages: Int,
     @Json(name = "total_results")
