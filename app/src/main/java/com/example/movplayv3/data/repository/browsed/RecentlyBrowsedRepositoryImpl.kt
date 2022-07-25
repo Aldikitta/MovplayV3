@@ -67,7 +67,21 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
     }.flow.flowOn(defaultDispatcher)
 
     override fun addRecentlyBrowsedTvShows(tvShowDetails: TvShowDetails) {
-        TODO("Not yet implemented")
+        externalScope.launch(defaultDispatcher) {
+            val recentlyBrowsedTvShow = tvShowDetails.run {
+                RecentlyBrowsedTvShow(
+                    id = id,
+                    posterPath = posterPath,
+                    name = title,
+                    addedDate = Date()
+                )
+            }
+
+            recentlyBrowsedTvShowsDao.deleteAndAdd(
+                recentlyBrowsedTvShow,
+                maxItems = maxItems
+            )
+        }
     }
 
     override fun recentlyBrowsedTvShows(): Flow<PagingData<RecentlyBrowsedTvShow>> {
