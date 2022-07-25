@@ -19,4 +19,6 @@ interface ConfigRepository {
     fun getImageUrlParser(): Flow<ImageUrlParser?>
 
     fun getMoviesGenres(): Flow<List<Genre>>
+
+    fun getTvShowGenres(): Flow<List<Genre>>
 }
