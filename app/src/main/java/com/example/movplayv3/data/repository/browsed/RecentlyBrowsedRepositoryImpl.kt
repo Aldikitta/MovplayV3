@@ -1,5 +1,7 @@
 package com.example.movplayv3.data.repository.browsed
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.movie.RecentlyBrowsedMoviesDao
 import com.example.movplayv3.data.local.db.tvshow.RecentlyBrowsedTvShowsDao
@@ -11,6 +13,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -57,9 +60,11 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun recentlyBrowsedMovies(): Flow<PagingData<RecentlyBrowsedMovie>> {
-        TODO("Not yet implemented")
-    }
+    override fun recentlyBrowsedMovies(): Flow<PagingData<RecentlyBrowsedMovie>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        recentlyBrowsedMoviesDao.recentBrowsedMovie().asPagingSourceFactory()()
+    }.flow.flowOn(defaultDispatcher)
 
     override fun addRecentlyBrowsedTvShows(tvShowDetails: TvShowDetails) {
         TODO("Not yet implemented")
