@@ -2,6 +2,7 @@ package com.example.movplayv3.data.repository.config
 
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Genre
+import com.example.movplayv3.data.model.ProviderSource
 import com.example.movplayv3.utils.ImageUrlParser
 import kotlinx.coroutines.flow.Flow
 
@@ -21,4 +22,6 @@ interface ConfigRepository {
     fun getMoviesGenres(): Flow<List<Genre>>
 
     fun getTvShowGenres(): Flow<List<Genre>>
+
+    fun getAllMoviesWatchProviders(): Flow<List<ProviderSource>>
 }
