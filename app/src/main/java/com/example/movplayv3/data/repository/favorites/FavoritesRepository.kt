@@ -22,5 +22,9 @@ interface FavoritesRepository {
 
     fun getFavoriteMoviesIds(): Flow<List<Int>>
 
-    fun getFavoriteTvShowIds(): Flow<List<Int>>
+    fun getFavoriteTvShowsIds(): Flow<List<Int>>
+
+    fun getFavoriteMoviesCount(): Flow<Int>
+
+    fun getFavoriteTvShowsCount(): Flow<Int>
 }
