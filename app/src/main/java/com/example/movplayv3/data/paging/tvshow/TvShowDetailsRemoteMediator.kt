@@ -12,6 +12,12 @@ class TvShowDetailsRemoteMediator(
     private val apiTvShowHelper: TmdbTvShowsApiHelper,
     private val appDatabase: AppDatabase
 ) : RemoteMediator<Int, TvShowDetailEntity>() {
+    private val tvShowDetailsDao = appDatabase.tvShowsDetailsDao()
+    private val tvShowDetailsRemoteKeysDao = appDatabase.tvShowsDetailsRemoteKeys()
+
+    override suspend fun initialize(): InitializeAction {
+        return super.initialize()
+    }
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, TvShowDetailEntity>
