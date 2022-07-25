@@ -9,6 +9,10 @@ import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.MovieDetailEntity
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.squareup.moshi.JsonDataException
+import retrofit2.HttpException
+import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalPagingApi::class)
@@ -38,7 +42,49 @@ class MovieDetailsPagingRemoteMediator(
         loadType: LoadType,
         state: PagingState<Int, MovieDetailEntity>
     ): MediatorResult {
-        TODO("Not yet implemented")
+        return try {
+            val page = when (loadType) {
+                LoadType.REFRESH -> 1
+                LoadType.PREPEND -> {
+                    return MediatorResult.Success(true)
+                }
+                LoadType.APPEND -> {
+                    val remoteKey = appDatabase.withTransaction {
+                        movieDetailsRemoteKeysDao.getRemoteKey(deviceLanguage.languageCode)
+                    } ?: return MediatorResult.Success(true)
+
+                    if (remoteKey.nextPage == null) {
+                        return MediatorResult.Success(true)
+                    }
+
+                    remoteKey.nextPage
+                }
+            }
+
+            val result = apiMovieHelper.getNowPlayingMovies(
+                page = page,
+                isoCode = deviceLanguage.languageCode,
+                region = deviceLanguage.region
+            )
+
+            appDatabase.withTransaction {
+                if (loadType == LoadType.REFRESH) {
+                    movieDetailsDao.deleteMovieDetails(deviceLanguage.languageCode)
+                    movieDetailsRemoteKeysDao.deleteKeys(deviceLanguage.languageCode)
+                }
+
+                val nextPage = if (result.movies.isNotEmpty()) {
+                    page + 1
+                } else null
+            }
+        } catch (e: IOException) {
+            MediatorResult.Error(e)
+        } catch (e: HttpException) {
+            MediatorResult.Error(e)
+        } catch (e: JsonDataException) {
+            FirebaseCrashlytics.getInstance().recordException(e)
+            MediatorResult.Error(e)
+        }
     }
 
 }
