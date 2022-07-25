@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ReviewsResponse(
     val id: Int,
-    val result: List<Review>,
+    val results: List<Review>,
     val page: Int,
     @Json(name = "total_pages")
     val totalPages: Int,
