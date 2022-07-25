@@ -1,4 +1,7 @@
 package com.example.movplayv3.domain.usecase.`interface`
 
-class AddRecentlyBrowsedMovieUseCase {
+import com.example.movplayv3.data.model.movie.MovieDetails
+
+interface AddRecentlyBrowsedMovieUseCase {
+    operator fun invoke(details: MovieDetails)
 }
