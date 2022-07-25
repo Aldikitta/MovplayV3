@@ -14,7 +14,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalPagingApi::class)
-class TvShowDetailsRemoteMediator(
+class TvShowDetailsPagingRemoteMediator(
     private val deviceLanguage: DeviceLanguage,
     private val apiTvShowHelper: TmdbTvShowsApiHelper,
     private val appDatabase: AppDatabase
