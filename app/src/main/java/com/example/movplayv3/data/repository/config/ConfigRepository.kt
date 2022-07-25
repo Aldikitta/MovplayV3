@@ -1,5 +1,13 @@
 package com.example.movplayv3.data.repository.config
 
-interface ConfigRepository {
+import kotlinx.coroutines.flow.Flow
 
+interface ConfigRepository {
+    fun isInitialized(): Flow<Boolean>
+
+    fun updateLocale()
+
+    fun getSpeechToTextAvailable(): Flow<Boolean>
+
+    fun getCameraAvailable(): Flow<Boolean>
 }
