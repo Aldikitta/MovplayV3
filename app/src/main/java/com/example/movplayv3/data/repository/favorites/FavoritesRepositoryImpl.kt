@@ -13,6 +13,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import java.util.*
@@ -78,11 +79,11 @@ class FavoritesRepositoryImpl @Inject constructor(
     }.flow.flowOn(defaultDispatcher)
 
     override fun getFavoriteMoviesIds(): Flow<List<Int>> {
-        TODO("Not yet implemented")
+        return favoritesMoviesDao.favouriteMoviesIds().distinctUntilChanged()
     }
 
     override fun getFavoriteTvShowsIds(): Flow<List<Int>> {
-        TODO("Not yet implemented")
+        return favoritesTvShowsDao.favoriteTvShowIds().distinctUntilChanged()
     }
 
     override fun getFavoriteMoviesCount(): Flow<Int> {
