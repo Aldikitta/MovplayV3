@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface RecentlyBrowsedRepository {
     fun addRecentlyBrowsedMovie(movieDetails: MovieDetails)
 
-//    fun clearRecentlyBrowsedMovies()
+    fun clearRecentlyBrowsedMovies()
 //
 //    fun clearRecentlyBrowsedTvShows()
 //
