@@ -37,7 +37,7 @@ class DiscoverTvShowsPagingDataSource(
         return try {
             val nextPage = params.key ?: 1
 
-            val tvShowsResponse = apiTvShowsHelper.discoverTvShows(
+            val tvShowResponse = apiTvShowsHelper.discoverTvShows(
                 page = nextPage,
                 isoCode = deviceLanguage.languageCode,
                 region = deviceLanguage.region,
@@ -49,11 +49,11 @@ class DiscoverTvShowsPagingDataSource(
                 toAirDate = toAirDate
             )
 
-            val currentPage = tvShowsResponse.page
-            val totalPages = tvShowsResponse.totalPages
+            val currentPage = tvShowResponse.page
+            val totalPages = tvShowResponse.totalPages
 
             LoadResult.Page(
-                data = tvShowsResponse.tvShows
+                data = tvShowResponse.tvShows
                     .filter { tvShow ->
                         if (onlyWithPosters) !tvShow.posterPath.isNullOrEmpty() else true
                     }
