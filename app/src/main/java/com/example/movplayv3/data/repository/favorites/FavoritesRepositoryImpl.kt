@@ -57,7 +57,9 @@ class FavoritesRepositoryImpl @Inject constructor(
     }
 
     override fun unlikeTvShows(tvShowDetails: TvShowDetails) {
-        TODO("Not yet implemented")
+        externalScope.launch {
+            favoritesTvShowsDao.unlikeTvShow(tvShowDetails.id)
+        }
     }
 
     override fun favoriteMovies(): Flow<PagingData<MovieFavorite>> {
