@@ -11,8 +11,8 @@ interface RecentlyBrowsedRepository {
     fun addRecentlyBrowsedMovie(movieDetails: MovieDetails)
 
     fun clearRecentlyBrowsedMovies()
-//
-//    fun clearRecentlyBrowsedTvShows()
+
+    fun clearRecentlyBrowsedTvShows()
 //
 //    fun recentlyBrowsedMovies(): Flow<PagingData<RecentlyBrowsedMovie>>
 //
