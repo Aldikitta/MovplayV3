@@ -1,6 +1,7 @@
 package com.example.movplayv3.data.repository.config
 
 import com.example.movplayv3.data.model.DeviceLanguage
+import com.example.movplayv3.utils.ImageUrlParser
 import kotlinx.coroutines.flow.Flow
 
 interface ConfigRepository {
@@ -12,5 +13,9 @@ interface ConfigRepository {
 
     fun getCameraAvailable(): Flow<Boolean>
 
-    fun deviceLanguage(): Flow<DeviceLanguage>
+    fun getDeviceLanguage(): Flow<DeviceLanguage>
+
+    fun getImageUrlParser(): Flow<ImageUrlParser?>
+
+
 }
