@@ -19,6 +19,10 @@ class DiscoverMoviesPagingDataSource(
     private val onlyWithOverview: Boolean = false,
     private val releaseDateRange: DateRange
 ) : PagingSource<Int, Movie>() {
+    private val fromReleaseDate = releaseDateRange.from?.let(::DateParam)
+    private val toReleaseDate = releaseDateRange.to?.let(::DateParam)
+    private val sortTypeParam = sortType.toSortTypeParam(sortOrder)
+
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
