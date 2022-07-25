@@ -11,6 +11,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,14 +21,28 @@ class RecentlyBrowsedRepositoryImpl @Inject constructor(
     private val externalScope: CoroutineScope,
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val recentlyBrowsedMoviesDao: RecentlyBrowsedMoviesDao,
-    private val recentlyBrowsedTvSeriesDao: RecentlyBrowsedTvShowsDao
+    private val recentlyBrowsedTvShowsDao: RecentlyBrowsedTvShowsDao
 ) : RecentlyBrowsedRepository {
     private companion object {
         const val maxItems = 100
     }
 
     override fun addRecentlyBrowsedMovie(movieDetails: MovieDetails) {
-        TODO("Not yet implemented")
+        externalScope.launch(defaultDispatcher) {
+            val recentlyBrowsedMovie = movieDetails.run {
+                RecentlyBrowsedMovie(
+                    id = id,
+                    posterPath = posterPath,
+                    title = title,
+                    addedDate = Date()
+                )
+            }
+
+            recentlyBrowsedMoviesDao.deleteAndAdd(
+                recentlyBrowsedMovie,
+                maxItems = maxItems
+            )
+        }
     }
 
     override fun clearRecentlyBrowsedMovies() {
