@@ -32,11 +32,11 @@ class ConfigRepositoryImpl @Inject constructor(
     }
 
     override fun getImageUrlParser(): Flow<ImageUrlParser?> {
-        TODO("Not yet implemented")
+        return configDataSource.imageUrlParser
     }
 
     override fun getMoviesGenres(): Flow<List<Genre>> {
-        TODO("Not yet implemented")
+        return configDataSource.movieGenres
     }
 
     override fun getTvShowGenres(): Flow<List<Genre>> {
