@@ -14,10 +14,10 @@ interface FavoritesMoviesDao {
     fun getAllFavoriteMovies(): DataSource.Factory<Int, MovieFavorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun replaceDuplicateMovie(vararg movieDetails: MovieFavorite)
+    suspend fun likeMovie(vararg movieDetails: MovieFavorite)
 
     @Query("DELETE FROM MovieFavorite WHERE id = :movieId")
-    suspend fun deleteAllFavoritesMovies(movieId: Int)
+    suspend fun unlikeMovie(movieId: Int)
 
     @Query("SELECT id FROM MovieFavorite")
     fun favouriteMoviesIds(): Flow<List<Int>>

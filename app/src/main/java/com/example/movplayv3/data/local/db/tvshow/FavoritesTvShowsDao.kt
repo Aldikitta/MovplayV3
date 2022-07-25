@@ -14,10 +14,10 @@ interface FavoritesTvShowsDao {
     fun getAllFavoriteTvShows(): DataSource.Factory<Int, TvShowFavorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun replaceDuplicateTvShows(vararg tvShowDetails: TvShowFavorite)
+    suspend fun likeTvShow(vararg tvShowDetails: TvShowFavorite)
 
     @Query("DELETE FROM TvShowFavorite WHERE id = :tvShowId")
-    suspend fun deleteAllFavoritesTvShows(tvShowId: Int)
+    suspend fun unlikeTvShow(tvShowId: Int)
 
     @Query("SELECT id FROM TvShowFavorite")
     fun favoriteTvShowIds(): Flow<List<Int>>
