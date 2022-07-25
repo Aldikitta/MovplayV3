@@ -5,12 +5,16 @@ import androidx.paging.PagingState
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.model.movie.MoviesResponse
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.squareup.moshi.JsonDataException
+import retrofit2.HttpException
+import java.io.IOException
 
 class MovieResponsePagingDataSource(
     private val language: String = DeviceLanguage.default.languageCode,
     private val region: String = DeviceLanguage.default.region,
     private inline val apiMovieHelperMethod: suspend (Int, String, String) -> MoviesResponse
-) :PagingSource<Int, Movie>() {
+) : PagingSource<Int, Movie>() {
     override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
@@ -19,6 +23,25 @@ class MovieResponsePagingDataSource(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
-        TODO("Not yet implemented")
+        return try {
+            val nextPage = params.key ?: 1
+            val movieResponse = apiMovieHelperMethod(nextPage, language, region)
+
+            val currentPage = movieResponse.page
+            val totalPages = movieResponse.totalPages
+
+            LoadResult.Page(
+                data = movieResponse.movies,
+                prevKey = if (nextPage == 1) null else nextPage - 1,
+                nextKey = if (currentPage + 1 > totalPages) null else currentPage + 1
+            )
+        } catch (e: IOException) {
+            LoadResult.Error(e)
+        } catch (e: HttpException) {
+            LoadResult.Error(e)
+        } catch (e: JsonDataException) {
+            FirebaseCrashlytics.getInstance().recordException(e)
+            LoadResult.Error(e)
+        }
     }
 }
