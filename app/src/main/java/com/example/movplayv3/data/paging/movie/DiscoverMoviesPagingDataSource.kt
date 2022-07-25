@@ -36,6 +36,37 @@ class DiscoverMoviesPagingDataSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
+            val nextPage = params.key ?: 1
+
+            val movieResponse = apiMovieHelper.discoverMovies(
+                page = nextPage,
+                isoCode = deviceLanguage.languageCode,
+                region = deviceLanguage.region,
+                sortTypeParam = sortTypeParam,
+                genresParam = genresParam,
+                watchProvidersParam = watchProvidersParam,
+                voteRange = voteRange,
+                fromReleaseDate = fromReleaseDate,
+                toReleaseDate = toReleaseDate
+            )
+
+            val currentPage = movieResponse.page
+            val totalPage = movieResponse.totalPages
+
+            LoadResult.Page(
+                data = movieResponse.movies
+                    .filter { movie ->
+                        if (onlyWithPosters) !movie.posterPath.isNullOrEmpty() else true
+                    }
+                    .filter { movie ->
+                        if (onlyWithScore) movie.voteCount > 0 && movie.voteAverage > 0f else true
+                    }
+                    .filter { movie ->
+                        if (onlyWithOverview) movie.overview.isNotBlank() else true
+                    },
+                prevKey = if (nextPage == 1) null else nextPage - 1,
+                nextKey = if (currentPage + 1 > totalPage) null else currentPage + 1
+            )
 
         } catch (e: IOException) {
             LoadResult.Error(e)
