@@ -71,9 +71,11 @@ class FavoritesRepositoryImpl @Inject constructor(
         favoritesMoviesDao.getAllFavoriteMovies().asPagingSourceFactory()()
     }.flow.flowOn(defaultDispatcher)
 
-    override fun favoriteTvShows(): Flow<PagingData<TvShowFavorite>> {
-        TODO("Not yet implemented")
-    }
+    override fun favoriteTvShows(): Flow<PagingData<TvShowFavorite>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        favoritesTvShowsDao.getAllFavoriteTvShows().asPagingSourceFactory()()
+    }.flow.flowOn(defaultDispatcher)
 
     override fun getFavoriteMoviesIds(): Flow<List<Int>> {
         TODO("Not yet implemented")
