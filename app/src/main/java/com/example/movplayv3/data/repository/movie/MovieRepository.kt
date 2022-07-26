@@ -3,8 +3,10 @@ package com.example.movplayv3.data.repository.movie
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.Movie
+import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MovieEntity
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Call
 
 interface MovieRepository {
     fun discoverMovies(
@@ -49,4 +51,9 @@ interface MovieRepository {
         movieId: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<Movie>>
+
+    fun movieDetails(
+        movieId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<MovieDetails>
 }
