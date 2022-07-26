@@ -1,6 +1,10 @@
 package com.example.movplayv3.data.repository.movie
 
+import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
+import com.example.movplayv3.data.model.movie.Movie
+import com.example.movplayv3.data.model.movie.MovieEntity
+import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
     fun discoverMovies(
@@ -14,5 +18,9 @@ interface MovieRepository {
         onlyWithScore: Boolean = false,
         onlyWithOverview: Boolean = false,
         releaseDateRange: DateRange = DateRange()
-    )
+    ): Flow<PagingData<Movie>>
+
+    fun popularMovies(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<MovieEntity>>
 }
