@@ -56,4 +56,36 @@ interface MovieRepository {
         movieId: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<MovieDetails>
+
+    fun movieCredits(
+        movieId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<Credits>
+
+    fun movieImages(
+        movieId: Int
+    ): Call<ImagesResponse>
+
+    fun movieReviews(movieId: Int): Flow<PagingData<Review>>
+
+    fun movieReview(movieId: Int): Call<ReviewsResponse>
+
+    fun collection(
+        collectionId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<CollectionResponse>
+
+    fun watchProviders(movieId: Int): Call<WatchProvidersResponse>
+
+    fun getExternalIds(movieId: Int): Call<ExternalIds>
+
+    fun getMovieVideos(
+        movieId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<VideosResponse>
+
+    fun moviesOfDirector(
+        directorId: Int,
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<Movie>>
 }
