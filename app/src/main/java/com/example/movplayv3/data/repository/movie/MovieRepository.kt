@@ -42,6 +42,11 @@ interface MovieRepository {
 
     fun similarMovies(
         movieId: Int,
-        deviceLanguage: DeviceLanguage  = DeviceLanguage.default
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<Movie>>
+
+    fun moviesRecommendation(
+        movieId: Int,
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<Movie>>
 }
