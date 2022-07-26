@@ -35,4 +35,10 @@ interface MovieRepository {
     fun topRatedMovies(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<MovieEntity>>
+
+    fun nowPlayingMovies(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<MovieEntity>>
+
+
 }
