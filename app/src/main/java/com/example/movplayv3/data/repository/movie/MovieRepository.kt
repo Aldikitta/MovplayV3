@@ -23,4 +23,8 @@ interface MovieRepository {
     fun popularMovies(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<MovieEntity>>
+
+    fun upcomingMovies(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<MovieEntity>>
 }
