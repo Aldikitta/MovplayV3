@@ -32,7 +32,7 @@ class SeasonRepositoryImpl @Inject constructor(
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getEpisodeImages(tvShowId, seasonNumber, episodeNumber)
     }
 
     override fun seasonVideos(
@@ -40,7 +40,7 @@ class SeasonRepositoryImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<VideosResponse> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getSeasonVideos(tvShowId, seasonNumber, isoCode)
     }
 
     override fun seasonCredits(
@@ -48,6 +48,6 @@ class SeasonRepositoryImpl @Inject constructor(
         seasonNumber: Int,
         isoCode: String
     ): Call<AggregatedCredits> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getSeasonCredits(tvShowId, seasonNumber, isoCode)
     }
 }
