@@ -13,6 +13,7 @@ import com.example.movplayv3.data.paging.movie.MovieDetailsPagingRemoteMediator
 import com.example.movplayv3.data.paging.movie.MovieDetailsResponsePagingDataSource
 import com.example.movplayv3.data.paging.movie.MoviesRemotePagingMediator
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
+import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -26,7 +27,8 @@ import javax.inject.Singleton
 class MovieRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val apiMovieHelper: TmdbMoviesApiHelper,
-    private val appDatabase: AppDatabase
+    private val appDatabase: AppDatabase,
+    private val apiOtherHelper: TmdbOthersApiHelper
 ) : MovieRepository {
     override fun discoverMovies(
         deviceLanguage: DeviceLanguage,
@@ -193,7 +195,7 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun collection(collectionId: Int, isoCode: String): Call<CollectionResponse> {
-        TODO("Not yet implemented")
+        return apiOtherHelper.getCollection(collectionId, isoCode)
     }
 
     override fun watchProviders(movieId: Int): Call<WatchProvidersResponse> {
