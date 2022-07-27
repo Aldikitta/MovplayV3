@@ -167,7 +167,7 @@ class MovieRepositoryImpl @Inject constructor(
     }.flow.flowOn(defaultDispatcher)
 
     override fun movieDetails(movieId: Int, isoCode: String): Call<MovieDetails> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieDetails(movieId, isoCode)
     }
 
     override fun movieCredits(movieId: Int, isoCode: String): Call<Credits> {
