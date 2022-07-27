@@ -1,5 +1,6 @@
 package com.example.movplayv3.data.repository.movie
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -8,7 +9,9 @@ import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MovieEntity
+import com.example.movplayv3.data.model.movie.MovieEntityType
 import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
+import com.example.movplayv3.data.paging.movie.MoviesRemotePagingMediator
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -53,9 +56,23 @@ class MovieRepositoryImpl @Inject constructor(
         )
     }.flow.flowOn(defaultDispatcher)
 
-    override fun popularMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
-        TODO("Not yet implemented")
-    }
+    @OptIn(ExperimentalPagingApi::class)
+    override fun popularMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> =
+        Pager(
+            PagingConfig(pageSize = 20),
+            remoteMediator = MoviesRemotePagingMediator(
+                deviceLanguage = deviceLanguage,
+                apiMovieHelper = apiMovieHelper,
+                appDatabase = appDatabase,
+                type = MovieEntityType.Popular
+            ),
+            pagingSourceFactory = {
+                appDatabase.moviesDao().getAllMovies(
+                    type = MovieEntityType.Popular,
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun upcomingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
         TODO("Not yet implemented")
