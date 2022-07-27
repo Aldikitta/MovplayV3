@@ -6,7 +6,7 @@ import com.example.movplayv3.data.remote.api.ApiResponse
 
 interface GetTvShowDetailsUseCase {
     suspend operator fun invoke(
-        tvSeriesId: Int,
+        tvShowId: Int,
         deviceLanguage: DeviceLanguage
     ): ApiResponse<TvShowDetails>
 }
