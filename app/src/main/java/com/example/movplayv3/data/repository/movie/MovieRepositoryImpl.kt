@@ -199,11 +199,11 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun watchProviders(movieId: Int): Call<WatchProvidersResponse> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieWatchProviders(movieId)
     }
 
     override fun getExternalIds(movieId: Int): Call<ExternalIds> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieExternalIds(movieId)
     }
 
     override fun getMovieVideos(movieId: Int, isoCode: String): Call<VideosResponse> {
