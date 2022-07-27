@@ -64,4 +64,8 @@ interface TvShowRepository {
     fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>>
 
     fun tvShowReview(tvShowId: Int): Flow<PagingData<ReviewsResponse>>
+
+    fun watchProviders(tvShowId: Int): Flow<PagingData<WatchProvidersResponse>>
+
+    fun getExternalIds(tvShowId: Int): Flow<PagingData<ExternalIds>>
 }
