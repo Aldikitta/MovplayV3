@@ -186,15 +186,15 @@ class TvShowRepositoryImpl @Inject constructor(
         )
     }.flow.flowOn(defaultDispatcher)
 
-    override fun tvShowReview(tvShowId: Int): Flow<PagingData<ReviewsResponse>> {
+    override fun tvShowReview(tvShowId: Int): Call<ReviewsResponse> {
+        return apiTvShowHelper.getTvShowReview(tvShowId)
+    }
+
+    override fun watchProviders(tvShowId: Int): Call<WatchProvidersResponse> {
         TODO("Not yet implemented")
     }
 
-    override fun watchProviders(tvShowId: Int): Flow<PagingData<WatchProvidersResponse>> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getExternalIds(tvShowId: Int): Flow<PagingData<ExternalIds>> {
+    override fun getExternalIds(tvShowId: Int): Call<ExternalIds> {
         TODO("Not yet implemented")
     }
 
