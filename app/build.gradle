@@ -111,4 +111,7 @@ dependencies {
 
     implementation "androidx.camera:camera-view:1.1.0"
     implementation "androidx.camera:camera-extensions:1.1.0"
+
+    //MLKit
+    implementation "com.google.mlkit:text-recognition:16.0.0-beta4"
 }

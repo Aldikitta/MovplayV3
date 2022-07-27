@@ -38,4 +38,10 @@
     <string name="tv_series_type_scripted_label">Scripted</string>
     <string name="tv_series_type_talk_show_label">Talk show</string>
     <string name="tv_series_type_video_label">Video</string>
+
+    <string name="scanner_reject_button_label">Reject</string>
+    <string name="scanner_accept_button_label">Accept</string>
+    <string name="scanner_error_info_no_text">No text has been recognized</string>
+    <string name="scanner_error_info_to_short_text">Scanned text is to short</string>
+    <string name="scanner_error_info_to_long_text">Scanned text is to long</string>
 </resources>
