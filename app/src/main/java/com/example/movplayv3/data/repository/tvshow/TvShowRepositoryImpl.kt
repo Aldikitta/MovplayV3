@@ -173,7 +173,7 @@ class TvShowRepositoryImpl @Inject constructor(
     }
 
     override fun tvShowImages(tvShowId: Int): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getTvShowImages(tvShowId)
     }
 
     override fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>> {
