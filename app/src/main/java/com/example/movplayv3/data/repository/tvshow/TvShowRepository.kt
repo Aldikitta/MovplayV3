@@ -3,6 +3,7 @@ package com.example.movplayv3.data.repository.tvshow
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShow
+import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.model.tvshow.TvShowEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -41,6 +42,11 @@ interface TvShowRepository {
     ): Flow<PagingData<TvShowEntity>>
 
     fun similarTvShows(
+        tvShowId: Int,
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<TvShow>>
+
+    fun tvShowsRecommendations(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<TvShow>>
