@@ -9,6 +9,7 @@ import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.*
 import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
 import com.example.movplayv3.data.paging.movie.MovieDetailsPagingRemoteMediator
+import com.example.movplayv3.data.paging.movie.MovieDetailsResponsePagingDataSource
 import com.example.movplayv3.data.paging.movie.MoviesRemotePagingMediator
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -142,9 +143,15 @@ class MovieRepositoryImpl @Inject constructor(
     override fun similarMovies(
         movieId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<Movie>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<Movie>> = Pager(
+        PagingConfig(pageSize = 20)
+    ){
+        MovieDetailsResponsePagingDataSource(
+            movieId = movieId,
+            language = deviceLanguage.languageCode,
+            apiMovieHelper = apiMovieHelper::getSimilarMovies
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun moviesRecommendation(
         movieId: Int,
