@@ -14,5 +14,5 @@ class TvShowRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val apiTvShowHelper: TmdbTvShowsApiHelper,
     private val appDatabase: AppDatabase
-) {
+) : TvShowRepository {
 }
