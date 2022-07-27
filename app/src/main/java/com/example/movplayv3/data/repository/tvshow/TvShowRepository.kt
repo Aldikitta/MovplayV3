@@ -3,6 +3,7 @@ package com.example.movplayv3.data.repository.tvshow
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShow
+import com.example.movplayv3.data.model.tvshow.TvShowEntity
 import kotlinx.coroutines.flow.Flow
 
 interface TvShowRepository {
@@ -18,4 +19,8 @@ interface TvShowRepository {
         onlyWithOverview: Boolean = false,
         airDateRange: DateRange = DateRange()
     ): Flow<PagingData<TvShow>>
+
+    fun topRatedTvShows(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<TvShowEntity>>
 }
