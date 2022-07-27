@@ -189,7 +189,7 @@ class MovieRepositoryImpl @Inject constructor(
     }.flow.flowOn(defaultDispatcher)
 
     override fun movieReview(movieId: Int): Call<ReviewsResponse> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieReview(movieId)
     }
 
     override fun collection(collectionId: Int, isoCode: String): Call<CollectionResponse> {
