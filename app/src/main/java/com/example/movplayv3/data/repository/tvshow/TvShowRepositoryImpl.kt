@@ -179,7 +179,7 @@ class TvShowRepositoryImpl @Inject constructor(
 
     override fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>> = Pager(
         PagingConfig(pageSize = 5)
-    ){
+    ) {
         ReviewsPagingDataSource(
             mediaId = tvShowId,
             apiHelperMethod = apiTvShowHelper::getTvShowReviews
@@ -199,6 +199,6 @@ class TvShowRepositoryImpl @Inject constructor(
     }
 
     override fun tvShowVideos(tvShowId: Int, isoCode: String): Call<VideosResponse> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getTvShowVideos(tvShowId, isoCode)
     }
 }
