@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.*
+import com.example.movplayv3.data.paging.ReviewsPagingDataSource
 import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
 import com.example.movplayv3.data.paging.movie.MovieDetailsPagingRemoteMediator
 import com.example.movplayv3.data.paging.movie.MovieDetailsResponsePagingDataSource
@@ -178,9 +179,14 @@ class MovieRepositoryImpl @Inject constructor(
         return apiMovieHelper.getMovieImages(movieId)
     }
 
-    override fun movieReviews(movieId: Int): Flow<PagingData<Review>> {
-        TODO("Not yet implemented")
-    }
+    override fun movieReviews(movieId: Int): Flow<PagingData<Review>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        ReviewsPagingDataSource(
+            mediaId = movieId,
+            apiHelperMethod = apiMovieHelper::getMovieReviews
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun movieReview(movieId: Int): Call<ReviewsResponse> {
         TODO("Not yet implemented")
