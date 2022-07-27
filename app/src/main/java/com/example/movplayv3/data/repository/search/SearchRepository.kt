@@ -2,6 +2,7 @@ package com.example.movplayv3.data.repository.search
 
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.DeviceLanguage
+import com.example.movplayv3.data.model.SearchQuery
 import com.example.movplayv3.data.model.SearchResult
 import kotlinx.coroutines.flow.Flow
 
@@ -16,5 +17,5 @@ interface SearchRepository {
 
     suspend fun searchQueries(query: String): List<String>
 
-    fun add
+    fun addSearchQuery(searchQuery: SearchQuery)
 }
