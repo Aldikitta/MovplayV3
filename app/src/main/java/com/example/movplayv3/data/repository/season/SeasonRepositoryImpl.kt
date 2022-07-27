@@ -10,7 +10,7 @@ import javax.inject.Singleton
 @Singleton
 class SeasonRepositoryImpl @Inject constructor(
     private val apiTvShowHelper: TmdbTvShowsApiHelper
-): SeasonRepository {
+) : SeasonRepository {
     override fun getTvSeason(
         tvShowId: Int,
         seasonNumber: Int,
