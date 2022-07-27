@@ -145,20 +145,26 @@ class MovieRepositoryImpl @Inject constructor(
         deviceLanguage: DeviceLanguage
     ): Flow<PagingData<Movie>> = Pager(
         PagingConfig(pageSize = 20)
-    ){
+    ) {
         MovieDetailsResponsePagingDataSource(
             movieId = movieId,
             language = deviceLanguage.languageCode,
-            apiMovieHelper = apiMovieHelper::getSimilarMovies
+            apiHMovieHelperMethod = apiMovieHelper::getSimilarMovies
         )
     }.flow.flowOn(defaultDispatcher)
 
     override fun moviesRecommendation(
         movieId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<Movie>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<Movie>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        MovieDetailsResponsePagingDataSource(
+            movieId = movieId,
+            language = deviceLanguage.languageCode,
+            apiHMovieHelperMethod = apiMovieHelper::getMoviesRecommendations
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun movieDetails(movieId: Int, isoCode: String): Call<MovieDetails> {
         TODO("Not yet implemented")
