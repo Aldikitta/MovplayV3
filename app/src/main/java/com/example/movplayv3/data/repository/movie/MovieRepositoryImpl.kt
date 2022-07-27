@@ -1,15 +1,19 @@
 package com.example.movplayv3.data.repository.movie
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MovieEntity
+import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import retrofit2.Call
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,9 +35,13 @@ class MovieRepositoryImpl @Inject constructor(
         onlyWithScore: Boolean,
         onlyWithOverview: Boolean,
         releaseDateRange: DateRange
-    ): Flow<PagingData<Movie>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<Movie>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        DiscoverMoviesPagingDataSource(
+
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun popularMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
         TODO("Not yet implemented")
