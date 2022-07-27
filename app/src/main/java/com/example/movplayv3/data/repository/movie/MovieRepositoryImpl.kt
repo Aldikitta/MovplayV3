@@ -39,7 +39,17 @@ class MovieRepositoryImpl @Inject constructor(
         PagingConfig(pageSize = 20)
     ) {
         DiscoverMoviesPagingDataSource(
-
+            apiMovieHelper = apiMovieHelper,
+            deviceLanguage = deviceLanguage,
+            sortType = sortType,
+            sortOrder = sortOrder,
+            genresParam = genresParam,
+            watchProvidersParam = watchProvidersParam,
+            voteRange = voteRange,
+            onlyWithPosters = onlyWithPosters,
+            onlyWithScore = onlyWithScore,
+            onlyWithOverview = onlyWithOverview,
+            releaseDateRange = releaseDateRange
         )
     }.flow.flowOn(defaultDispatcher)
 
