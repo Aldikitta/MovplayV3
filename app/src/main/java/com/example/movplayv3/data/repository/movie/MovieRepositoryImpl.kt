@@ -175,7 +175,7 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun movieImages(movieId: Int): Call<ImagesResponse> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieImages(movieId)
     }
 
     override fun movieReviews(movieId: Int): Flow<PagingData<Review>> {
