@@ -8,10 +8,7 @@ import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.*
 import com.example.movplayv3.data.paging.ReviewsPagingDataSource
-import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
-import com.example.movplayv3.data.paging.movie.MovieDetailsPagingRemoteMediator
-import com.example.movplayv3.data.paging.movie.MovieDetailsResponsePagingDataSource
-import com.example.movplayv3.data.paging.movie.MoviesRemotePagingMediator
+import com.example.movplayv3.data.paging.movie.*
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import com.example.movplayv3.data.remote.api.others.TmdbOthersApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -207,13 +204,20 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun getMovieVideos(movieId: Int, isoCode: String): Call<VideosResponse> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieVideos(movieId)
     }
 
     override fun moviesOfDirector(
         directorId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<Movie>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<Movie>> = Pager(
+        PagingConfig(pageSize = 20)
+    ) {
+        DirectorOtherMoviePagingDataSource(
+            apiMovieHelper = apiMovieHelper,
+            language = deviceLanguage.languageCode,
+            region = deviceLanguage.region,
+            directorId = directorId
+        )
+    }.flow.flowOn(defaultDispatcher)
 }
