@@ -12,23 +12,23 @@ class SeasonRepositoryImpl @Inject constructor(
     private val apiTvShowHelper: TmdbTvShowsApiHelper
 ): SeasonRepository {
     override fun getTvSeason(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         deviceLanguage: DeviceLanguage
     ): Call<TvSeasonsResponse> {
-        return apiTvShowHelper.getTvSeasons(tvSeriesId, seasonNumber, deviceLanguage.languageCode)
+        return apiTvShowHelper.getTvSeasons(tvShowId, seasonNumber, deviceLanguage.languageCode)
     }
 
     override fun seasonDetails(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         deviceLanguage: DeviceLanguage
     ): Call<SeasonDetails> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getSeasonDetails(tvShowId, seasonNumber, deviceLanguage.languageCode)
     }
 
     override fun episodesImage(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse> {
@@ -36,7 +36,7 @@ class SeasonRepositoryImpl @Inject constructor(
     }
 
     override fun seasonVideos(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String
     ): Call<VideosResponse> {
@@ -44,7 +44,7 @@ class SeasonRepositoryImpl @Inject constructor(
     }
 
     override fun seasonCredits(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String
     ): Call<AggregatedCredits> {

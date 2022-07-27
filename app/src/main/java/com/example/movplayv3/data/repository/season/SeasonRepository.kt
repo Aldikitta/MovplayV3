@@ -6,31 +6,31 @@ import retrofit2.Call
 
 interface SeasonRepository {
     fun getTvSeason(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Call<TvSeasonsResponse>
 
     fun seasonDetails(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Call<SeasonDetails>
 
     fun episodesImage(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         episodeNumber: Int
     ): Call<ImagesResponse>
 
     fun seasonVideos(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<VideosResponse>
 
     fun seasonCredits(
-        tvSeriesId: Int,
+        tvShowId: Int,
         seasonNumber: Int,
         isoCode: String = DeviceLanguage.default.languageCode
     ): Call<AggregatedCredits>
