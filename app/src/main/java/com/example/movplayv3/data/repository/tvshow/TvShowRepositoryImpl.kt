@@ -191,7 +191,7 @@ class TvShowRepositoryImpl @Inject constructor(
     }
 
     override fun watchProviders(tvShowId: Int): Call<WatchProvidersResponse> {
-        TODO("Not yet implemented")
+        return apiTvShowHelper.getTvShowWatchProviders(tvShowId)
     }
 
     override fun getExternalIds(tvShowId: Int): Call<ExternalIds> {
