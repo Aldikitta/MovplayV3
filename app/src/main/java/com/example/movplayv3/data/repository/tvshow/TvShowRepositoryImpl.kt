@@ -9,6 +9,7 @@ import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.*
 import com.example.movplayv3.data.paging.tvshow.DiscoverTvShowsPagingDataSource
 import com.example.movplayv3.data.paging.tvshow.TvShowDetailsPagingRemoteMediator
+import com.example.movplayv3.data.paging.tvshow.TvShowDetailsResponsePagingDataSource
 import com.example.movplayv3.data.paging.tvshow.TvShowsRemotePagingMediator
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -141,9 +142,15 @@ class TvShowRepositoryImpl @Inject constructor(
     override fun similarTvShows(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<TvShow>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<TvShow>> = Pager(
+        PagingConfig(pageSize = 20)
+    ){
+        TvShowDetailsResponsePagingDataSource(
+            tvShowId = tvShowId,
+            deviceLanguage = deviceLanguage,
+            apiHelperMethod = apiTvShowHelper::getSimilarTvShows
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun tvShowsRecommendations(
         tvShowId: Int,
