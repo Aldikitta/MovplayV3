@@ -22,6 +22,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@OptIn(ExperimentalPagingApi::class)
 class MovieRepositoryImpl @Inject constructor(
     private val defaultDispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val apiMovieHelper: TmdbMoviesApiHelper,
@@ -56,7 +57,6 @@ class MovieRepositoryImpl @Inject constructor(
         )
     }.flow.flowOn(defaultDispatcher)
 
-    @OptIn(ExperimentalPagingApi::class)
     override fun popularMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> =
         Pager(
             PagingConfig(pageSize = 20),
@@ -74,9 +74,22 @@ class MovieRepositoryImpl @Inject constructor(
             }
         ).flow.flowOn(defaultDispatcher)
 
-    override fun upcomingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun upcomingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> =
+        Pager(
+            PagingConfig(pageSize = 20),
+            remoteMediator = MoviesRemotePagingMediator(
+                deviceLanguage = deviceLanguage,
+                apiMovieHelper = apiMovieHelper,
+                appDatabase = appDatabase,
+                type = MovieEntityType.Upcoming
+            ),
+            pagingSourceFactory = {
+                appDatabase.moviesDao().getAllMovies(
+                    type = MovieEntityType.Upcoming,
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun trendingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
         TODO("Not yet implemented")
