@@ -62,4 +62,6 @@ interface TvShowRepository {
     ): Call<ImagesResponse>
 
     fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>>
+
+    fun tvShowReview(tvShowId: Int): Flow<PagingData<ReviewsResponse>>
 }
