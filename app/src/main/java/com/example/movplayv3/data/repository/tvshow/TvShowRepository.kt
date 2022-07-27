@@ -31,4 +31,8 @@ interface TvShowRepository {
     fun trendingTvShows(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<TvShowEntity>>
+
+    fun popularTvShows(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<TvShowEntity>>
 }
