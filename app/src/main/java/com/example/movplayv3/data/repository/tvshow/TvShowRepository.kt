@@ -39,4 +39,9 @@ interface TvShowRepository {
     fun airingTodayTvShows(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<TvShowEntity>>
+
+    fun similarTvShows(
+        tvShowId: Int,
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<TvShow>>
 }
