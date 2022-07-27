@@ -121,9 +121,22 @@ class TvShowRepositoryImpl @Inject constructor(
             }
         ).flow.flowOn(defaultDispatcher)
 
-    override fun airingTodayTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun airingTodayTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> =
+        Pager(
+            config = PagingConfig(pageSize = 20),
+            remoteMediator = TvShowsRemotePagingMediator(
+                deviceLanguage = deviceLanguage,
+                apiTvShowHelper = apiTvShowHelper,
+                appDatabase = appDatabase,
+                type = TvShowEntityType.AiringToday
+            ),
+            pagingSourceFactory = {
+                appDatabase.tvShowsDao().getAllTvShows(
+                    type = TvShowEntityType.AiringToday,
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun similarTvShows(
         tvShowId: Int,
