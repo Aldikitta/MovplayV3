@@ -7,6 +7,7 @@ import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.*
+import com.example.movplayv3.data.paging.ReviewsPagingDataSource
 import com.example.movplayv3.data.paging.tvshow.DiscoverTvShowsPagingDataSource
 import com.example.movplayv3.data.paging.tvshow.TvShowDetailsPagingRemoteMediator
 import com.example.movplayv3.data.paging.tvshow.TvShowDetailsResponsePagingDataSource
@@ -176,9 +177,14 @@ class TvShowRepositoryImpl @Inject constructor(
         return apiTvShowHelper.getTvShowImages(tvShowId)
     }
 
-    override fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>> {
-        TODO("Not yet implemented")
-    }
+    override fun tvShowReviews(tvShowId: Int): Flow<PagingData<Review>> = Pager(
+        PagingConfig(pageSize = 5)
+    ){
+        ReviewsPagingDataSource(
+            mediaId = tvShowId,
+            apiHelperMethod = apiTvShowHelper::getTvShowReviews
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun tvShowReview(tvShowId: Int): Flow<PagingData<ReviewsResponse>> {
         TODO("Not yet implemented")
