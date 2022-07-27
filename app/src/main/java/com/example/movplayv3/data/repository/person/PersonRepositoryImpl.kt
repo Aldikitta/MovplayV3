@@ -17,7 +17,7 @@ class PersonRepositoryImpl @Inject constructor(
         personId: Int,
         deviceLanguage: DeviceLanguage
     ): Call<PersonDetails> {
-        TODO("Not yet implemented")
+        return apiOthersApiHelper.getPersonDetails(personId, deviceLanguage.languageCode)
     }
 
     override fun getCombinedCredits(
