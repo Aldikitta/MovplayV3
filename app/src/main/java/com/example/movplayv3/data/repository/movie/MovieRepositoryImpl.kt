@@ -91,9 +91,22 @@ class MovieRepositoryImpl @Inject constructor(
             }
         ).flow.flowOn(defaultDispatcher)
 
-    override fun trendingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun trendingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> =
+        Pager(
+            PagingConfig(pageSize = 20),
+            remoteMediator = MoviesRemotePagingMediator(
+                apiMovieHelper = apiMovieHelper,
+                deviceLanguage = deviceLanguage,
+                appDatabase = appDatabase,
+                type = MovieEntityType.Trending
+            ),
+            pagingSourceFactory = {
+                appDatabase.moviesDao().getAllMovies(
+                    type = MovieEntityType.Trending,
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun topRatedMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
         TODO("Not yet implemented")
