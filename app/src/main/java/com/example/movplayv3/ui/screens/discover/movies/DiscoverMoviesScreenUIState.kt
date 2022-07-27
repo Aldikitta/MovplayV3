@@ -5,6 +5,7 @@ import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.Movie
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 @Stable
 class DiscoverMoviesScreenUIState(
@@ -12,6 +13,13 @@ class DiscoverMoviesScreenUIState(
     val filterState: MovieFilterState,
     val movies: Flow<PagingData<Movie>>
 ) {
+    companion object {
+        val default: DiscoverMoviesScreenUIState = DiscoverMoviesScreenUIState(
+            sortInfo = SortInfo.default,
+            filterState = MovieFilterState.default,
+            movies = emptyFlow()
+        )
+    }
 }
 
 @Stable
