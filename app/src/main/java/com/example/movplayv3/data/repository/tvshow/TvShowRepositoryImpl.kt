@@ -9,7 +9,9 @@ import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.model.tvshow.TvShowEntity
+import com.example.movplayv3.data.model.tvshow.TvShowEntityType
 import com.example.movplayv3.data.paging.tvshow.DiscoverTvShowsPagingDataSource
+import com.example.movplayv3.data.paging.tvshow.TvShowsRemotePagingMediator
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -55,9 +57,22 @@ class TvShowRepositoryImpl @Inject constructor(
         )
     }.flow.flowOn(defaultDispatcher)
 
-    override fun topRatedTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun topRatedTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> =
+        Pager(
+            config = PagingConfig(pageSize = 20),
+            remoteMediator = TvShowsRemotePagingMediator(
+                deviceLanguage = deviceLanguage,
+                apiTvShowHelper = apiTvShowHelper,
+                appDatabase = appDatabase,
+                type = TvShowEntityType.TopRated
+            ),
+            pagingSourceFactory = {
+                appDatabase.tvShowsDao().getAllTvShows(
+                    type = TvSeriesEntityType.TopRated,
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun onTheAirTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> {
         TODO("Not yet implemented")
