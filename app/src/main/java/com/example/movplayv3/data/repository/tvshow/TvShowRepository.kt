@@ -56,7 +56,7 @@ interface TvShowRepository {
     fun getTvShowDetails(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
-    ): Flow<PagingData<TvShowDetails>>
+    ): Call<TvShowDetails>
 
     fun tvShowImages(
         tvShowId: Int,

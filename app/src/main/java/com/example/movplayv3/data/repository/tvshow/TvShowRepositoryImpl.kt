@@ -144,7 +144,7 @@ class TvShowRepositoryImpl @Inject constructor(
         deviceLanguage: DeviceLanguage
     ): Flow<PagingData<TvShow>> = Pager(
         PagingConfig(pageSize = 20)
-    ){
+    ) {
         TvShowDetailsResponsePagingDataSource(
             tvShowId = tvShowId,
             deviceLanguage = deviceLanguage,
@@ -157,7 +157,7 @@ class TvShowRepositoryImpl @Inject constructor(
         deviceLanguage: DeviceLanguage
     ): Flow<PagingData<TvShow>> = Pager(
         PagingConfig(pageSize = 20)
-    ){
+    ) {
         TvShowDetailsResponsePagingDataSource(
             tvShowId = tvShowId,
             deviceLanguage = deviceLanguage,
@@ -168,8 +168,8 @@ class TvShowRepositoryImpl @Inject constructor(
     override fun getTvShowDetails(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<TvShowDetails>> {
-        TODO("Not yet implemented")
+    ): Call<TvShowDetails> {
+        return apiTvShowHelper.getTvShowDetails(tvShowId, deviceLanguage.languageCode)
     }
 
     override fun tvShowImages(tvShowId: Int): Call<ImagesResponse> {
