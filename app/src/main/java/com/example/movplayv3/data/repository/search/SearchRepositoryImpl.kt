@@ -44,7 +44,7 @@ class SearchRepositoryImpl @Inject constructor(
     }.flow.flowOn(defaultDispatcher)
 
     override suspend fun searchQueries(query: String): List<String> {
-        TODO("Not yet implemented")
+        return searchQueryDao.searchQueries(query)
     }
 
     override fun addSearchQuery(searchQuery: SearchQuery) {
