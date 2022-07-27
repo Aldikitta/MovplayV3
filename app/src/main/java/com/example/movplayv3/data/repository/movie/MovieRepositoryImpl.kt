@@ -171,7 +171,7 @@ class MovieRepositoryImpl @Inject constructor(
     }
 
     override fun movieCredits(movieId: Int, isoCode: String): Call<Credits> {
-        TODO("Not yet implemented")
+        return apiMovieHelper.getMovieCredits(movieId, isoCode)
     }
 
     override fun movieImages(movieId: Int): Call<ImagesResponse> {
