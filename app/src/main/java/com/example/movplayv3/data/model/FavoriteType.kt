@@ -3,7 +3,7 @@ package com.example.movplayv3.data.model
 import androidx.annotation.StringRes
 import com.example.movplayv3.R
 
-enum class FavouriteType {
+enum class FavoriteType {
     Movie, TvShow;
 
     @StringRes
