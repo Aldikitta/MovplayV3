@@ -6,11 +6,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
-import com.example.movplayv3.data.model.tvshow.TvShow
-import com.example.movplayv3.data.model.tvshow.TvShowDetails
-import com.example.movplayv3.data.model.tvshow.TvShowEntity
-import com.example.movplayv3.data.model.tvshow.TvShowEntityType
+import com.example.movplayv3.data.model.tvshow.*
 import com.example.movplayv3.data.paging.tvshow.DiscoverTvShowsPagingDataSource
+import com.example.movplayv3.data.paging.tvshow.TvShowDetailsPagingRemoteMediator
 import com.example.movplayv3.data.paging.tvshow.TvShowsRemotePagingMediator
 import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -68,15 +66,26 @@ class TvShowRepositoryImpl @Inject constructor(
             ),
             pagingSourceFactory = {
                 appDatabase.tvShowsDao().getAllTvShows(
-                    type = TvSeriesEntityType.TopRated,
+                    type = TvShowEntityType.TopRated,
                     language = deviceLanguage.languageCode
                 )
             }
         ).flow.flowOn(defaultDispatcher)
 
-    override fun onTheAirTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun onTheAirTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowDetailEntity>> =
+        Pager(
+            config = PagingConfig(pageSize = 20),
+            remoteMediator = TvShowDetailsPagingRemoteMediator(
+                deviceLanguage = deviceLanguage,
+                apiTvShowHelper = apiTvShowHelper,
+                appDatabase = appDatabase,
+            ),
+            pagingSourceFactory = {
+                appDatabase.tvShowsDetailsDao().getAllTvShows(
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun trendingTvShows(deviceLanguage: DeviceLanguage): Flow<PagingData<TvShowEntity>> {
         TODO("Not yet implemented")
