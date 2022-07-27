@@ -6,11 +6,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.movplayv3.data.local.db.AppDatabase
 import com.example.movplayv3.data.model.*
-import com.example.movplayv3.data.model.movie.Movie
-import com.example.movplayv3.data.model.movie.MovieDetails
-import com.example.movplayv3.data.model.movie.MovieEntity
-import com.example.movplayv3.data.model.movie.MovieEntityType
+import com.example.movplayv3.data.model.movie.*
 import com.example.movplayv3.data.paging.movie.DiscoverMoviesPagingDataSource
+import com.example.movplayv3.data.paging.movie.MovieDetailsPagingRemoteMediator
 import com.example.movplayv3.data.paging.movie.MoviesRemotePagingMediator
 import com.example.movplayv3.data.remote.api.movie.TmdbMoviesApiHelper
 import kotlinx.coroutines.CoroutineDispatcher
@@ -126,9 +124,20 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow.flowOn(defaultDispatcher)
 
 
-    override fun nowPlayingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieEntity>> {
-        TODO("Not yet implemented")
-    }
+    override fun nowPlayingMovies(deviceLanguage: DeviceLanguage): Flow<PagingData<MovieDetailEntity>> =
+        Pager(
+            PagingConfig(pageSize = 20),
+            remoteMediator = MovieDetailsPagingRemoteMediator(
+                apiMovieHelper = apiMovieHelper,
+                deviceLanguage = deviceLanguage,
+                appDatabase = appDatabase,
+            ),
+            pagingSourceFactory = {
+                appDatabase.moviesDetailsDao().getAllMovies(
+                    language = deviceLanguage.languageCode
+                )
+            }
+        ).flow.flowOn(defaultDispatcher)
 
     override fun similarMovies(
         movieId: Int,

@@ -3,6 +3,7 @@ package com.example.movplayv3.data.repository.movie
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.movie.Movie
+import com.example.movplayv3.data.model.movie.MovieDetailEntity
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.data.model.movie.MovieEntity
 import kotlinx.coroutines.flow.Flow
@@ -40,7 +41,7 @@ interface MovieRepository {
 
     fun nowPlayingMovies(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
-    ): Flow<PagingData<MovieEntity>>
+    ): Flow<PagingData<MovieDetailEntity>>
 
     fun similarMovies(
         movieId: Int,
