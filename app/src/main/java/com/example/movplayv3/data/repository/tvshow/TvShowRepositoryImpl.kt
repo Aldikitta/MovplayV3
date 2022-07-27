@@ -155,9 +155,15 @@ class TvShowRepositoryImpl @Inject constructor(
     override fun tvShowsRecommendations(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<TvShow>> {
-        TODO("Not yet implemented")
-    }
+    ): Flow<PagingData<TvShow>> = Pager(
+        PagingConfig(pageSize = 20)
+    ){
+        TvShowDetailsResponsePagingDataSource(
+            tvShowId = tvShowId,
+            deviceLanguage = deviceLanguage,
+            apiHelperMethod = apiTvShowHelper::getTvShowsRecommendations
+        )
+    }.flow.flowOn(defaultDispatcher)
 
     override fun getTvShowDetails(
         tvShowId: Int,
