@@ -68,4 +68,9 @@ interface TvShowRepository {
     fun watchProviders(tvShowId: Int): Flow<PagingData<WatchProvidersResponse>>
 
     fun getExternalIds(tvShowId: Int): Flow<PagingData<ExternalIds>>
+
+    fun tvShowVideos(
+        tvShowId: Int,
+        isoCode: String = DeviceLanguage.default.languageCode
+    ): Call<VideosResponse>
 }
