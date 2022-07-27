@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -48,6 +49,8 @@ class SearchRepositoryImpl @Inject constructor(
     }
 
     override fun addSearchQuery(searchQuery: SearchQuery) {
-        TODO("Not yet implemented")
+        externalScope.launch(defaultDispatcher) {
+            searchQueryDao.addQuery(searchQuery)
+        }
     }
 }
