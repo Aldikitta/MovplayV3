@@ -27,4 +27,8 @@ interface TvShowRepository {
     fun onTheAirTvShows(
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<TvShowEntity>>
+
+    fun trendingTvShows(
+        deviceLanguage: DeviceLanguage = DeviceLanguage.default
+    ): Flow<PagingData<TvShowEntity>>
 }
