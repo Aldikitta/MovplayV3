@@ -6,6 +6,7 @@ import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.model.tvshow.TvShowEntity
 import kotlinx.coroutines.flow.Flow
+import retrofit2.Call
 
 interface TvShowRepository {
     fun discoverTvShows(
@@ -55,4 +56,8 @@ interface TvShowRepository {
         tvShowId: Int,
         deviceLanguage: DeviceLanguage = DeviceLanguage.default
     ): Flow<PagingData<TvShowDetails>>
+
+    fun tvShowImages(
+        tvShowId: Int,
+    ): Call<ImagesResponse>
 }
