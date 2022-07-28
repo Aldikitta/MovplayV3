@@ -1,7 +1,6 @@
 package com.example.movplayv3.domain.usecase
 
 import android.graphics.Bitmap
-import com.example.movplayv3.data.repository.search.SearchRepository
 import com.example.movplayv3.domain.usecase.interfaces.ScanBitmapForTextUseCase
 import com.example.movplayv3.utils.Roi
 import com.example.movplayv3.utils.TextRecognitionHelper
