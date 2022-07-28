@@ -5,7 +5,7 @@ import com.example.movplayv3.utils.Roi
 import com.example.movplayv3.utils.TextRecognitionHelper
 import kotlinx.coroutines.flow.Flow
 
-interface ScanBitmapForTextUseCase {
+interface ScanBitmapForTextUseCaseImpl {
     operator fun invoke(
         bitmap: Bitmap,
         rotation: Float,

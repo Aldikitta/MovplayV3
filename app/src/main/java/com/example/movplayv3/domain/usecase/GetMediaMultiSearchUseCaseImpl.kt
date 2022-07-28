@@ -5,7 +5,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.SearchResult
 import kotlinx.coroutines.flow.Flow
 
-interface GetMediaMultiSearchUseCase {
+interface GetMediaMultiSearchUseCaseImpl {
     operator fun invoke(
         query: String,
         deviceLanguage: DeviceLanguage

@@ -5,7 +5,7 @@ import com.example.movplayv3.data.model.MediaType
 import com.example.movplayv3.data.model.Review
 import kotlinx.coroutines.flow.Flow
 
-interface GetMediaTypeReviewsUseCase {
+interface GetMediaTypeReviewsUseCaseImpl {
     operator fun invoke(
         mediaId: Int,
         type: MediaType
