@@ -73,7 +73,7 @@ inline fun <T> Call<T>.request(crossinline onResult: (response: ApiResponse<T>) 
     })
 }
 
-suspend fun <T : Any> Call<T>.awaitResponse(): ApiResponse<T> {
+suspend fun <T : Any> Call<T>.awaitApiResponse(): ApiResponse<T> {
     return try {
         val response = awaitResponse()
 
