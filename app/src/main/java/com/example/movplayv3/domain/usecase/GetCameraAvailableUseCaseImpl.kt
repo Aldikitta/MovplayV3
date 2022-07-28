@@ -1,7 +1,11 @@
 package com.example.movplayv3.domain.usecase
 
+import com.example.movplayv3.domain.usecase.interfaces.GetCameraAvailableUseCase
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-interface GetCameraAvailableUseCaseImpl {
-    operator fun invoke(): Flow<Boolean>
+class GetCameraAvailableUseCaseImpl @Inject constructor() : GetCameraAvailableUseCase {
+    override fun invoke(): Flow<Boolean> {
+        TODO("Not yet implemented")
+    }
 }
