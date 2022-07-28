@@ -4,7 +4,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.SeasonDetails
 import com.example.movplayv3.data.remote.api.ApiResponse
 
-interface GetSeasonDetailsUseCase {
+interface GetSeasonDetailsUseCaseImpl {
     suspend operator fun invoke(
         tvShowId: Int,
         seasonNumber: Int,

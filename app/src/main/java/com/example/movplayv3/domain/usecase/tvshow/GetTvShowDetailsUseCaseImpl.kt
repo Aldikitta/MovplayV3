@@ -1,12 +1,12 @@
 package com.example.movplayv3.domain.usecase.interfaces.tvshow
 
 import com.example.movplayv3.data.model.DeviceLanguage
-import com.example.movplayv3.data.model.WatchProviders
+import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.data.remote.api.ApiResponse
 
-interface GetTvShowWatchProvidersUseCase {
+interface GetTvShowDetailsUseCaseImpl {
     suspend operator fun invoke(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage
-    ): ApiResponse<WatchProviders?>
+    ): ApiResponse<TvShowDetails>
 }

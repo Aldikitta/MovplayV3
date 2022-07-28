@@ -4,6 +4,6 @@ import androidx.paging.PagingData
 import com.example.movplayv3.data.model.tvshow.TvShowFavorite
 import kotlinx.coroutines.flow.Flow
 
-interface GetFavoritesTvShowsUseCase {
+interface GetFavoritesTvShowsUseCaseImpl {
     operator fun invoke(): Flow<PagingData<TvShowFavorite>>
 }

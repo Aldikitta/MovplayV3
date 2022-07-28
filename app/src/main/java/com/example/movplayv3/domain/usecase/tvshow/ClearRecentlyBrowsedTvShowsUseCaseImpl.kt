@@ -1,5 +1,5 @@
 package com.example.movplayv3.domain.usecase.interfaces.tvshow
 
-interface ClearRecentlyBrowsedTvShowsUseCase {
+interface ClearRecentlyBrowsedTvShowsUseCaseImpl {
     operator fun invoke()
 }

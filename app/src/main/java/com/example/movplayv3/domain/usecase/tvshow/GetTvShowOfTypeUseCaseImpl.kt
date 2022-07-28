@@ -2,14 +2,13 @@ package com.example.movplayv3.domain.usecase.interfaces.tvshow
 
 import androidx.paging.PagingData
 import com.example.movplayv3.data.model.DeviceLanguage
-import com.example.movplayv3.data.model.RelationType
-import com.example.movplayv3.data.model.tvshow.TvShow
+import com.example.movplayv3.data.model.Presentable
+import com.example.movplayv3.data.model.tvshow.TvShowType
 import kotlinx.coroutines.flow.Flow
 
-interface GetRelatedTvShowsOfTypeUseCase {
+interface GetTvShowOfTypeUseCaseImpl {
     operator fun invoke(
-        tvShowId: Int,
-        type: RelationType,
+        type: TvShowType,
         deviceLanguage: DeviceLanguage
-    ): Flow<PagingData<TvShow>>
+    ): Flow<PagingData<Presentable>>
 }

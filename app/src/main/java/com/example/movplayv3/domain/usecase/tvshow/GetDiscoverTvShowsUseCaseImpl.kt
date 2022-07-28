@@ -7,7 +7,7 @@ import com.example.movplayv3.ui.screens.discover.movies.SortInfo
 import com.example.movplayv3.ui.screens.discover.tvshows.TvShowFilterState
 import kotlinx.coroutines.flow.FlowCollector
 
-interface GetDiscoverTvShowsUseCase {
+interface GetDiscoverTvShowsUseCaseImpl {
     operator fun invoke(
         sortInfo: SortInfo,
         filterState: TvShowFilterState,
