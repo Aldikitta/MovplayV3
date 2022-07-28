@@ -6,6 +6,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Presentable
 import com.example.movplayv3.data.model.tvshow.TvShowType
 import com.example.movplayv3.domain.usecase.interfaces.tvshow.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
 import javax.inject.Inject
@@ -19,6 +20,7 @@ class GetTvShowOfTypeUseCaseImpl @Inject constructor(
     private val getFavouriteTvShowsUseCase: GetFavoritesTvShowsUseCase,
     private val getRecentlyBrowsedTvShowsUseCase: GetRecentlyBrowsedTvShowsUseCase,
 ) : GetTvShowOfTypeUseCase {
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun invoke(
         type: TvShowType,
         deviceLanguage: DeviceLanguage
