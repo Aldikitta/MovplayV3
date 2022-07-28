@@ -1,7 +1,11 @@
-package com.example.movplayv3.domain.usecase.interfaces.tvshow
+package com.example.movplayv3.domain.usecase.tvshow
 
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
+import com.example.movplayv3.domain.usecase.interfaces.tvshow.LikeTvShowUseCase
+import javax.inject.Inject
 
-interface LikeTvShowUseCaseImpl {
-    operator fun invoke(details: TvShowDetails)
+class LikeTvShowUseCaseImpl @Inject constructor() : LikeTvShowUseCase {
+    override fun invoke(details: TvShowDetails) {
+        TODO("Not yet implemented")
+    }
 }
