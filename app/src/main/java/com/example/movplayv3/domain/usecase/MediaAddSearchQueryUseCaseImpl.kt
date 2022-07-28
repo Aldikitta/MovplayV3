@@ -1,7 +1,9 @@
 package com.example.movplayv3.domain.usecase
 
-import com.example.movplayv3.data.model.SearchQuery
+import javax.inject.Inject
 
-interface MediaAddSearchQueryUseCaseImpl {
-    operator fun invoke(searchQuery: SearchQuery)
+class MediaAddSearchQueryUseCaseImpl @Inject constructor() : MediaSearchQueriesUseCaseImpl {
+    override suspend fun invoke(query: String): List<String> {
+        TODO("Not yet implemented")
+    }
 }
