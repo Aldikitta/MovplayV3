@@ -9,7 +9,7 @@ import com.example.movplayv3.domain.usecase.interfaces.movie.GetRelatedMoviesOfT
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetRelatedMoviesOfTypeUseCase @Inject constructor(
+class GetRelatedMoviesOfTypeUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
 ) : GetRelatedMoviesOfTypeUseCase {
     override fun invoke(
