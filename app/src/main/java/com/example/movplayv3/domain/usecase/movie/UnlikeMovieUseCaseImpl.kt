@@ -1,7 +1,14 @@
-package com.example.movplayv3.domain.usecase.interfaces.movie
+package com.example.movplayv3.domain.usecase.movie
 
 import com.example.movplayv3.data.model.movie.MovieDetails
+import com.example.movplayv3.data.repository.favorites.FavoritesRepository
+import com.example.movplayv3.domain.usecase.interfaces.movie.UnlikeMovieUseCase
+import javax.inject.Inject
 
-interface UnlikeMovieUseCaseImpl {
-    operator fun invoke(details: MovieDetails)
+class UnlikeMovieUseCaseImpl @Inject constructor(
+    private val favoritesRepository: FavoritesRepository
+) : UnlikeMovieUseCase {
+    override fun invoke(details: MovieDetails) {
+        return favoritesRepository.unlikeMovie(details)
+    }
 }
