@@ -5,12 +5,12 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.ui.screens.discover.movies.SortInfo
 import com.example.movplayv3.ui.screens.discover.tvshows.TvShowFilterState
-import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.Flow
 
 interface GetDiscoverTvShowsUseCase {
     operator fun invoke(
         sortInfo: SortInfo,
         filterState: TvShowFilterState,
         deviceLanguage: DeviceLanguage
-    ): FlowCollector<PagingData<TvShow>>
+    ): Flow<PagingData<TvShow>>
 }
