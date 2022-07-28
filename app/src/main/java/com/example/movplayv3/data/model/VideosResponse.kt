@@ -7,7 +7,7 @@ import java.util.*
 @JsonClass(generateAdapter = true)
 data class VideosResponse(
     val id: Int,
-    val result: List<Video>
+    val results: List<Video>
 )
 
 @JsonClass(generateAdapter = true)
