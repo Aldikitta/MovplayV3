@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 interface GetNowPlayingMoviesUseCase {
     operator fun invoke(
         deviceLanguage: DeviceLanguage,
-        filterId: Boolean = false
+        filtered: Boolean = false
     ): Flow<PagingData<DetailPresentable>>
 }
