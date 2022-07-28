@@ -9,6 +9,6 @@ class AddRecentlyBrowsedMovieUseCaseImpl @Inject constructor(
     private val recentlyBrowsedRepository: RecentlyBrowsedRepository
 ) : AddRecentlyBrowsedMovieUseCase {
     override fun invoke(details: MovieDetails) {
-        TODO("Not yet implemented")
+        return recentlyBrowsedRepository.addRecentlyBrowsedMovie(details)
     }
 }
