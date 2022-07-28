@@ -33,6 +33,8 @@ class GetMovieCollectionUseCaseImpl @Inject constructor(
                 }
                 ApiResponse.Success(collection)
             }
+            is ApiResponse.Failure -> ApiResponse.Failure(response.apiError)
+            is ApiResponse.Exception -> ApiResponse.Exception(response.exception)
         }
     }
 
