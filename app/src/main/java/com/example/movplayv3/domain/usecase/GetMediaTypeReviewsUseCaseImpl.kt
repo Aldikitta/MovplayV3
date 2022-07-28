@@ -7,6 +7,7 @@ import com.example.movplayv3.data.repository.movie.MovieRepository
 import com.example.movplayv3.data.repository.tvshow.TvShowRepository
 import com.example.movplayv3.domain.usecase.interfaces.GetMediaTypeReviewsUseCase
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import javax.inject.Inject
 
 class GetMediaTypeReviewsUseCaseImpl @Inject constructor(
@@ -17,7 +18,7 @@ class GetMediaTypeReviewsUseCaseImpl @Inject constructor(
         return when (type) {
             MediaType.Movie -> movieRepository.movieReviews(mediaId)
             MediaType.Tv -> tvShowRepository.tvShowReviews(mediaId)
-            else -> emptyList()
+            else -> emptyFlow()
         }
     }
 }
