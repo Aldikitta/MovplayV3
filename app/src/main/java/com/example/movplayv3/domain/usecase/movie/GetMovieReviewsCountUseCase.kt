@@ -1,7 +1,6 @@
-package com.example.movplayv3.domain.usecase.interfaces.movie
+package com.example.movplayv3.domain.usecase.movie
 
-import com.example.movplayv3.data.remote.api.ApiResponse
+import javax.inject.Inject
 
-interface GetMovieReviewsCountUseCase {
-    suspend operator fun invoke(movieId: Int): ApiResponse<Int>
+class GetMovieReviewsCountUseCase @Inject constructor(){
 }
