@@ -29,7 +29,15 @@ data class MoviesState(
     val topRated: Flow<PagingData<Presentable>>,
     val trending: Flow<PagingData<Presentable>>,
     val nowPlaying: Flow<PagingData<DetailPresentable>>
-){
-    companion object
+) {
+    companion object {
+        val default: MoviesState = MoviesState(
+            discover = emptyFlow(),
+            upcoming = emptyFlow(),
+            topRated = emptyFlow(),
+            trending = emptyFlow(),
+            nowPlaying = emptyFlow()
+        )
+    }
 }
 
