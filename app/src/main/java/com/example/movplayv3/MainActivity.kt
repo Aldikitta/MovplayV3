@@ -8,10 +8,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -22,6 +19,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.paging.ConfigDataSource
 import com.example.movplayv3.ui.theme.MovplayV3Theme
@@ -32,6 +31,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 val LocalImageUrlParser = staticCompositionLocalOf<ImageUrlParser?> { null }
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
-        ExperimentalMaterialNavigationApi::class
+        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,28 +86,63 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-            MovplayV3Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+//            val showBottomBar by derivedStateOf {
+//                currentRoute in setOf(
+//                    null,
+////                    MoviesScreenDestination.route,
+////                    TvScreenDestination.route,
+////                    FavouritesScreenDestination.route,
+////                    SearchScreenDestination.route
+//                )
+//            }
+
+            LaunchedEffect(snackBarEvent) {
+                snackBarEvent?.let { event ->
+                    snackBarHostState.showSnackbar(
+                        message = getString(event.messageStringRes)
+                    )
+                }
+            }
+            LaunchedEffect(lifeCycleOwner) {
+                lifeCycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    Timber.d("Update locale")
+
+                    mainViewModel.updateLocale()
+                }
+            }
+
+            CompositionLocalProvider(LocalImageUrlParser provides imageUrlParser) {
+                MovplayV3Theme {
+                    val navigationBarColor = MaterialTheme.colorScheme.surface
+                    val experiment = MaterialTheme.colorScheme.tertiary
+
+                    SideEffect {
+                        systemUiController.setStatusBarColor(
+                            color = experiment,
+                            darkIcons = false
+                        )
+
+                        systemUiController.setNavigationBarColor(
+                            color = navigationBarColor,
+                            darkIcons = false
+                        )
+                    }
+//                    val snackbarHostState = remember { SnackbarHostState() }
+//                    Scaffold(
+//                        snackbarHost = { SnackbarHost(snackbarHostState) },
+//                        bottomBar = {
+//
+//                        }
+//                    ) {
+//
+//                    }
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MovplayV3Theme {
-        Greeting("Android")
     }
 }
