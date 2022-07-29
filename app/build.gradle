@@ -137,4 +137,8 @@ dependencies {
     //Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.26.0-alpha"
 
+    //Chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+
 }
