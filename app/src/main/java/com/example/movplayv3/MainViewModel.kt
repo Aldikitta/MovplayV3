@@ -1,6 +1,5 @@
 package com.example.movplayv3
 
-import android.app.usage.NetworkStatsManager
 import androidx.lifecycle.viewModelScope
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.repository.config.ConfigRepository
