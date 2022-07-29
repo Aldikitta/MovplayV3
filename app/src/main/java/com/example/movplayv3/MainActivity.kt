@@ -1,5 +1,6 @@
 package com.example.movplayv3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -23,13 +25,23 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.paging.ConfigDataSource
+import com.example.movplayv3.ui.components.others.BottomBar
+import com.example.movplayv3.ui.screens.NavGraphs
+import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
+import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
+import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
+import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.MovplayV3Theme
+import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.ImageUrlParser
+import com.example.movplayv3.utils.safeNavigate
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
+import com.ramcosta.composedestinations.navigation.dependency
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import javax.inject.Inject
@@ -41,9 +53,10 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var configDataSource: ConfigDataSource
 
+    @SuppressLint("UnrememberedMutableState")
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
-        ExperimentalMaterialNavigationApi::class
+        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,15 +99,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-//            val showBottomBar by derivedStateOf {
-//                currentRoute in setOf(
-//                    null,
-////                    MoviesScreenDestination.route,
-////                    TvScreenDestination.route,
-////                    FavouritesScreenDestination.route,
-////                    SearchScreenDestination.route
-//                )
-//            }
+            val showBottomBar by derivedStateOf {
+                currentRoute in setOf(
+                    null,
+                    MovieScreenDestination.route,
+                    TvShowScreenDestination.route,
+                    FavoriteScreenDestination.route,
+                    SearchScreenDestination.route
+                )
+            }
 
             LaunchedEffect(snackBarEvent) {
                 snackBarEvent?.let { event ->
@@ -114,7 +127,7 @@ class MainActivity : ComponentActivity() {
             CompositionLocalProvider(LocalImageUrlParser provides imageUrlParser) {
                 MovplayV3Theme {
                     val navigationBarColor = MaterialTheme.colorScheme.surface
-                    val experiment = MaterialTheme.colorScheme.tertiary
+                    val experiment = MaterialTheme.colorScheme.surface
 
                     SideEffect {
                         systemUiController.setStatusBarColor(
@@ -127,19 +140,44 @@ class MainActivity : ComponentActivity() {
                             darkIcons = false
                         )
                     }
-//                    val snackbarHostState = remember { SnackbarHostState() }
-//                    Scaffold(
-//                        snackbarHost = { SnackbarHost(snackbarHostState) },
-//                        bottomBar = {
-//
-//                        }
-//                    ) {
-//
-//                    }
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
+                    val snackbarHostState = remember { SnackbarHostState() }
+                    Scaffold(
+                        snackbarHost = { SnackbarHost(snackbarHostState) },
+                        bottomBar = {
+                            BottomBar(
+                                currentRoute = currentRoute,
+                                backQueueRoutes = backQueueRoutes,
+                                visible = showBottomBar
+                            ) { route ->
+                                navController.safeNavigate(
+                                    route = route,
+                                    onSameRouteSelected = { sameRoute ->
+                                        mainViewModel.onSameRouteSelected(sameRoute)
+                                    }
+                                )
+
+                            }
+                        }
+                    ) { innerPadding ->
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(
+                                    bottom = if (showBottomBar) {
+                                        innerPadding.calculateBottomPadding()
+                                    } else MaterialTheme.spacing.default
+                                ),
+                            color = MaterialTheme.colorScheme.background
+                        ) {
+                            DestinationsNavHost(
+                                navGraph = NavGraphs.root,
+                                engine = navHostEngine,
+                                navController = navController,
+                                dependenciesContainerBuilder = {
+                                    dependency(mainViewModel)
+                                }
+                            )
+                        }
                     }
                 }
             }

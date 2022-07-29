@@ -44,4 +44,9 @@
     <string name="scanner_error_info_no_text">No text has been recognized</string>
     <string name="scanner_error_info_to_short_text">Scanned text is to short</string>
     <string name="scanner_error_info_to_long_text">Scanned text is to long</string>
+
+    <string name="movies_label">Movies</string>
+    <string name="tv_series_label">TV Shows</string>
+    <string name="favourites_label">Favorites</string>
+    <string name="search_label">Search</string>
 </resources>

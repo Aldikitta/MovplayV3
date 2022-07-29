@@ -24,6 +24,6 @@ fun MovieScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Favorites")
+        Text(text = "Movie")
     }
 }
