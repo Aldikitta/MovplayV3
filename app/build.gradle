@@ -114,4 +114,8 @@ dependencies {
 
     //MLKit
     implementation "com.google.mlkit:text-recognition:16.0.0-beta4"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:5.0.1"
+
 }
