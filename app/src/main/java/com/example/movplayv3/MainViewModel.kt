@@ -30,7 +30,7 @@ class MainViewModel @Inject constructor(
     }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     private val sameBottomBarRouteChannel: Channel<String> = Channel()
-    val sameBottomRoute: Flow<String> =
+    val sameBottomBarRoute: Flow<String> =
         sameBottomBarRouteChannel.receiveAsFlow().flowOn(Dispatchers.Main.immediate)
 
     val imageUrlParser: StateFlow<ImageUrlParser?> = configRepository.getImageUrlParser()
