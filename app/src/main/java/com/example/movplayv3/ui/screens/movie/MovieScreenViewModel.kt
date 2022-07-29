@@ -35,6 +35,7 @@ class MovieScreenViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(10), MoviesState.default)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<MovieScreenUIState> = moviesState.mapLatest { moviesState ->
         MovieScreenUIState(
             moviesState = moviesState,

@@ -18,11 +18,8 @@ import com.example.movplayv3.data.remote.api.tvshow.TmdbTvShowsApiHelper
 import com.example.movplayv3.utils.ImageUrlParser
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -61,6 +58,7 @@ class ConfigDataSource @Inject constructor(
         MutableStateFlow(getCurrentDeviceLanguage())
     val deviceLanguage: StateFlow<DeviceLanguage> = _deviceLanguage.asStateFlow()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val imageUrlParser: Flow<ImageUrlParser?> = _config.mapLatest { config ->
         if (config != null) {
             ImageUrlParser(config.imagesConfig)

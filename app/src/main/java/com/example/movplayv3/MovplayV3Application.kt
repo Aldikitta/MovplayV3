@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class MovplayV3Application : Application(), ImageLoaderFactory {
+
     @Inject
     lateinit var initializers: AppInitializers
 
@@ -25,7 +26,5 @@ class MovplayV3Application : Application(), ImageLoaderFactory {
         initializers.init(this)
     }
 
-    override fun newImageLoader(): ImageLoader {
-        return imageLoader
-    }
+    override fun newImageLoader() = imageLoader
 }

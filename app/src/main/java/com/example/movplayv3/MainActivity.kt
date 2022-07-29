@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
-        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class
+        ExperimentalMaterialNavigationApi::class
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

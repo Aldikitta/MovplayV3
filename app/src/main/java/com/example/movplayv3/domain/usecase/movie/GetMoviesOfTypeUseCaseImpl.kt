@@ -6,6 +6,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Presentable
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.domain.usecase.interfaces.movie.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class GetMoviesOfTypeUseCaseImpl @Inject constructor(
     private val getRecentlyBrowsedMoviesUseCase: GetRecentlyBrowsedMoviesUseCase,
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase
 ) : GetMoviesOfTypeUseCase {
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun invoke(
         type: MovieType,
         deviceLanguage: DeviceLanguage
