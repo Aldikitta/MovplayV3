@@ -4,12 +4,14 @@ import android.app.usage.NetworkStatsManager
 import androidx.lifecycle.viewModelScope
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.repository.config.ConfigRepository
+import com.example.movplayv3.utils.ImageUrlParser
 import com.example.movplayv3.utils.NetworkStatus
 import com.example.movplayv3.utils.NetworkStatusTracker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,5 +32,16 @@ class MainViewModel @Inject constructor(
     val sameBottomRoute: Flow<String> =
         sameBottomBarRouteChannel.receiveAsFlow().flowOn(Dispatchers.Main.immediate)
 
+    val imageUrlParser: StateFlow<ImageUrlParser?> = configRepository.getImageUrlParser()
+        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+    fun updateLocale() {
+        configRepository.updateLocale()
+    }
+
+    fun onSameRouteSelected(route: String) {
+        viewModelScope.launch(Dispatchers.Main.immediate) {
+            sameBottomBarRouteChannel.send(route)
+        }
+    }
 }
