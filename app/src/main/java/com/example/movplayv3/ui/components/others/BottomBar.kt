@@ -6,9 +6,11 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Movie
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.SmartDisplay
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -66,9 +68,12 @@ fun BottomBar(
                     onItemClicked(MovieScreenDestination.route)
                 },
                 label = stringResource(R.string.movies_label),
-                icon = {
-                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Movie")
-                }
+                selectedIcon = Icons.Filled.Movie,
+                unSelectedIcon = Icons.Outlined.Movie,
+                contentDescription = "Movie"
+//                icon = {
+//                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Movie")
+//                }
             )
             MovplayNavBarItem(
                 selected = selectedRoute == TvShowScreenDestination.route,
@@ -76,9 +81,12 @@ fun BottomBar(
                     onItemClicked(TvShowScreenDestination.route)
                 },
                 label = stringResource(R.string.tv_series_label),
-                icon = {
-                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Tv Show")
-                }
+                selectedIcon = Icons.Filled.SmartDisplay,
+                unSelectedIcon = Icons.Outlined.SmartDisplay,
+                contentDescription = "Tv Show"
+//                icon = {
+//                    Icon(imageVector = Icons.Filled.Home, contentDescription = "Tv Show")
+//                }
             )
             MovplayNavBarItem(
                 selected = selectedRoute == FavoriteScreenDestination.route,
@@ -86,9 +94,12 @@ fun BottomBar(
                     onItemClicked(FavoriteScreenDestination.route)
                 },
                 label = stringResource(R.string.favourites_label),
-                icon = {
-                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
-                }
+                selectedIcon = Icons.Filled.Favorite,
+                unSelectedIcon = Icons.Outlined.FavoriteBorder,
+                contentDescription = "Favorites"
+//                icon = {
+//                    Icon(imageVector = Icons.Filled.Favorite, contentDescription = "Favorites")
+//                }
             )
             MovplayNavBarItem(
                 selected = selectedRoute == SearchScreenDestination.route,
@@ -96,9 +107,12 @@ fun BottomBar(
                     onItemClicked(SearchScreenDestination.route)
                 },
                 label = stringResource(R.string.search_label),
-                icon = {
-                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
-                }
+                selectedIcon = Icons.Filled.ZoomIn,
+                unSelectedIcon = Icons.Outlined.Search,
+                contentDescription = "Search"
+//                icon = {
+//                    Icon(imageVector = Icons.Filled.Search, contentDescription = "Search")
+//                }
             )
         }
     }
@@ -107,17 +121,26 @@ fun BottomBar(
 @Composable
 fun RowScope.MovplayNavBarItem(
     label: String,
-    icon: @Composable () -> Unit,
+//    icon: @Composable () -> Unit,
     selected: Boolean,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
-) {
+    onClick: () -> Unit = {},
+    selectedIcon: ImageVector,
+    unSelectedIcon: ImageVector,
+    contentDescription: String? = null,
+
+    ) {
     NavigationBarItem(
         selected = selected,
         onClick = onClick,
         label = {
             Text(label)
         },
-        icon = icon
+        icon = {
+            Icon(
+                imageVector = if (selected) selectedIcon else unSelectedIcon,
+                contentDescription = contentDescription
+            )
+        }
     )
 }

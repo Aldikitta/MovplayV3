@@ -36,6 +36,10 @@ fun AnimatedVisibilityScope.MovieScreen(
             }
         }
     }
+
+//    val onMovieClicked = {movieId: Int
+//        val destination = MoviedetailsSc
+//    }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
