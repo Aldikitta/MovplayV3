@@ -1,18 +1,19 @@
 package com.example.movplayv3.ui.screens.movie
 
+import android.app.Activity
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
@@ -79,4 +80,30 @@ fun MoviesScreenContent(
     val trendingLazyItems = uiState.moviesState.trending.collectAsLazyPagingItems()
     val nowPlayingLazyItems = uiState.moviesState.nowPlaying.collectAsLazyPagingItems()
     val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
+
+    var topSectionHeight: Float? by remember {
+        mutableStateOf(null)
+    }
+    val appBarHeight = density.run { 56.dp.toPx() }
+    val topSectionScrollLimitValue: Float? = topSectionHeight?.minus(appBarHeight)
+    var showExitDialog by remember {
+        mutableStateOf(false)
+    }
+    val dismissDialog = {
+        showExitDialog = false
+    }
+    BackHandler {
+        showExitDialog = true
+    }
+
+    if (showExitDialog) {
+        AlertDialog(
+            onDismissRequest = dismissDialog,
+            dismissButton = { dismissDialog },
+            confirmButton = {
+                val activity = (context as? Activity)
+                activity?.finish()
+            }
+        )
+    }
 }
