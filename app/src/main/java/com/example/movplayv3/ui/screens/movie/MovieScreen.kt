@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -26,6 +27,7 @@ import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
+import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
@@ -188,6 +190,16 @@ fun MoviesScreenContent(
                 onMoreClick = {
 //                    onBrowseMoviesClicked(MovieType.NowPlaying)
                 }
+            )
+
+            MovplayPresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(R.string.explore_movies),
+                state = upcomingLazyItems,
+//                onPresentableClick = null,
+//                onMoreClick = onDiscoverMoviesClicked
             )
         }
     }
