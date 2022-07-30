@@ -1,6 +1,7 @@
 package com.example.movplayv3.ui.screens.movie
 
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.rememberScrollState
@@ -10,8 +11,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.movplayv3.MainViewModel
+import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -36,14 +40,38 @@ fun AnimatedVisibilityScope.MovieScreen(
             }
         }
     }
-
-//    val onMovieClicked = {movieId: Int
-//        val destination = MoviedetailsSc
+//    val onMovieClicked = { movieId: Int ->
+//        val destination = MovieDetailsScreenDestination(
+//            movieId = movieId,
+//            startRoute = MoviesScreenDestination.route
+//        )
+//
+//        navigator.navigate(destination)
 //    }
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Movie")
-    }
+//
+//    val onBrowseMoviesClicked = { type: MovieType ->
+//        navigator.navigate(BrowseMoviesScreenDestination(type))
+//    }
+//
+//    val onDiscoverMoviesClicked = {
+//        navigator.navigate(DiscoverMoviesScreenDestination)
+//    }
+    MoviesScreenContent(
+        uiState = uiState,
+        scrollState = scrollState
+    )
+}
+
+@Composable
+fun MoviesScreenContent(
+    uiState: MovieScreenUIState,
+    scrollState: ScrollState,
+//    onMovieClicked: (movieId: Int) -> Unit,
+//    onBrowseMoviesClicked: (type: MovieType) -> Unit,
+//    onDiscoverMoviesClicked: () -> Unit
+) {
+    val context = LocalContext.current
+    val density = LocalDensity.current
+
+
 }
