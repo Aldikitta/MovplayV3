@@ -1,5 +1,6 @@
 package com.example.movplayv3.ui.screens.movie
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
@@ -18,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.data.model.movie.MovieType
+import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -64,6 +66,7 @@ fun AnimatedVisibilityScope.MovieScreen(
     )
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun MoviesScreenContent(
     uiState: MovieScreenUIState,
@@ -97,13 +100,22 @@ fun MoviesScreenContent(
     }
 
     if (showExitDialog) {
-        AlertDialog(
+        MovplayExitDialog(
             onDismissRequest = dismissDialog,
-            dismissButton = { dismissDialog },
-            confirmButton = {
+            onCancelClick = dismissDialog,
+            onConfirmClick = {
                 val activity = (context as? Activity)
                 activity?.finish()
             }
+        )
+    }
+
+    val isRefreshing by derivedStateOf {
+        listOf(
+            upcomingLazyItems,
+            topRatedLazyItems,
+            trendingLazyItems,
+            nowPlayingLazyItems
         )
     }
 }

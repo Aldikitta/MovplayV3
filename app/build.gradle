@@ -138,6 +138,13 @@ dependencies {
 
     //Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.26.0-alpha"
+    implementation "com.google.accompanist:accompanist-placeholder:0.26.0-alpha"
+//    implementation "com.google.accompanist:accompanist-flowlayout:0.26.0-alpha"
+//    implementation "com.google.accompanist:accompanist-pager:0.26.0-alpha"
+    implementation "com.google.accompanist:accompanist-swiperefresh:0.26.0-alpha"
+//    implementation "com.google.accompanist:accompanist-pager-indicators:0.26.0-alpha"
+//    implementation "com.google.accompanist:accompanist-permissions:0.26.0-alpha"
+
 
     //Chucker
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
