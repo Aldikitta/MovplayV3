@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
@@ -73,5 +74,9 @@ fun MoviesScreenContent(
     val context = LocalContext.current
     val density = LocalDensity.current
 
-
+    val upcomingLazyItems = uiState.moviesState.upcoming.collectAsLazyPagingItems()
+    val topRatedLazyItems = uiState.moviesState.topRated.collectAsLazyPagingItems()
+    val trendingLazyItems = uiState.moviesState.trending.collectAsLazyPagingItems()
+    val nowPlayingLazyItems = uiState.moviesState.nowPlaying.collectAsLazyPagingItems()
+    val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
 }
