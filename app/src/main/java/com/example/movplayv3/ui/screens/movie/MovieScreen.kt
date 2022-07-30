@@ -15,14 +15,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
+import com.example.movplayv3.R
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
+import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
@@ -71,8 +75,9 @@ fun AnimatedVisibilityScope.MovieScreen(
 //    }
     MoviesScreenContent(
         uiState = uiState,
-        scrollState = scrollState
-    )
+        scrollState = scrollState,
+
+        )
 }
 
 @SuppressLint("UnrememberedMutableState")
@@ -169,7 +174,21 @@ fun MoviesScreenContent(
                 .verticalScroll(scrollState),
             verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
         ) {
-
+            MovplayPresentableTopSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onGloballyPositioned { coordinates ->
+                        topSectionHeight = coordinates.size.height.toFloat()
+                    },
+                title = stringResource(R.string.now_playing_movies),
+                state = nowPlayingLazyItems,
+                scrollState = scrollState,
+                scrollValueLimit = topSectionScrollLimitValue,
+//                onPresentableClick = onMovieClicked,
+                onMoreClick = {
+//                    onBrowseMoviesClicked(MovieType.NowPlaying)
+                }
+            )
         }
     }
 }
