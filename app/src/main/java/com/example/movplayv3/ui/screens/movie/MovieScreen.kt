@@ -5,13 +5,15 @@ import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
@@ -21,8 +23,11 @@ import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
+import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
 import com.example.movplayv3.utils.refreshAll
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
@@ -131,5 +136,32 @@ fun MoviesScreenContent(
             trendingLazyItems,
             nowPlayingLazyItems
         ).refreshAll()
+    }
+
+    LaunchedEffect(isRefreshing) {
+        swipeRefreshState.isRefreshing = isRefreshing
+    }
+
+    SwipeRefresh(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background),
+        state = swipeRefreshState,
+        indicator = { state, trigger ->
+            SwipeRefreshIndicator(
+                modifier = Modifier
+                    .statusBarsPadding()
+                    .padding(top = MaterialTheme.spacing.large),
+                state = state,
+                refreshTriggerDistance = trigger,
+                fade = true,
+                scale = true,
+                backgroundColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.primary
+            )
+        },
+        onRefresh = refreshAllPagingData
+    ) {
+
     }
 }
