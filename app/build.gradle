@@ -145,9 +145,10 @@ dependencies {
 //    implementation "com.google.accompanist:accompanist-pager-indicators:0.26.0-alpha"
 //    implementation "com.google.accompanist:accompanist-permissions:0.26.0-alpha"
 
-
     //Chucker
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"\
 
+    //Palette
+    implementation "androidx.palette:palette-ktx:1.0.0"
 }
