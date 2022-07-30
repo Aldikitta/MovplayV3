@@ -49,4 +49,8 @@
     <string name="tv_series_label">TV Shows</string>
     <string name="favourites_label">Favorites</string>
     <string name="search_label">Search</string>
+
+    <string name="exit_dialog_info">Are you sure you want to leave application?</string>
+    <string name="exit_dialog_confirm_button_label">Confirm</string>
+    <string name="exit_dialog_cancel_button_label">Cancel</string>
 </resources>
