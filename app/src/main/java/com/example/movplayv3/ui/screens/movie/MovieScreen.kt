@@ -21,6 +21,9 @@ import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
+import com.example.movplayv3.utils.isAnyRefreshing
+import com.example.movplayv3.utils.refreshAll
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -116,6 +119,17 @@ fun MoviesScreenContent(
             topRatedLazyItems,
             trendingLazyItems,
             nowPlayingLazyItems
-        )
+        ).isAnyRefreshing()
+    }
+
+    val swipeRefreshState = rememberSwipeRefreshState(isRefreshing)
+
+    val refreshAllPagingData = {
+        listOf(
+            upcomingLazyItems,
+            topRatedLazyItems,
+            trendingLazyItems,
+            nowPlayingLazyItems
+        ).refreshAll()
     }
 }
