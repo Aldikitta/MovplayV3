@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
             CompositionLocalProvider(LocalImageUrlParser provides imageUrlParser) {
                 MovplayV3Theme {
                     val navigationBarColor = MaterialTheme.colorScheme.surface
-                    val experiment = MaterialTheme.colorScheme.surface
+                    val experiment = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
 
                     SideEffect {
                         systemUiController.setStatusBarColor(

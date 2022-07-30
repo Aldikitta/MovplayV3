@@ -199,7 +199,7 @@ fun MovplayPresentableTopSection(
                         Text(
                             text = stringResource(R.string.movies_more),
                             color = contentColor,
-                            fontSize = 12.sp
+                            style = MaterialTheme.typography.titleSmall
                         )
                         Icon(
                             imageVector = Icons.Filled.KeyboardArrowRight,
@@ -313,14 +313,14 @@ fun MovplayPresentableTopSectionItem(
                 ) {
                     Text(
                         text = presentableItemState.presentable.title,
-                        fontSize = 16.sp,
+                        style = MaterialTheme.typography.titleMedium,
                         color = contentColor,
                         fontWeight = FontWeight.Bold
                     )
                     presentableItemState.presentable.overview?.let { overview ->
                         Text(
                             text = overview,
-                            fontSize = 12.sp,
+                            style = MaterialTheme.typography.titleSmall,
                             color = contentColor,
                             maxLines = 5,
                             overflow = TextOverflow.Ellipsis
