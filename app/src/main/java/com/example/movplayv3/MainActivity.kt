@@ -18,14 +18,13 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.paging.ConfigDataSource
-import com.example.movplayv3.ui.components.others.BottomBar
+import com.example.movplayv3.ui.components.others.MovplayBottomBar
 import com.example.movplayv3.ui.screens.NavGraphs
 import com.example.movplayv3.ui.screens.destinations.FavoriteScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
@@ -144,7 +143,7 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         bottomBar = {
-                            BottomBar(
+                            MovplayBottomBar(
                                 currentRoute = currentRoute,
                                 backQueueRoutes = backQueueRoutes,
                                 visible = showBottomBar

@@ -1,9 +1,5 @@
 package com.example.movplayv3.ui.components.dialogs
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -18,23 +14,19 @@ fun MovplayExitDialog(
     onConfirmClick: () -> Unit = {},
     onCancelClick: () -> Unit = {},
 ) {
-    AlertDialog(
+    MovplayApplicationDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
-        icon = { Icon(Icons.Filled.Warning, contentDescription = null) },
-        title = {
-            Text(text = "Your about to exit the app!")
-        },
-        text = {
-            stringResource(R.string.exit_dialog_info)
-        },
+        infoText = stringResource(R.string.exit_dialog_info),
         confirmButton = {
             TextButton(
                 onClick = {
                     onConfirmClick
                 }
             ) {
-                stringResource(R.string.exit_dialog_confirm_button_label)
+                Text(
+                    stringResource(R.string.exit_dialog_confirm_button_label)
+                )
             }
         },
         dismissButton = {
@@ -43,8 +35,44 @@ fun MovplayExitDialog(
                     onCancelClick
                 }
             ) {
-                stringResource(R.string.exit_dialog_cancel_button_label)
+                Text(
+                    stringResource(R.string.exit_dialog_cancel_button_label)
+                )
             }
-        }
+        },
     )
+//    AlertDialog(
+//        modifier = modifier,
+//        onDismissRequest = onDismissRequest,
+//        icon = { Icon(Icons.Filled.Warning, contentDescription = null) },
+//        title = {
+//            Text(text = "Your about to exit the app!")
+//        },
+//
+//        text = {
+//            stringResource(R.string.exit_dialog_info)
+//        },
+//        confirmButton = {
+//            TextButton(
+//                onClick = {
+//                    onConfirmClick
+//                }
+//            ) {
+//                Text(
+//                    stringResource(R.string.exit_dialog_confirm_button_label)
+//                )
+//            }
+//        },
+//        dismissButton = {
+//            TextButton(
+//                onClick = {
+//                    onCancelClick
+//                }
+//            ) {
+//                Text(
+//                    stringResource(R.string.exit_dialog_cancel_button_label)
+//                )
+//            }
+//        }
+//    )
 }
