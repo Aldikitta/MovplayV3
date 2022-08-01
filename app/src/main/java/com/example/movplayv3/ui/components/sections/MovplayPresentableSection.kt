@@ -72,7 +72,7 @@ fun MovplayPresentableSection(
         }
     }
     if (isNotEmpty) {
-        Column(modifier = Modifier) {
+        Column(modifier = modifier) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
