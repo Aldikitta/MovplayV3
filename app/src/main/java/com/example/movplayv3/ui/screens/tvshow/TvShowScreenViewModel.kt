@@ -7,6 +7,7 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.domain.usecase.interfaces.GetDeviceLanguageUseCase
 import com.example.movplayv3.domain.usecase.interfaces.tvshow.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -38,6 +39,7 @@ class TvShowScreenViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(10), TvShowsState.default)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<TvShowScreenUIState> = tvShowsState.mapLatest { tvShowsState ->
         TvShowScreenUIState(
             tvShowsState = tvShowsState,
