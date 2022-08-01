@@ -54,15 +54,15 @@
     <string name="exit_dialog_confirm_button_label">Confirm</string>
     <string name="exit_dialog_cancel_button_label">Cancel</string>
 
-    <string name="now_playing_movies">Now playing</string>
+    <string name="now_playing_movies">Now playing in cinema</string>
     <string name="explore_movies">Explore</string>
     <string name="popular_movies">Popular</string>
-    <string name="upcoming_movies">Upcoming</string>
-    <string name="top_rated_movies">Top rated</string>
+    <string name="upcoming_movies">Coming Soon</string>
+    <string name="top_rated_movies">Top rated of all time</string>
     <string name="movies_more">more</string>
     <string name="favourite_movies">Favourites</string>
     <string name="recently_browsed_movies">Recently browsed</string>
-    <string name="trending_movies">Trending</string>
+    <string name="trending_movies">Trending this week</string>
     <string name="available_at">Available at</string>
 
 </resources>

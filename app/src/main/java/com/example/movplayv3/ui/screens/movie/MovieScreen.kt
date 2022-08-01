@@ -196,11 +196,31 @@ fun MoviesScreenContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .animateContentSize(),
-                title = stringResource(R.string.explore_movies),
+                title = stringResource(R.string.upcoming_movies),
                 state = upcomingLazyItems,
 //                onPresentableClick = null,
 //                onMoreClick = onDiscoverMoviesClicked
             )
+            MovplayPresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(R.string.trending_movies),
+                state = trendingLazyItems,
+//                onPresentableClick = null,
+//                onMoreClick = onDiscoverMoviesClicked
+            )
+            MovplayPresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(R.string.top_rated_movies),
+                state = topRatedLazyItems,
+//                onPresentableClick = null,
+//                onMoreClick = onDiscoverMoviesClicked
+            )
+            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+
         }
     }
 }
