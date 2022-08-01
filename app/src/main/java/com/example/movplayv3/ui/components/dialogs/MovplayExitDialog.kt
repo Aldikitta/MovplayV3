@@ -21,7 +21,7 @@ fun MovplayExitDialog(
         confirmButton = {
             TextButton(
                 onClick = {
-                    onConfirmClick
+                    onConfirmClick()
                 }
             ) {
                 Text(
@@ -32,7 +32,7 @@ fun MovplayExitDialog(
         dismissButton = {
             TextButton(
                 onClick = {
-                    onCancelClick
+                    onCancelClick()
                 }
             ) {
                 Text(
@@ -41,38 +41,4 @@ fun MovplayExitDialog(
             }
         },
     )
-//    AlertDialog(
-//        modifier = modifier,
-//        onDismissRequest = onDismissRequest,
-//        icon = { Icon(Icons.Filled.Warning, contentDescription = null) },
-//        title = {
-//            Text(text = "Your about to exit the app!")
-//        },
-//
-//        text = {
-//            stringResource(R.string.exit_dialog_info)
-//        },
-//        confirmButton = {
-//            TextButton(
-//                onClick = {
-//                    onConfirmClick
-//                }
-//            ) {
-//                Text(
-//                    stringResource(R.string.exit_dialog_confirm_button_label)
-//                )
-//            }
-//        },
-//        dismissButton = {
-//            TextButton(
-//                onClick = {
-//                    onCancelClick
-//                }
-//            ) {
-//                Text(
-//                    stringResource(R.string.exit_dialog_cancel_button_label)
-//                )
-//            }
-//        }
-//    )
 }

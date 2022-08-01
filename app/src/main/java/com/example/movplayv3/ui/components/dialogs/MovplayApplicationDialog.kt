@@ -2,6 +2,7 @@ package com.example.movplayv3.ui.components.dialogs
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.example.movplayv3.R
 
 @Composable
@@ -26,12 +28,11 @@ fun MovplayApplicationDialog(
     AlertDialog(
         modifier = modifier,
         onDismissRequest = onDismissRequest,
-        title = {
+        icon = {
             Image(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.height(50.dp),
                 painter = painterResource(R.drawable.ic_movplay),
                 contentDescription = null,
-                contentScale = ContentScale.FillWidth
             )
         },
         text = {
