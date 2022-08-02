@@ -77,7 +77,7 @@ fun MovplayPresentableTopSection(
 
     Box(modifier = Modifier.clip(RectangleShape)) {
         BoxWithConstraints(
-            modifier = Modifier
+            modifier = modifier
                 .matchParentSize()
                 .graphicsLayer {
                     clip = true

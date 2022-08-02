@@ -55,14 +55,23 @@
     <string name="exit_dialog_cancel_button_label">Cancel</string>
 
     <string name="now_playing_movies">Now playing in cinema</string>
-    <string name="explore_movies">Explore</string>
+    <string name="explore_movies">Explore Movies</string>
     <string name="popular_movies">Popular</string>
     <string name="upcoming_movies">Coming Soon</string>
     <string name="top_rated_movies">Top rated of all time</string>
     <string name="movies_more">more</string>
     <string name="favourite_movies">Favourites</string>
     <string name="recently_browsed_movies">Recently browsed</string>
-    <string name="trending_movies">Trending this week</string>
+    <string name="trending_movies">Trending this month</string>
     <string name="available_at">Available at</string>
+
+    <string name="now_airing_tv_series">Now airing</string>
+    <string name="top_rated_tv_series">Top rated of all time</string>
+    <string name="explore_tv_series">Explore Series</string>
+    <string name="today_airing_tv_series">Airing today</string>
+    <string name="popular_tv_series">Popular</string>
+    <string name="favourites_tv_series">Favourites</string>
+    <string name="recently_browsed_tv_series">Recently browsed</string>
+    <string name="trending_tv_series">Trending this month</string>
 
 </resources>

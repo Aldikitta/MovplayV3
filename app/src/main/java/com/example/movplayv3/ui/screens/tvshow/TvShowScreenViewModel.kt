@@ -24,6 +24,7 @@ class TvShowScreenViewModel @Inject constructor(
 ) : ViewModel() {
     private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private val tvShowsState: StateFlow<TvShowsState> = deviceLanguage.mapLatest { deviceLanguage ->
         TvShowsState(
             onTheAir = getOnTheAirTvShowsUseCase(deviceLanguage, true)
