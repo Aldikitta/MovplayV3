@@ -6,13 +6,12 @@ import androidx.paging.cachedIn
 import com.example.movplayv3.BaseViewModel
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Presentable
+import com.example.movplayv3.data.model.SearchQuery
 import com.example.movplayv3.data.model.SearchResult
 import com.example.movplayv3.domain.usecase.interfaces.*
 import com.example.movplayv3.domain.usecase.interfaces.movie.GetPopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.milliseconds
@@ -71,6 +70,80 @@ class SearchScreenViewModel @Inject constructor(
             queryLoading = queryState.loading
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, SearchScreenUIState.default)
+
+    fun onQueryChange(queryText: String) {
+        viewModelScope.launch {
+            queryState.emit(queryState.value.copy(query = queryText))
+
+            queryJob?.cancel()
+
+            when {
+                queryText.isBlank() -> {
+                    searchState.emit(SearchState.EmptyQuery)
+                    suggestions.emit(emptyList())
+                    resultState.emit(ResultState.Default(popularMovies))
+                }
+                queryText.length < minQueryLength -> {
+                    searchState.emit(SearchState.InsufficientQuery)
+                    suggestions.emit(emptyList())
+                }
+                else -> {
+                    val querySuggestions = mediaSearchQueriesUseCase(queryText)
+                    suggestions.emit(querySuggestions)
+
+                    queryJob = createQueryJob(queryText).apply {
+                        start()
+                    }
+                }
+            }
+        }
+    }
+
+    fun onQueryClear() {
+        onQueryChange("")
+    }
+
+    fun onQuerySuggestionSelected(searchQuery: String) {
+        if (queryState.value.query != searchQuery) {
+            onQueryChange(searchQuery)
+        }
+    }
+
+    fun addQuerySuggestion(searchQuery: SearchQuery) {
+        mediaAddSearchQueryUseCase(searchQuery)
+    }
+
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
+    private fun createQueryJob(query: String): Job {
+        return viewModelScope.launch(Dispatchers.IO) {
+            try {
+                delay(queryDelay)
+
+                queryLoading.emit(true)
+
+                val searchResults = deviceLanguage.mapLatest { deviceLanguage ->
+                    getMediaMultiSearchUseCase(
+                        query = query,
+                        deviceLanguage = deviceLanguage
+                    )
+                }.flattenMerge().cachedIn(viewModelScope)
+
+                searchState.emit(SearchState.ValidQuery)
+                resultState.emit(ResultState.Search(searchResults))
+            } catch (_: CancellationException) {
+
+            } finally {
+                withContext(NonCancellable) {
+                    queryLoading.emit(false)
+                }
+            }
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        queryJob?.cancel()
+    }
 }
 
 sealed class SearchState {
