@@ -74,4 +74,9 @@
     <string name="recently_browsed_tv_series">Recently browsed</string>
     <string name="trending_tv_series">Trending this month</string>
 
+    <string name="search_placeholder">Type title to search</string>
+    <string name="search_empty_state">No search results</string>
+    <string name="search_empty_state_edit_button_label">Edit</string>
+    <string name="search_insufficient_query_length_info_text">Please enter at least 3 characters to start searching</string>
+
 </resources>

@@ -2,18 +2,23 @@ package com.example.movplayv3.ui.screens.search
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.movplayv3.data.model.SearchQuery
+import com.example.movplayv3.ui.screens.search.components.MovplayQueryTextField
+import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.CaptureSpeechToText
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -62,5 +67,28 @@ fun SearchScreenContent(
             focusManager.clearFocus()
             onQueryChanged(result)
         }
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .statusBarsPadding()
+    ) {
+        MovplayQueryTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(MaterialTheme.spacing.medium)
+                .animateContentSize(),
+            query = uiState.query,
+            suggestions = uiState.suggestions,
+            voiceSearchAvailable = uiState.searchOptionsState.voiceSearchAvailable,
+            cameraSearchAvailable = uiState.searchOptionsState.cameraSearchAvailable,
+            loading = uiState.queryLoading,
+            showClearButton = uiState.searchState !is SearchState.EmptyQuery,
+            focusRequester = queryTextFieldFocusRequester,
+            info = {
+
+            }
+        )
     }
 }

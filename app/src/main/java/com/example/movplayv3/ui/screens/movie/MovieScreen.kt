@@ -155,8 +155,7 @@ fun MoviesScreenContent(
 
     SwipeRefresh(
         modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
+            .fillMaxSize(),
         state = swipeRefreshState,
         indicator = { state, trigger ->
             SwipeRefreshIndicator(
