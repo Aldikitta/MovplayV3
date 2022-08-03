@@ -29,6 +29,7 @@ import com.example.movplayv3.R
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.partiallyAnnotatedString
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun MovplayQueryTextField(
