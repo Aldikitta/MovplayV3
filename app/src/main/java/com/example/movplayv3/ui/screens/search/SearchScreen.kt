@@ -1,5 +1,6 @@
 package com.example.movplayv3.ui.screens.search
 
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,10 +8,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.movplayv3.data.model.SearchQuery
+import com.example.movplayv3.utils.CaptureSpeechToText
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -48,4 +52,15 @@ fun SearchScreenContent(
     onQuerySuggestionSelected: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
+
+    val queryTextFieldFocusRequester = remember {
+        FocusRequester()
+    }
+    val clearFocus = { focusManager.clearFocus(force = true) }
+    val speechToTextLauncher = rememberLauncherForActivityResult(CaptureSpeechToText()) { result ->
+        if (result != null) {
+            focusManager.clearFocus()
+            onQueryChanged(result)
+        }
+    }
 }
