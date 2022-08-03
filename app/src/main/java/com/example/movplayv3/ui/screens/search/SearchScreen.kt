@@ -124,7 +124,7 @@ fun SearchScreenContent(
         MovplayQueryTextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(MaterialTheme.spacing.medium)
+                .padding(MaterialTheme.spacing.extraSmall)
                 .animateContentSize(),
             query = uiState.query,
             suggestions = uiState.suggestions,

@@ -9,10 +9,7 @@ import androidx.compose.foundation.text.KeyboardActionScope
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Camera
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.KeyboardVoice
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -102,7 +99,7 @@ fun MovplayQueryTextField(
                                 if (cameraSearchAvailable) {
                                     IconButton(onClick = onCameraSearchClick) {
                                         Icon(
-                                            imageVector = Icons.Filled.Camera,
+                                            imageVector = Icons.Filled.CameraAlt,
                                             contentDescription = "camera"
                                         )
                                     }
