@@ -21,9 +21,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.R
+import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
+import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
@@ -54,15 +56,15 @@ fun AnimatedVisibilityScope.MovieScreen(
             }
         }
     }
-//    val onMovieClicked = { movieId: Int ->
-//        val destination = MovieDetailsScreenDestination(
-//            movieId = movieId,
-//            startRoute = MoviesScreenDestination.route
-//        )
-//
-//        navigator.navigate(destination)
-//    }
-//
+    val onMovieClicked = { movieId: Int ->
+        val destination = MovieDetailsScreenDestination(
+            movieId = movieId,
+            startRoute = MovieScreenDestination.route
+        )
+
+        navigator.navigate(destination)
+    }
+
 //    val onBrowseMoviesClicked = { type: MovieType ->
 //        navigator.navigate(BrowseMoviesScreenDestination(type))
 //    }
@@ -73,7 +75,9 @@ fun AnimatedVisibilityScope.MovieScreen(
     MoviesScreenContent(
         uiState = uiState,
         scrollState = scrollState,
-
+        onMovieClicked = onMovieClicked,
+        onBrowseMoviesClicked = {},
+        onDiscoverMoviesClicked = {}
         )
 }
 
@@ -82,9 +86,9 @@ fun AnimatedVisibilityScope.MovieScreen(
 fun MoviesScreenContent(
     uiState: MovieScreenUIState,
     scrollState: ScrollState,
-//    onMovieClicked: (movieId: Int) -> Unit,
-//    onBrowseMoviesClicked: (type: MovieType) -> Unit,
-//    onDiscoverMoviesClicked: () -> Unit
+    onMovieClicked: (movieId: Int) -> Unit,
+    onBrowseMoviesClicked: (type: MovieType) -> Unit,
+    onDiscoverMoviesClicked: () -> Unit
 ) {
     val context = LocalContext.current
     val density = LocalDensity.current
@@ -183,7 +187,7 @@ fun MoviesScreenContent(
                 state = nowPlayingLazyItems,
                 scrollState = scrollState,
                 scrollValueLimit = topSectionScrollLimitValue,
-//                onPresentableClick = onMovieClicked,
+                onPresentableClick = onMovieClicked,
                 onMoreClick = {
 //                    onBrowseMoviesClicked(MovieType.NowPlaying)
                 }
@@ -194,7 +198,7 @@ fun MoviesScreenContent(
                     .animateContentSize(),
                 title = stringResource(R.string.explore_movies),
                 state = discoverLazyItems,
-//                onPresentableClick = null,
+                onPresentableClick = onMovieClicked,
 //                onMoreClick = onDiscoverMoviesClicked
             )
             MovplayPresentableSection(
@@ -203,7 +207,7 @@ fun MoviesScreenContent(
                     .animateContentSize(),
                 title = stringResource(R.string.upcoming_movies),
                 state = upcomingLazyItems,
-//                onPresentableClick = null,
+                onPresentableClick = onMovieClicked,
 //                onMoreClick = onDiscoverMoviesClicked
             )
             MovplayPresentableSection(
@@ -212,7 +216,7 @@ fun MoviesScreenContent(
                     .animateContentSize(),
                 title = stringResource(R.string.trending_movies),
                 state = trendingLazyItems,
-//                onPresentableClick = null,
+                onPresentableClick = onMovieClicked,
 //                onMoreClick = onDiscoverMoviesClicked
             )
             MovplayPresentableSection(
@@ -221,7 +225,7 @@ fun MoviesScreenContent(
                     .animateContentSize(),
                 title = stringResource(R.string.top_rated_movies),
                 state = topRatedLazyItems,
-//                onPresentableClick = null,
+                onPresentableClick = onMovieClicked,
 //                onMoreClick = onDiscoverMoviesClicked
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))

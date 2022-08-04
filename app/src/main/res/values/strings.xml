@@ -99,4 +99,6 @@
     <string name="show_more">Show\u00A0more</string>
     <string name="show_less">Show\u00A0less</string>
 
+    <string name="error_dialog_default_text">Whoops, something went wrong.</string>
+
 </resources>
