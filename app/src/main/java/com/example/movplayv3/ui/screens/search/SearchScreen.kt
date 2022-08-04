@@ -89,7 +89,8 @@ fun AnimatedVisibilityScope.SearchScreen(
         uiState = uiState,
         onQueryChanged = onQueryChanged,
         onQueryCleared = onQueryCleared,
-        onQuerySuggestionSelected = onQuerySuggestionSelected
+        onQuerySuggestionSelected = onQuerySuggestionSelected,
+        onCameraClicked = onCameraClicked
     )
 }
 
@@ -99,7 +100,7 @@ fun SearchScreenContent(
     onQueryChanged: (query: String) -> Unit,
     onQueryCleared: () -> Unit,
 //    onResultClicked: (id: Int, type: MediaType) -> Unit,
-//    onCameraClicked: () -> Unit = {},
+    onCameraClicked: () -> Unit = {},
 //    onMovieClicked: (Int) -> Unit,
     onQuerySuggestionSelected: (String) -> Unit
 ) {
@@ -153,7 +154,7 @@ fun SearchScreenContent(
             onVoiceSearchClick = {
                 speechToTextLauncher.launch(null)
             },
-//            onCameraSearchClick = on
+            onCameraSearchClick = onCameraClicked,
             onSuggestionClick = { suggestion ->
                 clearFocus()
                 onQuerySuggestionSelected(suggestion)

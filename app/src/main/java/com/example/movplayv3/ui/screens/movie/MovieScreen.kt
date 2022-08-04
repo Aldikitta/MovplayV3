@@ -6,15 +6,11 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
@@ -25,7 +21,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.MainViewModel
 import com.example.movplayv3.R
-import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection

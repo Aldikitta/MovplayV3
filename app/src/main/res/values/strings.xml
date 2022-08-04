@@ -79,4 +79,7 @@
     <string name="search_empty_state_edit_button_label">Edit</string>
     <string name="search_insufficient_query_length_info_text">Min 3 character required</string>
 
+    <string name="camera_permission_rationale_info">In order to use the functionality, it is necessary to grant the appropriate permission</string>
+    <string name="camera_permission_rationale_request_permission_button_label">Grant permission</string>
+
 </resources>

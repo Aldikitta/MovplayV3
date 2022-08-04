@@ -66,6 +66,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.9.0-alpha05'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation 'androidx.compose.material3:material3:1.0.0-alpha15'
+    implementation "androidx.compose.material:material:1.2.0"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
     implementation "com.airbnb.android:lottie-compose:5.2.0"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01'
@@ -114,9 +115,9 @@ dependencies {
     implementation "io.coil-kt:coil-compose:2.1.0"
 
     //Room
-    implementation "androidx.room:room-ktx:2.4.2"
-    implementation "androidx.room:room-paging:2.4.2"
-    kapt "androidx.room:room-compiler:2.4.2"
+    implementation "androidx.room:room-ktx:2.4.3"
+    implementation "androidx.room:room-paging:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
 
     //Camera
     implementation "androidx.camera:camera-core:1.1.0"
@@ -144,7 +145,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:0.26.0-alpha"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.26.0-alpha"
 //    implementation "com.google.accompanist:accompanist-pager-indicators:0.26.0-alpha"
-//    implementation "com.google.accompanist:accompanist-permissions:0.26.0-alpha"
+    implementation "com.google.accompanist:accompanist-permissions:0.26.0-alpha"
 
     //Chucker
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
