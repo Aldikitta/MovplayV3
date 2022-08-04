@@ -16,7 +16,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +24,6 @@ import com.example.movplayv3.R
 import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.model.ShareDetails
 import com.example.movplayv3.data.model.movie.MovieDetails
-import com.example.movplayv3.ui.components.chips.MovplayGenreChip
 import com.example.movplayv3.ui.components.sections.MovplayGenresSection
 import com.example.movplayv3.ui.components.texts.MovplayAdditionalInfoText
 import com.example.movplayv3.ui.components.texts.MovplayExpandableText
