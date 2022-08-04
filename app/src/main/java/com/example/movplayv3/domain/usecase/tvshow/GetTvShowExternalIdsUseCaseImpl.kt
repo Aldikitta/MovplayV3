@@ -5,13 +5,12 @@ import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.tvshow.TvShowRepository
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.GetTvShowExternalIdsUseCase
 import javax.inject.Inject
 
 class GetTvShowExternalIdsUseCaseImpl @Inject constructor(
     private val tvShowRepository: TvShowRepository
-) : GetTvShowExternalIdsUseCase {
-    override suspend fun invoke(tvShowId: Int): ApiResponse<List<ExternalId>> {
+) {
+    suspend operator fun invoke(tvShowId: Int): ApiResponse<List<ExternalId>> {
         val response = tvShowRepository.getExternalIds(tvShowId).awaitApiResponse()
 
         return when (response) {

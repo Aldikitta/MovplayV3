@@ -4,13 +4,12 @@ import com.example.movplayv3.data.model.Image
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.season.SeasonRepository
-import com.example.movplayv3.domain.usecase.interfaces.GetEpisodeStillsUseCase
 import javax.inject.Inject
 
 class GetEpisodeStillsUseCaseImpl @Inject constructor(
     private val seasonRepository: SeasonRepository
-) : GetEpisodeStillsUseCase {
-    override suspend fun invoke(
+) {
+    suspend operator fun invoke(
         tvShowId: Int,
         seasonNumber: Int,
         episodeNumber: Int

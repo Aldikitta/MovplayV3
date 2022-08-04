@@ -5,13 +5,12 @@ import com.example.movplayv3.data.model.PersonDetails
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.person.PersonRepository
-import com.example.movplayv3.domain.usecase.interfaces.GetPersonDetailsUseCase
 import javax.inject.Inject
 
 class GetPersonDetailsUseCaseImpl @Inject constructor(
     private val personRepository: PersonRepository
-) : GetPersonDetailsUseCase {
-    override suspend fun invoke(
+) {
+    suspend operator fun invoke(
         personId: Int,
         deviceLanguage: DeviceLanguage
     ): ApiResponse<PersonDetails> {

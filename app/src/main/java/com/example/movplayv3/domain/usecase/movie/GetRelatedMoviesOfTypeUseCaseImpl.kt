@@ -5,14 +5,13 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.RelationType
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.repository.movie.MovieRepository
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetRelatedMoviesOfTypeUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetRelatedMoviesOfTypeUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
-) : GetRelatedMoviesOfTypeUseCase {
-    override fun invoke(
+) {
+    operator fun invoke(
         movieId: Int,
         type: RelationType,
         deviceLanguage: DeviceLanguage

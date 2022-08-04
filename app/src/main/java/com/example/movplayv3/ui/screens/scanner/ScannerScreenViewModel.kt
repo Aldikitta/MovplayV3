@@ -3,7 +3,7 @@ package com.example.movplayv3.ui.screens.scanner
 import android.graphics.Bitmap
 import androidx.lifecycle.viewModelScope
 import com.example.movplayv3.BaseViewModel
-import com.example.movplayv3.domain.usecase.interfaces.ScanBitmapForTextUseCase
+import com.example.movplayv3.domain.usecase.ScanBitmapForTextUseCaseImpl
 import com.example.movplayv3.utils.Roi
 import com.example.movplayv3.utils.TextRecognitionHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ScannerScreenViewModel @Inject constructor(
-    private val scanBitmapForTextUseCase: ScanBitmapForTextUseCase
+    private val scanBitmapForTextUseCase: ScanBitmapForTextUseCaseImpl
 ) : BaseViewModel() {
     private val scanState: MutableStateFlow<TextRecognitionHelper.ScanState> = MutableStateFlow(
         TextRecognitionHelper.ScanState.Idle

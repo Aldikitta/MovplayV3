@@ -8,8 +8,8 @@ import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.Presentable
 import com.example.movplayv3.data.model.SearchQuery
 import com.example.movplayv3.data.model.SearchResult
-import com.example.movplayv3.domain.usecase.interfaces.*
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetPopularMoviesUseCase
+import com.example.movplayv3.domain.usecase.*
+import com.example.movplayv3.domain.usecase.movie.GetPopularMoviesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -18,13 +18,13 @@ import kotlin.time.Duration.Companion.milliseconds
 
 @HiltViewModel
 class SearchScreenViewModel @Inject constructor(
-    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
-    private val getSpeechToTextAvailableUseCase: GetSpeechToTextAvailableUseCase,
-    private val getCameraAvailableUseCase: GetCameraAvailableUseCase,
-    private val mediaAddSearchQueryUseCase: MediaAddSearchQueryUseCase,
-    private val mediaSearchQueriesUseCase: MediaSearchQueriesUseCase,
-    private val getMediaMultiSearchUseCase: GetMediaMultiSearchUseCase,
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase
+    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCaseImpl,
+    private val getSpeechToTextAvailableUseCase: GetSpeechToTextAvailableUseCaseImpl,
+    private val getCameraAvailableUseCase: GetCameraAvailableUseCaseImpl,
+    private val mediaAddSearchQueryUseCase: MediaAddSearchQueryUseCaseImpl,
+    private val mediaSearchQueriesUseCase: MediaSearchQueriesUseCaseImpl,
+    private val getMediaMultiSearchUseCase: GetMediaMultiSearchUseCaseImpl,
+    private val getPopularMoviesUseCase: GetPopularMoviesUseCaseImpl
 ) : BaseViewModel() {
     private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
     private val queryDelay = 500.milliseconds

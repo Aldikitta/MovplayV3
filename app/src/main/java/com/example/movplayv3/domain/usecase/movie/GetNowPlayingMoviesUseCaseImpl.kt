@@ -7,7 +7,6 @@ import com.example.movplayv3.data.model.DetailPresentable
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.MovieDetailEntity
 import com.example.movplayv3.data.repository.movie.MovieRepository
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetNowPlayingMoviesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
@@ -16,9 +15,9 @@ import javax.inject.Inject
 class GetNowPlayingMoviesUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
 
-) : GetNowPlayingMoviesUseCase {
+) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    override fun invoke(
+    operator fun invoke(
         deviceLanguage: DeviceLanguage,
         filtered: Boolean
     ): Flow<PagingData<DetailPresentable>> {

@@ -7,7 +7,6 @@ import com.example.movplayv3.data.model.DetailPresentable
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.tvshow.TvShowDetailEntity
 import com.example.movplayv3.data.repository.tvshow.TvShowRepository
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.GetOnTheAirTvShowsUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.mapLatest
@@ -16,9 +15,9 @@ import javax.inject.Inject
 
 class GetOnTheAirTvShowsUseCaseImpl @Inject constructor(
     private val tvShowRepository: TvShowRepository
-) : GetOnTheAirTvShowsUseCase {
+) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    override fun invoke(
+    operator fun invoke(
         deviceLanguage: DeviceLanguage,
         filtered: Boolean
     ): Flow<PagingData<DetailPresentable>> {

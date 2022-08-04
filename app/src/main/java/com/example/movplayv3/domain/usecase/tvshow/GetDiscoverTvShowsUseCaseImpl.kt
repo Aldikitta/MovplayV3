@@ -6,7 +6,6 @@ import com.example.movplayv3.data.model.GenresParam
 import com.example.movplayv3.data.model.WatchProvidersParam
 import com.example.movplayv3.data.model.tvshow.TvShow
 import com.example.movplayv3.data.repository.tvshow.TvShowRepository
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.GetDiscoverTvShowsUseCase
 import com.example.movplayv3.ui.screens.discover.movies.SortInfo
 import com.example.movplayv3.ui.screens.discover.tvshows.TvShowFilterState
 import kotlinx.coroutines.flow.Flow
@@ -15,8 +14,8 @@ import javax.inject.Inject
 
 class GetDiscoverTvShowsUseCaseImpl @Inject constructor(
     private val tvShowRepository: TvShowRepository
-) : GetDiscoverTvShowsUseCase {
-    override fun invoke(
+) {
+    operator fun invoke(
         sortInfo: SortInfo,
         filterState: TvShowFilterState,
         deviceLanguage: DeviceLanguage

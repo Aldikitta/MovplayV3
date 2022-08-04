@@ -5,14 +5,13 @@ import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.season.SeasonRepository
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.GetSeasonsVideosUseCase
 import javax.inject.Inject
 
 
 class GetSeasonsVideosUseCaseImpl @Inject constructor(
     private val seasonRepository: SeasonRepository
-) : GetSeasonsVideosUseCase {
-    override suspend fun invoke(
+) {
+    suspend operator fun invoke(
         tvShowId: Int,
         seasonNumber: Int,
         deviceLanguage: DeviceLanguage

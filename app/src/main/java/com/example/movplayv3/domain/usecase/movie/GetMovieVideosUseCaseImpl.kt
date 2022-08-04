@@ -5,14 +5,13 @@ import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.movie.MovieRepository
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetMovieVideosUseCase
 import javax.inject.Inject
 
 
 class GetMovieVideosUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
-) : GetMovieVideosUseCase {
-    override suspend fun invoke(
+) {
+    suspend operator fun invoke(
         movieId: Int,
         deviceLanguage: DeviceLanguage
     ): ApiResponse<List<Video>> {

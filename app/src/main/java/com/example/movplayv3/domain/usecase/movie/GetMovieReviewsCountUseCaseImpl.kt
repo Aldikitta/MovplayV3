@@ -3,13 +3,12 @@ package com.example.movplayv3.domain.usecase.movie
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.movie.MovieRepository
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetMovieReviewsCountUseCase
 import javax.inject.Inject
 
 class GetMovieReviewsCountUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
-) : GetMovieReviewsCountUseCase {
-    override suspend fun invoke(movieId: Int): ApiResponse<Int> {
+) {
+    suspend operator fun invoke(movieId: Int): ApiResponse<Int> {
         val response = movieRepository
             .movieReview(movieId)
             .awaitApiResponse()

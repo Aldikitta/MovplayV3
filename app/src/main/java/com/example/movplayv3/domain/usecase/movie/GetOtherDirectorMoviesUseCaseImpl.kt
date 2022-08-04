@@ -5,14 +5,13 @@ import com.example.movplayv3.data.model.CrewMember
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.data.model.movie.Movie
 import com.example.movplayv3.data.repository.movie.MovieRepository
-import com.example.movplayv3.domain.usecase.interfaces.movie.GetOtherDirectorMoviesUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetOtherDirectorMoviesUseCaseImpl @Inject constructor(
     private val movieRepository: MovieRepository
-) : GetOtherDirectorMoviesUseCase {
-    override fun invoke(
+) {
+    operator fun invoke(
         mainDirector: CrewMember,
         deviceLanguage: DeviceLanguage
     ): Flow<PagingData<Movie>> {

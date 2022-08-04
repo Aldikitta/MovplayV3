@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.movplayv3.data.model.DeviceLanguage
-import com.example.movplayv3.domain.usecase.interfaces.GetDeviceLanguageUseCase
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.*
+import com.example.movplayv3.domain.usecase.GetDeviceLanguageUseCaseImpl
+import com.example.movplayv3.domain.usecase.tvshow.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -13,14 +13,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TvShowScreenViewModel @Inject constructor(
-    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
-    private val getOnTheAirTvShowsUseCase: GetOnTheAirTvShowsUseCase,
-    private val getDiscoverAllTvShowsUseCase: GetDiscoverAllTvShowsUseCase,
-    private val getTopRatedTvShowsUseCase: GetTopRatedTvShowsUseCase,
-    private val getTrendingTvShowsUseCase: GetTrendingTvShowsUseCase,
-    private val getAiringTodayTvShowsUseCase: GetAiringTodayTvShowsUseCase,
-    private val getFavoritesTvShowsUseCase: GetFavoritesTvShowsUseCase,
-    private val getRecentlyBrowsedTvShowsUseCase: GetRecentlyBrowsedTvShowsUseCase
+    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCaseImpl,
+    private val getOnTheAirTvShowsUseCase: GetOnTheAirTvShowsUseCaseImpl,
+    private val getDiscoverAllTvShowsUseCase: GetDiscoverAllTvShowsUseCaseImpl,
+    private val getTopRatedTvShowsUseCase: GetTopRatedTvShowsUseCaseImpl,
+    private val getTrendingTvShowsUseCase: GetTrendingTvShowsUseCaseImpl,
+    private val getAiringTodayTvShowsUseCase: GetAiringTodayTvShowsUseCaseImpl,
+    private val getFavoritesTvShowsUseCase: GetFavoritesTvShowsUseCaseImpl,
+    private val getRecentlyBrowsedTvShowsUseCase: GetRecentlyBrowsedTvShowsUseCaseImpl
 ) : ViewModel() {
     private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
 

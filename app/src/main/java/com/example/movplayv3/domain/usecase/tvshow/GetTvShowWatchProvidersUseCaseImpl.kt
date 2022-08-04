@@ -5,13 +5,12 @@ import com.example.movplayv3.data.model.WatchProviders
 import com.example.movplayv3.data.remote.api.ApiResponse
 import com.example.movplayv3.data.remote.api.awaitApiResponse
 import com.example.movplayv3.data.repository.tvshow.TvShowRepository
-import com.example.movplayv3.domain.usecase.interfaces.tvshow.GetTvShowWatchProvidersUseCase
 import javax.inject.Inject
 
 class GetTvShowWatchProvidersUseCaseImpl @Inject constructor(
     private val tvShowRepository: TvShowRepository
-) : GetTvShowWatchProvidersUseCase {
-    override suspend fun invoke(
+) {
+    suspend operator fun invoke(
         tvShowId: Int,
         deviceLanguage: DeviceLanguage
     ): ApiResponse<WatchProviders?> {
