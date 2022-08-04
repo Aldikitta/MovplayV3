@@ -16,16 +16,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.movplayv3.R
 import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.model.ShareDetails
 import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
+import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
 import com.example.movplayv3.ui.components.sections.MovplayExternalIdsSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
+import com.example.movplayv3.ui.components.sections.MovplayWatchProvidersSection
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
@@ -239,6 +243,19 @@ fun MovieDetailsScreenContent(
                 imdbExternalId = imdbExternalId,
                 onShareClicked = onShareClicked
             )
+
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = uiState.additionalMovieDetailsInfo.watchProviders != null
+            ){
+                if (uiState.additionalMovieDetailsInfo.watchProviders != null){
+                    MovplayWatchProvidersSection(
+                        modifier = Modifier.fillMaxWidth(),
+                        watchProviders = uiState.additionalMovieDetailsInfo.watchProviders,
+                        title = stringResource(R.string.available_at)
+                    )
+                }
+            }
         }
     }
 }
