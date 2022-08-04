@@ -59,7 +59,10 @@ fun AnimatedVisibilityScope.ScannerScreen(
     )
 }
 
-@OptIn(ExperimentalPermissionsApi::class, androidx.compose.material.ExperimentalMaterialApi::class)
+@OptIn(
+    ExperimentalPermissionsApi::class,
+//    androidx.compose.material.ExperimentalMaterialApi::class
+)
 @Composable
 fun ScannerScreenContent(
     uiState: ScannerScreenUIState,
@@ -72,106 +75,106 @@ fun ScannerScreenContent(
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
     )
-    val sheetState = androidx.compose.material.rememberModalBottomSheetState(
-        initialValue = androidx.compose.material.ModalBottomSheetValue.Hidden,
-        skipHalfExpanded = true
-    )
+//    val sheetState = androidx.compose.material.rememberModalBottomSheetState(
+//        initialValue = androidx.compose.material.ModalBottomSheetValue.Hidden,
+//        skipHalfExpanded = true
+//    )
 
-    val onCloseBottomSheetClick: () -> Unit = {
-        if (sheetState.isVisible) {
-            coroutineScope.launch {
-                sheetState.hide()
-            }
-        }
-    }
+//    val onCloseBottomSheetClick: () -> Unit = {
+//        if (sheetState.isVisible) {
+//            coroutineScope.launch {
+//                sheetState.hide()
+//            }
+//        }
+//    }
 
     val errorText = uiState.validationErrorResId?.let {
         stringResource(it)
     }
 
-    LaunchedEffect(uiState.scanResult) {
-        when (uiState.scanResult) {
-            is ScanResult.Success -> {
-                if (!sheetState.isVisible) {
-                    sheetState.show()
-                }
-            }
-            else -> {
-                if (sheetState.isVisible) {
-                    sheetState.hide()
-                }
-            }
-        }
-    }
+//    LaunchedEffect(uiState.scanResult) {
+//        when (uiState.scanResult) {
+//            is ScanResult.Success -> {
+//                if (!sheetState.isVisible) {
+//                    sheetState.show()
+//                }
+//            }
+//            else -> {
+//                if (sheetState.isVisible) {
+//                    sheetState.hide()
+//                }
+//            }
+//        }
+//    }
 
-    androidx.compose.material.ModalBottomSheetLayout(
-        modifier = Modifier.fillMaxSize(),
-        sheetState = sheetState,
-        scrimColor = Color.Green,
-        sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-        sheetContent = {
-            MovplayScanResultModalBottomSheetContent(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .navigationBarsPadding(),
-                scanResult = uiState.scanResult,
-                onCloseClick = onCloseBottomSheetClick,
-                onRejectClicked = onCloseBottomSheetClick,
-                onAcceptClicked = onAcceptClicked
-            )
-        }
-    ) {
-        Box(
-            modifier = Modifier
-                .background(Color.Black)
-                .fillMaxSize()
-                .systemBarsPadding()
-        ) {
-            when (cameraPermissionState.status) {
-                PermissionStatus.Granted -> {
-                    MovplayTitleScanner(
-                        modifier = Modifier.fillMaxSize(),
-                        isScanningInProgress = uiState.scanningInProgress,
-                        errorText = errorText,
-                        onBitmapCaptured = onBitmapCaptured
-                    )
-                }
-                is PermissionStatus.Denied -> {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(MaterialTheme.spacing.medium),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = stringResource(R.string.camera_permission_rationale_info),
-                            textAlign = TextAlign.Center
-                        )
-                        Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-                        OutlinedButton(onClick = { cameraPermissionState.launchPermissionRequest() }) {
-                            Text(
-                                modifier = Modifier.animateContentSize(),
-                                text = stringResource(R.string.camera_permission_rationale_request_permission_button_label)
-                            )
-                        }
-                    }
-                }
-            }
-
-            MovplayAppBar(
-                modifier = Modifier.align(Alignment.TopCenter),
-                title = null,
-                action = {
-                    IconButton(onClick = onBackClicked) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "go back",
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
-                }
-            )
-        }
-    }
+//    androidx.compose.material.ModalBottomSheetLayout(
+//        modifier = Modifier.fillMaxSize(),
+//        sheetState = sheetState,
+//        scrimColor = Color.Green,
+//        sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+//        sheetContent = {
+//            MovplayScanResultModalBottomSheetContent(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .navigationBarsPadding(),
+//                scanResult = uiState.scanResult,
+//                onCloseClick = onCloseBottomSheetClick,
+//                onRejectClicked = onCloseBottomSheetClick,
+//                onAcceptClicked = onAcceptClicked
+//            )
+//        }
+//    ) {
+//        Box(
+//            modifier = Modifier
+//                .background(Color.Black)
+//                .fillMaxSize()
+//                .systemBarsPadding()
+//        ) {
+//            when (cameraPermissionState.status) {
+//                PermissionStatus.Granted -> {
+//                    MovplayTitleScanner(
+//                        modifier = Modifier.fillMaxSize(),
+//                        isScanningInProgress = uiState.scanningInProgress,
+//                        errorText = errorText,
+//                        onBitmapCaptured = onBitmapCaptured
+//                    )
+//                }
+//                is PermissionStatus.Denied -> {
+//                    Column(
+//                        modifier = Modifier
+//                            .fillMaxSize()
+//                            .padding(MaterialTheme.spacing.medium),
+//                        verticalArrangement = Arrangement.Center,
+//                        horizontalAlignment = Alignment.CenterHorizontally
+//                    ) {
+//                        Text(
+//                            text = stringResource(R.string.camera_permission_rationale_info),
+//                            textAlign = TextAlign.Center
+//                        )
+//                        Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+//                        OutlinedButton(onClick = { cameraPermissionState.launchPermissionRequest() }) {
+//                            Text(
+//                                modifier = Modifier.animateContentSize(),
+//                                text = stringResource(R.string.camera_permission_rationale_request_permission_button_label)
+//                            )
+//                        }
+//                    }
+//                }
+//            }
+//
+//            MovplayAppBar(
+//                modifier = Modifier.align(Alignment.TopCenter),
+//                title = null,
+//                action = {
+//                    IconButton(onClick = onBackClicked) {
+//                        Icon(
+//                            imageVector = Icons.Filled.ArrowBack,
+//                            contentDescription = "go back",
+//                            tint = MaterialTheme.colorScheme.primary
+//                        )
+//                    }
+//                }
+//            )
+//        }
+//    }
 }
