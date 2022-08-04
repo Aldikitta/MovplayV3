@@ -229,10 +229,10 @@ interface UseCaseBinds {
         impl: GetTopRatedTvShowsUseCaseImpl
     ): GetTopRatedTvShowsUseCase
 
-    @Binds
-    fun provideGetTrendingMoviesUseCase(
-        impl: GetTrendingMoviesUseCaseImpl
-    ): GetTrendingMoviesUseCase
+//    @Binds
+//    fun provideGetTrendingMoviesUseCase(
+//        impl: GetTrendingMoviesUseCaseImpl
+//    ): GetTrendingMoviesUseCase
 
     @Binds
     fun provideGetTrendingTvShowsUseCase(

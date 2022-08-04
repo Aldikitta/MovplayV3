@@ -6,6 +6,7 @@ import androidx.paging.cachedIn
 import com.example.movplayv3.data.model.DeviceLanguage
 import com.example.movplayv3.domain.usecase.interfaces.GetDeviceLanguageUseCase
 import com.example.movplayv3.domain.usecase.interfaces.movie.*
+import com.example.movplayv3.domain.usecase.movie.GetTrendingMoviesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -17,7 +18,7 @@ class MovieScreenViewModel @Inject constructor(
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
     private val getDiscoverAllMoviesUseCase: GetDiscoverAllMoviesUseCase,
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
-    private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
+    private val getTrendingMoviesUseCase: GetTrendingMoviesUseCaseImpl,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val favoritesMoviesUseCase: GetFavoritesMoviesUseCase,
     private val getRecentlyBrowsedMoviesUseCase: GetRecentlyBrowsedMoviesUseCase

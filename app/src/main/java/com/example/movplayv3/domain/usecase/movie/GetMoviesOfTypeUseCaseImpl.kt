@@ -17,7 +17,7 @@ class GetMoviesOfTypeUseCaseImpl @Inject constructor(
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,
     private val getFavoritesMoviesUseCaseImpl: GetFavoritesMoviesUseCase,
     private val getRecentlyBrowsedMoviesUseCase: GetRecentlyBrowsedMoviesUseCase,
-    private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase
+    private val getTrendingMoviesUseCase: GetTrendingMoviesUseCaseImpl
 ) : GetMoviesOfTypeUseCase {
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun invoke(
