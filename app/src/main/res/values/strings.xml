@@ -82,4 +82,21 @@
     <string name="camera_permission_rationale_info">In order to use the functionality, it is necessary to grant the appropriate permission</string>
     <string name="camera_permission_rationale_request_permission_button_label">Grant permission</string>
 
+    <string name="movie_details_label">Movie details</string>
+    <string name="movie_details_budget">Budget</string>
+    <string name="movie_details_status">Status</string>
+    <string name="movie_details_boxoffice">Boxoffice</string>
+    <string name="movie_details_genres">Genres</string>
+    <string name="movie_details_cast">Cast</string>
+    <string name="movie_details_crew">Crew</string>
+    <string name="movie_details_director_movies" formatted="true">More of %s</string>
+    <string name="movie_details_similar">Similar</string>
+    <string name="movie_details_recommendations">Recommendations</string>
+    <string name="movie_details_videos">Videos</string>
+    <string name="movie_details_watch_at">End watching at %s</string>
+    <string name="movie_details_reviews" formatted="true">Reviews (%d)</string>
+
+    <string name="show_more">Show\u00A0more</string>
+    <string name="show_less">Show\u00A0less</string>
+
 </resources>
