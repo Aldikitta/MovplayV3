@@ -32,8 +32,8 @@ fun MovplayExpandableText(
             buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        color = Color.White,
-                        fontSize = 12.sp
+//                        color = Color.Red,
+//                        fontSize = 12.sp
                     )
                 ) {
                     append(text)
@@ -53,8 +53,8 @@ fun MovplayExpandableText(
             finalText = buildAnnotatedString {
                 withStyle(
                     style = SpanStyle(
-                        color = Color.White,
-                        fontSize = 12.sp
+//                        color = Color.Green,
+
                     )
                 ) {
                     append(text)
@@ -62,7 +62,7 @@ fun MovplayExpandableText(
                 withStyle(
                     style = SpanStyle(
                         color = postfixColor,
-                        fontSize = 12.sp
+//                        fontSize = 12.sp
                     )
                 ) {
                     append("  $postfixText")
@@ -79,8 +79,8 @@ fun MovplayExpandableText(
                 finalText = buildAnnotatedString {
                     withStyle(
                         style = SpanStyle(
-                            color = Color.White,
-                            fontSize = 12.sp
+//                            color = Color.Blue,
+//                            fontSize = 12.sp
                         )
                     ) {
                         append("$adjustedText… ")
@@ -88,7 +88,7 @@ fun MovplayExpandableText(
                     withStyle(
                         style = SpanStyle(
                             color = postfixColor,
-                            fontSize = 12.sp
+//                            fontSize = 12.sp
                         )
                     ) {
                         append(postfixText)

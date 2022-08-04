@@ -3,12 +3,16 @@ package com.example.movplayv3.ui.screens.details.movie
 import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -20,8 +24,11 @@ import com.example.movplayv3.data.model.ShareDetails
 import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
+import com.example.movplayv3.ui.components.sections.MovplayExternalIdsSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
+import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
+import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.openExternalId
 import com.example.movplayv3.utils.openVideo
@@ -193,9 +200,45 @@ fun MovieDetailsScreenContent(
                 backdrops = uiState.associatedContent.backdrops,
                 scrollState = scrollState,
                 scrollValueLimit = topSectionScrollLimitValue
-            ){
-
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(
+                            MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+                            shape = MaterialTheme.shapes.small
+                        )
+                        .padding(MaterialTheme.spacing.small)
+                ) {
+                    MovplayMovieDetailsTopContent(
+                        modifier = Modifier.fillMaxWidth(),
+                        movieDetails = uiState.movieDetails
+                    )
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                Crossfade(
+                    modifier = Modifier.fillMaxWidth(),
+                    targetState = uiState.associatedContent.externalIds
+                ) {ids ->
+                    if (ids != null){
+                        MovplayExternalIdsSection(
+                            modifier = Modifier.fillMaxWidth(),
+                            externalIds = ids,
+                            onExternalIdClick = onExternalIdClicked
+                        )
+                    }
+                }
             }
+            MovplayMovieDetailsInfoSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.spacing.medium)
+                    .animateContentSize(),
+                movieDetails = uiState.movieDetails,
+                watchAtTime = uiState.additionalMovieDetailsInfo.watchAtTime,
+                imdbExternalId = imdbExternalId,
+                onShareClicked = onShareClicked
+            )
         }
     }
 }
