@@ -96,6 +96,8 @@
     <string name="movie_details_videos">Videos</string>
     <string name="movie_details_watch_at">End watching at %s</string>
     <string name="movie_details_reviews" formatted="true">Reviews (%d)</string>
+    <string name="season_details_videos_label">Video</string>
+
 
     <string name="show_more">Show\u00A0more</string>
     <string name="show_less">Show\u00A0less</string>

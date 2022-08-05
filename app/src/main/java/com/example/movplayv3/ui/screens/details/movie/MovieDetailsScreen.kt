@@ -385,6 +385,33 @@ fun MovieDetailsScreenContent(
                     }
                 )
             }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.associatedContent.videos.isNullOrEmpty()
+            ) {
+                MovplayVideosSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.season_details_videos_label),
+                    videos = uiState.associatedContent.videos ?: emptyList(),
+                    contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium),
+                    onVideoClicked = onVideoClicked
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = uiState.additionalMovieDetailsInfo.reviewsCount > 0
+            ) {
+                MovplayReviewSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    count = uiState.additionalMovieDetailsInfo.reviewsCount,
+                    onClick = onReviewsClicked
+                )
+            }
+            Spacer(
+                modifier = Modifier.windowInsetsBottomHeight(
+                    insets = WindowInsets(bottom = MaterialTheme.spacing.medium)
+                )
+            )
         }
         MovplayAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
