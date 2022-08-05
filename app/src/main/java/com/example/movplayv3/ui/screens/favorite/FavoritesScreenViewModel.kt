@@ -26,7 +26,7 @@ class FavoritesScreenViewModel @Inject constructor(
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, FavoritesScreenUIState.default)
 
-    fun onFavouriteTypeSelected(type: FavoriteType) {
+    fun onFavoriteTypeSelected(type: FavoriteType) {
         viewModelScope.launch {
             _selectedFavouriteType.emit(type)
         }
