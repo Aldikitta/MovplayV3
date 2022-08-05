@@ -32,10 +32,7 @@ import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestinati
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
-import com.example.movplayv3.utils.ifNotNullAndEmpty
-import com.example.movplayv3.utils.openExternalId
-import com.example.movplayv3.utils.openVideo
-import com.example.movplayv3.utils.shareImdb
+import com.example.movplayv3.utils.*
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
@@ -307,6 +304,67 @@ fun MovieDetailsScreenContent(
                         }
                     )
                 }
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = otherDirectorMoviesState.isNotEmpty()
+            ) {
+                MovplayPresentableSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(
+                        id = R.string.movie_details_director_movies,
+                        uiState.associatedMovies.directorMovies.directorName
+                    ),
+                    state = otherDirectorMoviesState,
+                    showLoadingAtRefresh = false,
+                    showMoreButton = false,
+                    onMoreClick = onSimilarMoreClicked,
+                    onPresentableClick = { movieId ->
+                        if (movieId != uiState.movieDetails?.id) {
+                            onMovieClicked(movieId)
+                        } else {
+                            scrollToStart()
+                        }
+                    }
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = moviesRecommendationState.isNotEmpty()
+            ) {
+                MovplayPresentableSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.movie_details_recommendations),
+                    state = moviesRecommendationState,
+                    showLoadingAtRefresh = false,
+                    onMoreClick = onRecommendationsMoreClicked,
+                    onPresentableClick = { movieId ->
+                        if (movieId != uiState.movieDetails?.id) {
+                            onMovieClicked(movieId)
+                        } else {
+                            scrollToStart()
+                        }
+                    }
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = similarMoviesState.isNotEmpty()
+            ) {
+                MovplayPresentableSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.movie_details_similar),
+                    state = similarMoviesState,
+                    showLoadingAtRefresh = false,
+                    onMoreClick = onSimilarMoreClicked,
+                    onPresentableClick = { movieId ->
+                        if (movieId != uiState.movieDetails?.id) {
+                            onMovieClicked(movieId)
+                        } else {
+                            scrollToStart()
+                        }
+                    }
+                )
             }
         }
     }
