@@ -28,12 +28,14 @@ import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
 import com.example.movplayv3.ui.components.sections.MovplayExternalIdsSection
+import com.example.movplayv3.ui.components.sections.MovplayMemberSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
 import com.example.movplayv3.ui.components.sections.MovplayWatchProvidersSection
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
+import com.example.movplayv3.utils.ifNotNullAndEmpty
 import com.example.movplayv3.utils.openExternalId
 import com.example.movplayv3.utils.openVideo
 import com.example.movplayv3.utils.shareImdb
@@ -223,8 +225,8 @@ fun MovieDetailsScreenContent(
                 Crossfade(
                     modifier = Modifier.fillMaxWidth(),
                     targetState = uiState.associatedContent.externalIds
-                ) {ids ->
-                    if (ids != null){
+                ) { ids ->
+                    if (ids != null) {
                         MovplayExternalIdsSection(
                             modifier = Modifier.fillMaxWidth(),
                             externalIds = ids,
@@ -247,8 +249,8 @@ fun MovieDetailsScreenContent(
             MovplayAnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.additionalMovieDetailsInfo.watchProviders != null
-            ){
-                if (uiState.additionalMovieDetailsInfo.watchProviders != null){
+            ) {
+                if (uiState.additionalMovieDetailsInfo.watchProviders != null) {
                     MovplayWatchProvidersSection(
                         modifier = Modifier.fillMaxWidth(),
                         watchProviders = uiState.additionalMovieDetailsInfo.watchProviders,
@@ -256,6 +258,35 @@ fun MovieDetailsScreenContent(
                     )
                 }
             }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.additionalMovieDetailsInfo.credits?.cast.isNullOrEmpty()
+            ){
+                uiState.additionalMovieDetailsInfo.credits?.cast?.ifNotNullAndEmpty { members ->
+                    MovplayMemberSection(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = stringResource(R.string.movie_details_cast),
+                        members = members,
+                        contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium),
+                        onMemberClick = onMemberClicked
+                    )
+                }
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.additionalMovieDetailsInfo.credits?.crew.isNullOrEmpty()
+            ) {
+                uiState.additionalMovieDetailsInfo.credits?.crew.ifNotNullAndEmpty { members ->
+                    MovplayMemberSection(
+                        modifier = Modifier.fillMaxWidth(),
+                        title = stringResource(R.string.movie_details_crew),
+                        members = members,
+                        contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium),
+                        onMemberClick = onMemberClicked
+                    )
+                }
+            }
+
         }
     }
 }

@@ -26,7 +26,7 @@ fun MovplayExpandableText(
     var isExpanded by remember { mutableStateOf(false) }
     val textLayoutResultState = remember { mutableStateOf<TextLayoutResult?>(null) }
     var isClickable by remember { mutableStateOf(false) }
-
+    val textStyle = MaterialTheme.typography.bodyLarge
     var finalText by remember {
         mutableStateOf(
             buildAnnotatedString {

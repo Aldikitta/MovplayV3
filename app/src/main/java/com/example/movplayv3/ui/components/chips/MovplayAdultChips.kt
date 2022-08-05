@@ -31,7 +31,6 @@ fun MovplayAdultChips(
         Text(
             modifier = Modifier.padding(MaterialTheme.spacing.extraSmall),
             text = "18+",
-            color = Color.White,
             fontSize = 16.sp
         )
     }

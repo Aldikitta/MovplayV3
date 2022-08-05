@@ -6,6 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NoPhotography
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -71,12 +74,12 @@ fun MovplayLogoChip(
                 crossfade(true)
             }
         } else {
-            Image(
-                painter = painterResource(R.drawable.ic_outline_no_photography_24),
+            Icon(
+                imageVector = Icons.Filled.NoPhotography,
                 contentDescription = null,
-                colorFilter = if (selected) {
-                    ColorFilter.tint(MaterialTheme.colorScheme.primary.copy(0.3f))
-                } else ColorFilter.grayScale()
+                tint = (if (selected) {
+                    MaterialTheme.colorScheme.primary.copy(0.3f)
+                } else ColorFilter.grayScale()) as Color
             )
         }
 
