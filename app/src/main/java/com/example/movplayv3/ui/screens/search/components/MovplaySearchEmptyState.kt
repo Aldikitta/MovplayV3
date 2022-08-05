@@ -3,6 +3,7 @@ package com.example.movplayv3.ui.screens.search.components
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -23,7 +24,7 @@ fun MovplaySearchEmptyState(
     modifier: Modifier = Modifier,
     onEditButtonClicked: () -> Unit = {}
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_search))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lottie_empty))
     val dynamicProperties = rememberLottieDynamicProperties(
         rememberLottieDynamicProperty(
             property = LottieProperty.COLOR_FILTER,
@@ -43,9 +44,9 @@ fun MovplaySearchEmptyState(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         LottieAnimation(
-            modifier = Modifier.size(160.dp),
+            modifier = Modifier.size(250.dp),
             composition = composition,
-            speed = 0.2f,
+            speed = 0.5f,
             iterations = LottieConstants.IterateForever,
             dynamicProperties = dynamicProperties
         )

@@ -75,7 +75,7 @@
     <string name="trending_tv_series">Trending this month</string>
 
     <string name="search_placeholder">Type title to search</string>
-    <string name="search_empty_state">No search results</string>
+    <string name="search_empty_state">Nah mate, couldn\'t find that</string>
     <string name="search_empty_state_edit_button_label">Edit</string>
     <string name="search_insufficient_query_length_info_text">Min 3 character required</string>
 

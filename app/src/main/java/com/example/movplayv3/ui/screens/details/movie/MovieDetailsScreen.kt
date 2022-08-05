@@ -9,8 +9,14 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -27,6 +33,7 @@ import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
+import com.example.movplayv3.ui.components.others.MovplayAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
@@ -377,5 +384,42 @@ fun MovieDetailsScreenContent(
                 )
             }
         }
+        MovplayAppBar(
+            modifier = Modifier.align(Alignment.TopCenter),
+            title = stringResource(R.string.movie_details_label),
+            backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
+            scrollState = scrollState,
+            transparentScrollValueLimit = topSectionScrollLimitValue,
+            action = {
+                IconButton(onClick = onBackClicked) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "go back",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+            },
+//            trailing = {
+//                Row {
+//                    LikeButton(
+//                        isFavourite = uiState.additionalMovieDetailsInfo.isFavourite,
+//                        onClick = {
+//                            val details = uiState.movieDetails
+//
+//                            if (details != null) {
+//                                onFavouriteClicked(details)
+//                            }
+//                        }
+//                    )
+//                    IconButton(onClick = onCloseClicked) {
+//                        Icon(
+//                            imageVector = Icons.Filled.Close,
+//                            contentDescription = "close",
+//                            tint = MaterialTheme.colorScheme.primary
+//                        )
+//                    }
+//                }
+//            }
+        )
     }
 }
