@@ -255,7 +255,7 @@ fun MovieDetailsScreenContent(
             MovplayAnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = !uiState.additionalMovieDetailsInfo.credits?.cast.isNullOrEmpty()
-            ){
+            ) {
                 uiState.additionalMovieDetailsInfo.credits?.cast?.ifNotNullAndEmpty { members ->
                     MovplayMemberSection(
                         modifier = Modifier.fillMaxWidth(),
@@ -283,10 +283,10 @@ fun MovieDetailsScreenContent(
             MovplayAnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
                 visible = uiState.associatedMovies.collection?.run { parts.isNotEmpty() } == true
-            ){
+            ) {
                 val movieCollection = uiState.associatedMovies.collection
 
-                if (movieCollection != null && movieCollection.parts.isNotEmpty()){
+                if (movieCollection != null && movieCollection.parts.isNotEmpty()) {
                     MovplayPresentableListSection(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -351,9 +351,19 @@ fun MovieDetailsScreenContent(
                 modifier = Modifier.fillMaxWidth(),
                 visible = similarMoviesState.isNotEmpty()
             ) {
+                val movieCollection = uiState.associatedMovies.collection
+
                 MovplayPresentableSection(
                     modifier = Modifier.fillMaxWidth(),
-                    title = stringResource(R.string.movie_details_similar),
+                    title = if (movieCollection != null) {
+                        "Similar with ${movieCollection.name}"
+//                        stringResource(
+//                            id = R.string.movie_details_similar_with,
+//                            movieCollection.name
+//                        )
+                    } else {
+                        stringResource(id = R.string.movie_details_similar)
+                    },
                     state = similarMoviesState,
                     showLoadingAtRefresh = false,
                     onMoreClick = onSimilarMoreClicked,

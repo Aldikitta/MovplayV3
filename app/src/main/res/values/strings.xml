@@ -90,6 +90,7 @@
     <string name="movie_details_cast">Cast</string>
     <string name="movie_details_crew">Crew</string>
     <string name="movie_details_director_movies" formatted="true">More of %s</string>
+    <string name="movie_details_similar_with">Similar with </string>
     <string name="movie_details_similar">Similar</string>
     <string name="movie_details_recommendations">Recommendations</string>
     <string name="movie_details_videos">Videos</string>
