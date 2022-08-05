@@ -17,7 +17,7 @@ import com.example.movplayv3.ui.theme.spacing
 
 @Composable
 fun MovplayAppBar(
-    title: String?,
+//    title: String?,
     modifier: Modifier = Modifier,
     scrollState: ScrollState? = null,
     transparentScrollValueLimit: Float? = null,
@@ -49,23 +49,23 @@ fun MovplayAppBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             action()
-            Spacer(modifier = androidx.compose.ui.Modifier.width(MaterialTheme.spacing.small))
-            title?.let {
-                Text(
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(end = MaterialTheme.spacing.medium),
-                    text = it,
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
+//            Spacer(modifier = androidx.compose.ui.Modifier.width(MaterialTheme.spacing.small))
+//            title?.let {
+//                Text(
+//                    modifier = Modifier
+//                        .weight(1f)
+//                        .padding(end = MaterialTheme.spacing.medium),
+//                    text = it,
+//                    style = MaterialTheme.typography.titleLarge,
+//                    fontWeight = FontWeight.SemiBold,
+//                    maxLines = 1,
+//                    overflow = TextOverflow.Ellipsis
+//                )
+//            }
             trailing()
         }
     }
