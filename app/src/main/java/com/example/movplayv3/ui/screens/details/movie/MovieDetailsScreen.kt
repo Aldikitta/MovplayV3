@@ -398,35 +398,16 @@ fun MovieDetailsScreenContent(
                 )
             },
             trailing = {
-                Box(
-                    modifier = Modifier
-                        .padding(end = MaterialTheme.spacing.extraSmall)
-                        .clip(CircleShape)
-                        .height(42.dp)
-                        .background(MaterialTheme.colorScheme.primary.copy(alpha = 0.5f))
-                ) {
-                    Row(modifier = Modifier.padding(
-                        horizontal = 20.dp,
-                    )) {
-                        MovplayLikeButton(
-                            isFavourite = uiState.additionalMovieDetailsInfo.isFavorite,
-                            onClick = {
-                                val details = uiState.movieDetails
+                MovplayLikeButton(
+                    isFavourite = uiState.additionalMovieDetailsInfo.isFavorite,
+                    onClick = {
+                        val details = uiState.movieDetails
 
-                                if (details != null) {
-                                    onFavouriteClicked(details)
-                                }
-                            }
-                        )
-                        IconButton(onClick = onCloseClicked) {
-                            Icon(
-                                imageVector = Icons.Filled.Close,
-                                contentDescription = "close",
-                                tint = Color.White
-                            )
+                        if (details != null) {
+                            onFavouriteClicked(details)
                         }
                     }
-                }
+                )
             }
         )
     }
