@@ -27,10 +27,7 @@ import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.movie.MovieDetails
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.sections.MovplayExternalIdsSection
-import com.example.movplayv3.ui.components.sections.MovplayMemberSection
-import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
-import com.example.movplayv3.ui.components.sections.MovplayWatchProvidersSection
+import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
@@ -286,7 +283,31 @@ fun MovieDetailsScreenContent(
                     )
                 }
             }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = uiState.associatedMovies.collection?.run { parts.isNotEmpty() } == true
+            ){
+                val movieCollection = uiState.associatedMovies.collection
 
+                if (movieCollection != null && movieCollection.parts.isNotEmpty()){
+                    MovplayPresentableListSection(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(MaterialTheme.colorScheme.surface)
+                            .padding(vertical = MaterialTheme.spacing.small),
+                        title = movieCollection.name,
+                        list = movieCollection.parts.sortedBy { part -> part.releaseDate },
+                        selectedId = uiState.movieDetails?.id,
+                        onPresentableClick = { movieId ->
+                            if (movieId != uiState.movieDetails?.id) {
+                                onMovieClicked(movieId)
+                            } else {
+                                scrollToStart()
+                            }
+                        }
+                    )
+                }
+            }
         }
     }
 }
