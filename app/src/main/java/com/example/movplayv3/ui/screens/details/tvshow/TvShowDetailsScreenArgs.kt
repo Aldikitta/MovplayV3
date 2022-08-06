@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class TvShowDetailsScreenArgs(
-    val tvSeriesId: Int,
+    val tvShowId: Int,
     val startRoute: String
 ): Parcelable
