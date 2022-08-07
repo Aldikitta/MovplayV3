@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MovplayV3</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <string name="favourite_type_movie_label">Movies</string>
     <string name="favourite_type_tv_show_label">Tv Shows</string>
 
@@ -103,5 +106,22 @@
     <string name="show_less">Show\u00A0less</string>
 
     <string name="error_dialog_default_text">Whoops, something went wrong.</string>
+
+    <string name="tv_series_details_label">Tv show details</string>
+    <string name="tv_series_details_type">Type</string>
+    <string name="tv_series_details_status">Status</string>
+    <string name="tv_series_details_in_production">In production</string>
+    <string name="tv_series_details_genres">Genres</string>
+    <string name="tv_series_details_similar">Similar</string>
+    <string name="tv_series_details_videos">Videos</string>
+    <string name="tv_series_details_recommendations">Recommendations</string>
+    <string name="tv_series_details_networks">Available on</string>
+    <string name="tv_series_details_seasons">Seasons</string>
+    <string name="tv_series_details_creators">Creators</string>
+    <string name="tv_series_details_reviews" formatted="true">Reviews (%d)</string>
+
+    <string name="next_episode_today_text">New episode today</string>
+    <string name="next_episode_tomorrow_text">New episode tomorrow</string>
+    <string name="next_episode_days_text" formatted="true">New episode in %d days</string>
 
 </resources>
