@@ -4,29 +4,38 @@ import android.annotation.SuppressLint
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.Crossfade
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.movplayv3.R
 import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.model.ShareDetails
 import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
+import com.example.movplayv3.ui.components.button.MovplayBackButton
+import com.example.movplayv3.ui.components.button.MovplayLikeButton
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
-import com.example.movplayv3.ui.components.sections.MovplayExternalIdsSection
-import com.example.movplayv3.ui.components.sections.MovplayPresentableDetailsTopSection
+import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
+import com.example.movplayv3.ui.components.others.MovplayAppBar
+import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
+import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
+import com.example.movplayv3.utils.isNotEmpty
 import com.example.movplayv3.utils.openExternalId
 import com.example.movplayv3.utils.openVideo
 import com.example.movplayv3.utils.shareImdb
@@ -144,6 +153,21 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
 //            navigator.navigate(destination)
 //        }
 //    }
+    TvShowDetailsScreenContent(
+        uiState = uiState,
+        onBackClicked = onBackClicked,
+        onExternalIdClicked = onExternalIdClicked,
+        onShareClicked = onShareClicked,
+        onVideoClicked = onVideoClicked,
+        onFavoriteClicked = onFavoriteClicked,
+        onCloseClicked = onCloseClicked,
+        onCreatorClicked = {},
+        onTvShowClicked = onTvShowClicked,
+        onSeasonClicked = {},
+        onSimilarMoreClicked = {},
+        onRecommendationsMoreClicked = {},
+        onReviewsClicked = {}
+    )
 }
 
 @SuppressLint("UnrememberedMutableState")
@@ -250,7 +274,143 @@ fun TvShowDetailsScreenContent(
                     }
                 }
             }
-
+            MovplayTvShowDetailsInfoSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.spacing.medium)
+                    .animateContentSize(),
+                tvShowDetails = uiState.tvShowDetails,
+                nextEpisodeDaysRemaining = uiState.additionalTvShowDetailsInfo.nextEpisodeRemainingDays,
+                imdbExternalId = imdbExternalId,
+                onShareClicked = onShareClicked
+            )
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = uiState.additionalTvShowDetailsInfo.watchProviders != null
+            ) {
+                if (uiState.additionalTvShowDetailsInfo.watchProviders != null) {
+                    MovplayWatchProvidersSection(
+                        modifier = Modifier.fillMaxWidth(),
+                        watchProviders = uiState.additionalTvShowDetailsInfo.watchProviders,
+                        title = stringResource(R.string.available_at)
+                    )
+                }
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.tvShowDetails?.creators.isNullOrEmpty()
+            ){
+                MovplayMemberSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.tv_series_details_creators),
+                    members = uiState.tvShowDetails?.creators ?: emptyList(),
+                    contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium),
+                    onMemberClick = onCreatorClicked
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.tvShowDetails?.seasons.isNullOrEmpty()
+            ){
+                MovplaySeasonSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.surface)
+                        .padding(vertical = MaterialTheme.spacing.small),
+                    title = stringResource(R.string.tv_series_details_seasons),
+                    seasons = uiState.tvShowDetails?.seasons ?: emptyList(),
+                    onSeasonClick = onSeasonClicked
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = recommendations.isNotEmpty()
+            ) {
+                MovplayPresentableSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.tv_series_details_recommendations),
+                    state = recommendations,
+                    showLoadingAtRefresh = false,
+                    onMoreClick = onRecommendationsMoreClicked,
+                    onPresentableClick = { tvShowId ->
+                        if (tvShowId != uiState.tvShowDetails?.id) {
+                            onTvShowClicked(tvShowId)
+                        } else {
+                            scrollToStart()
+                        }
+                    }
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = similar.isNotEmpty()
+            ) {
+                MovplayPresentableSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.tv_series_details_similar),
+                    state = similar,
+                    showLoadingAtRefresh = false,
+                    onMoreClick = onSimilarMoreClicked,
+                    onPresentableClick = { tvShowId ->
+                        if (tvShowId != uiState.tvShowDetails?.id) {
+                            onTvShowClicked(tvShowId)
+                        } else {
+                            scrollToStart()
+                        }
+                    }
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = !uiState.associatedContent.videos.isNullOrEmpty()
+            ) {
+                MovplayVideosSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = stringResource(R.string.tv_series_details_videos),
+                    videos = uiState.associatedContent.videos ?: emptyList(),
+                    contentPadding = PaddingValues(horizontal = MaterialTheme.spacing.medium),
+                    onVideoClicked = onVideoClicked
+                )
+            }
+            MovplayAnimatedContentContainer(
+                modifier = Modifier.fillMaxWidth(),
+                visible = uiState.additionalTvShowDetailsInfo.reviewsCount > 0
+            ) {
+                MovplayReviewSection(
+                    modifier = Modifier.fillMaxWidth(),
+                    count = uiState.additionalTvShowDetailsInfo.reviewsCount,
+                    onClick = onReviewsClicked
+                )
+            }
+            Spacer(
+                modifier = Modifier.windowInsetsBottomHeight(
+                    insets = WindowInsets(bottom = MaterialTheme.spacing.medium)
+                )
+            )
         }
+        MovplayAppBar(
+            modifier = Modifier.align(Alignment.TopCenter),
+//            title = null,
+            backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
+            scrollState = scrollState,
+            transparentScrollValueLimit = topSectionScrollLimitValue,
+            action = {
+                MovplayBackButton(
+                    onBackClicked
+                )
+            },
+            trailing = {
+                MovplayLikeButton(
+                    isFavourite = uiState.additionalTvShowDetailsInfo.isFavorite,
+                    onClick = {
+                        val details = uiState.tvShowDetails
+
+                        if (details != null) {
+                            onFavoriteClicked(details)
+                        }
+                    }
+                )
+            }
+        )
     }
 }

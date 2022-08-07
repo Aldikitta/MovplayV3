@@ -53,7 +53,7 @@ fun AnimatedVisibilityScope.TvShowScreen(
         }
     }
 
-    val onTvShowClicked: (Int) -> Unit = { tvShowId ->
+    val onTvShowClicked = { tvShowId: Int ->
         val destination =
             TvShowDetailsScreenDestination(
                 tvShowId = tvShowId,
