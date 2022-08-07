@@ -12,9 +12,9 @@ import kotlinx.coroutines.flow.emptyFlow
 @Stable
 data class TvShowDetailsScreenUIState(
     val startRoute: String,
-    val tvSeriesDetails: TvShowDetails?,
-    val additionalTvSeriesDetailsInfo: AdditionalTvShowDetailsInfo,
-    val associatedTvSeries: AssociatedTvShow,
+    val tvShowDetails: TvShowDetails?,
+    val additionalTvShowDetailsInfo: AdditionalTvShowDetailsInfo,
+    val associatedTvShow: AssociatedTvShow,
     val associatedContent: AssociatedContent,
     val error: String?
 ) {
@@ -22,9 +22,9 @@ data class TvShowDetailsScreenUIState(
         fun getDefault(startRoute: String): TvShowDetailsScreenUIState {
             return TvShowDetailsScreenUIState(
                 startRoute = startRoute,
-                tvSeriesDetails = null,
-                additionalTvSeriesDetailsInfo = AdditionalTvShowDetailsInfo.default,
-                associatedTvSeries = AssociatedTvShow.default,
+                tvShowDetails = null,
+                additionalTvShowDetailsInfo = AdditionalTvShowDetailsInfo.default,
+                associatedTvShow = AssociatedTvShow.default,
                 associatedContent = AssociatedContent.default,
                 error = null
             )
@@ -47,14 +47,14 @@ data class AssociatedTvShow(
 
 @Stable
 data class AdditionalTvShowDetailsInfo(
-    val isFavourite: Boolean,
+    val isFavorite: Boolean,
     val nextEpisodeRemainingDays: Long?,
     val watchProviders: WatchProviders?,
     val reviewsCount: Int
 ) {
     companion object {
         val default: AdditionalTvShowDetailsInfo = AdditionalTvShowDetailsInfo(
-            isFavourite = false,
+            isFavorite = false,
             nextEpisodeRemainingDays = null,
             watchProviders = null,
             reviewsCount = 0

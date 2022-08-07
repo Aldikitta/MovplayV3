@@ -65,7 +65,7 @@ class TvShowDetailsScreenViewModel @Inject constructor(
         isFavorite, nextEpisodeDaysRemaining, watchProviders, reviewsCount
     ) { isFavorite, nextEpisodeDaysRemaining, watchProviders, reviewsCount ->
         AdditionalTvShowDetailsInfo(
-            isFavourite = isFavorite,
+            isFavorite = isFavorite,
             nextEpisodeRemainingDays = nextEpisodeDaysRemaining,
             watchProviders = watchProviders,
             reviewsCount = reviewsCount
@@ -108,9 +108,9 @@ class TvShowDetailsScreenViewModel @Inject constructor(
     ) { details, additionalInfo, associatedTvSeries, visualContent, error ->
         TvShowDetailsScreenUIState(
             startRoute = navArgs.startRoute,
-            tvSeriesDetails = details,
-            additionalTvSeriesDetailsInfo = additionalInfo,
-            associatedTvSeries = associatedTvSeries,
+            tvShowDetails = details,
+            additionalTvShowDetailsInfo = additionalInfo,
+            associatedTvShow = associatedTvSeries,
             associatedContent = visualContent,
             error = error
         )
