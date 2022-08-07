@@ -23,6 +23,7 @@ import com.example.movplayv3.R
 import com.example.movplayv3.data.model.tvshow.TvShowType
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
+import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
@@ -52,14 +53,15 @@ fun AnimatedVisibilityScope.TvShowScreen(
         }
     }
 
-//    val onTvSeriesClicked: (Int) -> Unit = { tvSeriesId ->
-//        val destination = TvSeriesDetailsScreenDestination(
-//            tvSeriesId = tvSeriesId,
-//            startRoute = TvScreenDestination.route
-//        )
-//
-//        navigator.navigate(destination)
-//    }
+    val onTvShowClicked: (Int) -> Unit = { tvShowId ->
+        val destination =
+            TvShowDetailsScreenDestination(
+                tvShowId = tvShowId,
+                startRoute = TvShowScreenDestination.route
+            )
+
+        navigator.navigate(destination)
+    }
 
 //    val onBrowseTvSeriesClicked: (TvSeriesType) -> Unit = { type ->
 //        navigator.navigate(BrowseTvSeriesScreenDestination(type))
@@ -70,7 +72,8 @@ fun AnimatedVisibilityScope.TvShowScreen(
 //    }
     TvShowsScreenContent(
         uiState = uiState,
-        scrollState = scrollState
+        scrollState = scrollState,
+        onTvShowClicked = onTvShowClicked
     )
 }
 
@@ -79,7 +82,7 @@ fun AnimatedVisibilityScope.TvShowScreen(
 fun TvShowsScreenContent(
     uiState: TvShowScreenUIState,
     scrollState: ScrollState,
-//    onTvSeriesClicked: (tvSeriesId: Int) -> Unit,
+    onTvShowClicked: (tvShowId: Int) -> Unit,
 //    onBrowseTvSeriesClicked: (type: TvSeriesType) -> Unit,
 //    onDiscoverTvSeriesClicked: () -> Unit
 ) {
@@ -90,8 +93,8 @@ fun TvShowsScreenContent(
     val onTheAirLazyItems = uiState.tvShowsState.onTheAir.collectAsLazyPagingItems()
     val trendingLazyItems = uiState.tvShowsState.trending.collectAsLazyPagingItems()
     val airingTodayLazyItems = uiState.tvShowsState.airingToday.collectAsLazyPagingItems()
-//    val favouritesLazyItems = uiState.favourites.collectAsLazyPagingItems()
-//    val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
+    val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
+    val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
 
     var topSectionHeight: Float? by remember {
         mutableStateOf(null)
@@ -105,7 +108,7 @@ fun TvShowsScreenContent(
             discoverLazyItems,
             onTheAirLazyItems,
             trendingLazyItems,
-            airingTodayLazyItems
+            airingTodayLazyItems,
         ).isAnyRefreshing()
     }
 
@@ -160,7 +163,7 @@ fun TvShowsScreenContent(
                 state = onTheAirLazyItems,
                 scrollState = scrollState,
                 scrollValueLimit = topSectionScrollLimitValue,
-//                onPresentableClick = onTvSeriesClicked,
+                onPresentableClick = onTvShowClicked,
 //                onMoreClick = {
 //                    onBrowseTvSeriesClicked(TvSeriesType.OnTheAir)
 //                }
@@ -168,18 +171,22 @@ fun TvShowsScreenContent(
             MovplayPresentableSection(
                 title = stringResource(R.string.explore_tv_series),
                 state = discoverLazyItems,
-            )
+                onPresentableClick = onTvShowClicked,
+                )
             MovplayPresentableSection(
                 title = stringResource(R.string.top_rated_tv_series),
                 state = topRatedLazyItems,
+                onPresentableClick = onTvShowClicked,
             )
             MovplayPresentableSection(
                 title = stringResource(R.string.trending_tv_series),
                 state = trendingLazyItems,
+                onPresentableClick = onTvShowClicked,
             )
             MovplayPresentableSection(
                 title = stringResource(R.string.today_airing_tv_series),
                 state = airingTodayLazyItems,
+                onPresentableClick = onTvShowClicked,
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
         }
