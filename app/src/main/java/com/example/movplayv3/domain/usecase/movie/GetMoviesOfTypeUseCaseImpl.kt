@@ -27,7 +27,7 @@ class GetMoviesOfTypeUseCaseImpl @Inject constructor(
             MovieType.NowPlaying -> getNowPlayingMoviesUseCase(deviceLanguage, false)
             MovieType.TopRated -> getTopRatedMoviesUseCase(deviceLanguage)
             MovieType.Upcoming -> getUpcomingMoviesUseCase(deviceLanguage)
-            MovieType.Favourite -> getFavoritesMoviesUseCaseImpl()
+            MovieType.Favorite -> getFavoritesMoviesUseCaseImpl()
             MovieType.RecentlyBrowsed -> getRecentlyBrowsedMoviesUseCase()
             MovieType.Trending -> getTrendingMoviesUseCase(deviceLanguage)
         }.mapLatest { data -> data.map { it } }

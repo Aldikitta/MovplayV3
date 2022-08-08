@@ -30,6 +30,7 @@ import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestinati
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
+import com.example.movplayv3.utils.isNotEmpty
 import com.example.movplayv3.utils.refreshAll
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
@@ -100,6 +101,7 @@ fun MoviesScreenContent(
     val trendingLazyItems = uiState.moviesState.trending.collectAsLazyPagingItems()
     val nowPlayingLazyItems = uiState.moviesState.nowPlaying.collectAsLazyPagingItems()
     val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
+    val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
 
     var topSectionHeight: Float? by remember {
         mutableStateOf(null)
@@ -231,6 +233,28 @@ fun MoviesScreenContent(
                 onPresentableClick = onMovieClicked,
                 onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
+            if (favoritesLazyItems.isNotEmpty()){
+                MovplayPresentableSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize(),
+                    title = stringResource(R.string.favourite_movies),
+                    state = favoritesLazyItems,
+                    onPresentableClick = onMovieClicked,
+                    onMoreClick = { onBrowseMoviesClicked(MovieType.Favorite) }
+                )
+            }
+            if (recentlyBrowsedLazyItems.isNotEmpty()) {
+                MovplayPresentableSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize(),
+                    title = stringResource(R.string.recently_browsed_movies),
+                    state = recentlyBrowsedLazyItems,
+                    onPresentableClick = onMovieClicked,
+                    onMoreClick = { onBrowseMoviesClicked(MovieType.RecentlyBrowsed) }
+                )
+            }
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
         }
     }
