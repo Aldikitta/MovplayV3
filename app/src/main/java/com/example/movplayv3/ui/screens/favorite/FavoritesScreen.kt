@@ -1,6 +1,7 @@
 package com.example.movplayv3.ui.screens.favorite
 
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -12,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.data.model.FavoriteType
+import com.example.movplayv3.ui.components.others.MovplayFavoriteEmptyState
+import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
 import com.example.movplayv3.ui.components.selectors.MovplayFavoriteTypeSelector
 import com.example.movplayv3.ui.screens.destinations.*
 import com.example.movplayv3.ui.theme.spacing
@@ -59,12 +62,6 @@ fun AnimatedVisibilityScope.FavoriteScreen(
             }
         }
     }
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Favorites")
-    }
     FavoriteScreenContent(
         uiState = uiState,
         onFavoriteTypeSelected = onFavoriteTypeSelected,
@@ -94,5 +91,37 @@ fun FavoriteScreenContent(
             selected = uiState.selectedFavouriteType,
             onSelected = onFavoriteTypeSelected
         )
+        Crossfade(
+            modifier = Modifier.fillMaxSize(),
+            targetState = notEmpty
+        ) { notEmpty ->
+            if (notEmpty) {
+                MovplayPresentableGridSection(
+                    modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(
+                        top = MaterialTheme.spacing.medium,
+                        start = MaterialTheme.spacing.small,
+                        end = MaterialTheme.spacing.small,
+                        bottom = MaterialTheme.spacing.large
+                    ),
+                    state = favoritesLazyItems,
+                    showRefreshLoading = false,
+                    onPresentableClick = onFavoriteClicked
+                )
+            } else {
+                MovplayFavoriteEmptyState(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = MaterialTheme.spacing.medium)
+                        .padding(top = MaterialTheme.spacing.extraLarge),
+                    type = uiState.selectedFavouriteType,
+                    onButtonClick = when (uiState.selectedFavouriteType) {
+                        FavoriteType.Movie -> onNavigateToMoviesButtonClicked
+                        FavoriteType.TvShow -> onNavigateToTvShowButtonClicked
+                    }
+                )
+            }
+
+        }
     }
 }

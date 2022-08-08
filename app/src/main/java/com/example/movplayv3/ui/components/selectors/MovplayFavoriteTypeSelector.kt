@@ -53,7 +53,7 @@ fun FavouriteTypeButton(
     val textColor by animateColorAsState(
         targetValue = if (selected) {
             MaterialTheme.colorScheme.primary
-        } else Color.White
+        } else MaterialTheme.colorScheme.onBackground
     )
     val lineLength = animateFloatAsState(
         targetValue = if (selected) 2f else 0f,
