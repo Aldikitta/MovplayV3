@@ -5,6 +5,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination(
     navArgsDelegate = BrowseMoviesScreenArgs::class,
+    style = BrowseMoviesScreenTransitions::class
 )
 @Composable
 fun BrowseMoviesScreen() {
