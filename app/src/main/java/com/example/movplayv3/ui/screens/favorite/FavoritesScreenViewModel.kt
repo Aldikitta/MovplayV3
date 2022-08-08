@@ -18,11 +18,11 @@ class FavoritesScreenViewModel @Inject constructor(
         MutableStateFlow(FavoriteType.Movie)
 
     val uiState: StateFlow<FavoritesScreenUIState> = _selectedFavouriteType.mapLatest { type ->
-        val favourites = getFavouritesUseCaseImpl(type).cachedIn(viewModelScope)
+        val favorites = getFavouritesUseCaseImpl(type).cachedIn(viewModelScope)
 
         FavoritesScreenUIState(
             selectedFavouriteType = type,
-            favourites = favourites
+            favorites = favorites
         )
     }.stateIn(viewModelScope, SharingStarted.Eagerly, FavoritesScreenUIState.default)
 

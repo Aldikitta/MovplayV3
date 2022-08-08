@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.emptyFlow
 @Stable
 data class FavoritesScreenUIState(
     val selectedFavouriteType: FavoriteType,
-    val favourites: Flow<PagingData<Presentable>>,
+    val favorites: Flow<PagingData<Presentable>>,
 ) {
     companion object {
         val default: FavoritesScreenUIState = FavoritesScreenUIState(
             selectedFavouriteType = FavoriteType.Movie,
-            favourites = emptyFlow()
+            favorites = emptyFlow()
         )
     }
 }
