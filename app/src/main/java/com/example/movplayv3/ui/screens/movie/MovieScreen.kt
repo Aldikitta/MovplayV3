@@ -25,6 +25,7 @@ import com.example.movplayv3.data.model.movie.MovieType
 import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
+import com.example.movplayv3.ui.screens.destinations.BrowseMoviesScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
@@ -65,10 +66,10 @@ fun AnimatedVisibilityScope.MovieScreen(
         navigator.navigate(destination)
     }
 
-//    val onBrowseMoviesClicked = { type: MovieType ->
-//        navigator.navigate(BrowseMoviesScreenDestination(type))
-//    }
-//
+    val onBrowseMoviesClicked = { type: MovieType ->
+        navigator.navigate(BrowseMoviesScreenDestination(type))
+    }
+
 //    val onDiscoverMoviesClicked = {
 //        navigator.navigate(DiscoverMoviesScreenDestination)
 //    }
@@ -76,9 +77,9 @@ fun AnimatedVisibilityScope.MovieScreen(
         uiState = uiState,
         scrollState = scrollState,
         onMovieClicked = onMovieClicked,
-        onBrowseMoviesClicked = {},
+        onBrowseMoviesClicked = onBrowseMoviesClicked,
         onDiscoverMoviesClicked = {}
-        )
+    )
 }
 
 @SuppressLint("UnrememberedMutableState")
@@ -189,7 +190,7 @@ fun MoviesScreenContent(
                 scrollValueLimit = topSectionScrollLimitValue,
                 onPresentableClick = onMovieClicked,
                 onMoreClick = {
-//                    onBrowseMoviesClicked(MovieType.NowPlaying)
+                    onBrowseMoviesClicked(MovieType.NowPlaying)
                 }
             )
             MovplayPresentableSection(
@@ -208,7 +209,9 @@ fun MoviesScreenContent(
                 title = stringResource(R.string.upcoming_movies),
                 state = upcomingLazyItems,
                 onPresentableClick = onMovieClicked,
-//                onMoreClick = onDiscoverMoviesClicked
+                onMoreClick = {
+                    onBrowseMoviesClicked(MovieType.Upcoming)
+                }
             )
             MovplayPresentableSection(
                 modifier = Modifier
@@ -217,7 +220,7 @@ fun MoviesScreenContent(
                 title = stringResource(R.string.trending_movies),
                 state = trendingLazyItems,
                 onPresentableClick = onMovieClicked,
-//                onMoreClick = onDiscoverMoviesClicked
+                onMoreClick = { onBrowseMoviesClicked(MovieType.Trending) }
             )
             MovplayPresentableSection(
                 modifier = Modifier
@@ -226,7 +229,7 @@ fun MoviesScreenContent(
                 title = stringResource(R.string.top_rated_movies),
                 state = topRatedLazyItems,
                 onPresentableClick = onMovieClicked,
-//                onMoreClick = onDiscoverMoviesClicked
+                onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
 

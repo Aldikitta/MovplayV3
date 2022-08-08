@@ -18,7 +18,7 @@ import androidx.core.view.ViewCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
-    tertiary = Pink80
+    tertiary = Pink80,
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -53,12 +53,12 @@ fun MovplayV3Theme(
         else -> LightColorScheme
     }
     val view = LocalView.current
-//    if (!view.isInEditMode) {
-//        SideEffect {
+    if (!view.isInEditMode) {
+        SideEffect {
 //            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
 //            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
-//        }
-//    }
+        }
+    }
 
     MaterialTheme(
         colorScheme = colorScheme,

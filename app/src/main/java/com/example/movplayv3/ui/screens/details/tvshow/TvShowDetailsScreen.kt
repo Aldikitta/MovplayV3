@@ -29,7 +29,7 @@ import com.example.movplayv3.ui.components.button.MovplayBackButton
 import com.example.movplayv3.ui.components.button.MovplayLikeButton
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.others.MovplayAppBar
+import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
@@ -388,9 +388,9 @@ fun TvShowDetailsScreenContent(
                 )
             )
         }
-        MovplayAppBar(
+        MovplayDetailsAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
-//            title = null,
+            title = null,
             backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,

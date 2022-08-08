@@ -8,17 +8,11 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -35,7 +29,7 @@ import com.example.movplayv3.ui.components.button.MovplayBackButton
 import com.example.movplayv3.ui.components.button.MovplayLikeButton
 import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
-import com.example.movplayv3.ui.components.others.MovplayAppBar
+import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
@@ -413,9 +407,9 @@ fun MovieDetailsScreenContent(
                 )
             )
         }
-        MovplayAppBar(
+        MovplayDetailsAppBar(
             modifier = Modifier.align(Alignment.TopCenter),
-//            title = null,
+            title = null,
             backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = 0f),
             scrollState = scrollState,
             transparentScrollValueLimit = topSectionScrollLimitValue,

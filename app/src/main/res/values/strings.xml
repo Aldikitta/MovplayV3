@@ -124,4 +124,23 @@
     <string name="next_episode_tomorrow_text">New episode tomorrow</string>
     <string name="next_episode_days_text" formatted="true">New episode in %d days</string>
 
+    <string name="all_movies_top_rated_label">Top rated movies</string>
+    <string name="all_movies_now_playing_label">Now playing movies</string>
+    <string name="all_movies_upcoming_label">Upcoming movies</string>
+    <string name="all_movies_popular_label">Popular movies</string>
+    <string name="all_movies_favourites_label" formatted="true">Favourites movies (%d)</string>
+    <string name="all_movies_recently_browsed_label">Recently browsed movies</string>
+    <string name="all_movies_trending_label">Trending movies</string>
+
+    <string name="all_tv_series_on_the_air_label">On the air tv series</string>
+    <string name="all_tv_series_top_rated_label">Top rated tv series</string>
+    <string name="all_tv_series_airing_today_label">Airing today tv series</string>
+    <string name="all_tv_series_popular_label">Popular tv series</string>
+    <string name="all_tv_series_favourites_label" formatted="true">Favourites tv series (%d)</string>
+    <string name="all_tv_series_recently_browsed_label">Recently browsed tv series</string>
+    <string name="all_tv_series_trending_label">Trending tv series</string>
+
+    <string name="clear_recent_movies_dialog_text">Are you sure you want to clear recent browsed movies?</string>
+    <string name="clear_recent_tv_series_dialog_text">Are you sure you want to clear recent browsed tv series?</string>
+
 </resources>

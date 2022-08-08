@@ -17,14 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.movplayv3.R
-import com.example.movplayv3.ui.components.others.MovplayAppBar
-import com.example.movplayv3.ui.screens.scanner.components.MovplayScanResultModalBottomSheetContent
-import com.example.movplayv3.ui.screens.scanner.components.MovplayTitleScanner
-import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.Roi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
