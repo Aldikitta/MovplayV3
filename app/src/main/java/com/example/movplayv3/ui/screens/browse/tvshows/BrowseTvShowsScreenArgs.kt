@@ -5,6 +5,6 @@ import com.example.movplayv3.data.model.tvshow.TvShowType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class BrowseTvhowsScreenArgs(
+data class BrowseTvShowsScreenArgs(
     val tvShowType: TvShowType
 ) : Parcelable
