@@ -130,12 +130,12 @@ class MainActivity : ComponentActivity() {
                     val experiment = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
                     val checkTheme = isSystemInDarkTheme()
                     SideEffect {
-                        if (checkTheme){
+                        if (checkTheme) {
                             systemUiController.setStatusBarColor(
                                 color = experiment,
                                 darkIcons = false
                             )
-                        }else{
+                        } else {
                             systemUiController.setStatusBarColor(
                                 color = experiment,
                                 darkIcons = true

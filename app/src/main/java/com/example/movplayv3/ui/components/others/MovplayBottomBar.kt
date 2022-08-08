@@ -3,7 +3,7 @@ package com.example.movplayv3.ui.components.others
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -50,6 +50,7 @@ fun MovplayBottomBar(
             } ?: MovieScreenDestination.route
         }
     }
+    val paddingValues = WindowInsets.navigationBars.asPaddingValues()
 
     AnimatedVisibility(
         visible = visible,
@@ -57,8 +58,8 @@ fun MovplayBottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
-            modifier = modifier
-        ) {
+            modifier = modifier.padding(paddingValues),
+            ) {
             MovplayNavBarItem(
                 selected = selectedRoute == MovieScreenDestination.route,
                 onClick = {
