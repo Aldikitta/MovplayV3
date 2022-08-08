@@ -32,14 +32,14 @@ class BrowseTvShowsViewModel @Inject constructor(
     val uiState: StateFlow<BrowseTvShowsScreenUIState> = combine(
         deviceLanguage, favoriteTvShowCount
     ) { deviceLanguage, favoriteTvShowCount ->
-        val tvSeries = getTvShowOfTypeUseCase(
+        val tvShow = getTvShowOfTypeUseCase(
             type = navArgs.tvShowType,
             deviceLanguage = deviceLanguage
         ).cachedIn(viewModelScope)
 
         BrowseTvShowsScreenUIState(
             selectedTvShowType = navArgs.tvShowType,
-            tvShow = tvSeries,
+            tvShow = tvShow,
             favoriteTvShowsCount = favoriteTvShowCount
         )
     }.stateIn(
