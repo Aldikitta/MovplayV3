@@ -232,7 +232,6 @@ fun MoviesScreenContent(
                 onMoreClick = { onBrowseMoviesClicked(MovieType.TopRated) }
             )
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-
         }
     }
 }

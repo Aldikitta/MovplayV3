@@ -1,9 +1,11 @@
 package com.example.movplayv3.ui.screens.browse.movies
 
+import android.app.Activity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +18,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -27,6 +31,7 @@ import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSectio
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
@@ -51,6 +56,16 @@ fun AnimatedVisibilityScope.BrowseMoviesScreen(
         )
         navigator.navigate(destination)
     }
+//    val systemUiController = rememberSystemUiController()
+//
+//    SideEffect {
+//        // Update all of the system bar colors to be transparent, and use
+//        // dark icons if we're in light theme
+//        systemUiController.setSystemBarsColor(
+//            color = Color.White,
+//            darkIcons = useDarkIcons
+//        )
+//    }
     BrowseMoviesScreenContent(
         uiState = uiState,
         onBackClicked = onBackClicked,

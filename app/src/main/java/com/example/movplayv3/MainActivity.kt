@@ -8,6 +8,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
@@ -127,16 +128,22 @@ class MainActivity : ComponentActivity() {
                 MovplayV3Theme {
                     val navigationBarColor = MaterialTheme.colorScheme.surface
                     val experiment = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
-
+                    val checkTheme = isSystemInDarkTheme()
                     SideEffect {
-                        systemUiController.setStatusBarColor(
-                            color = experiment,
-                            darkIcons = false
-                        )
-
+                        if (checkTheme){
+                            systemUiController.setStatusBarColor(
+                                color = experiment,
+                                darkIcons = false
+                            )
+                        }else{
+                            systemUiController.setStatusBarColor(
+                                color = experiment,
+                                darkIcons = true
+                            )
+                        }
                         systemUiController.setNavigationBarColor(
                             color = navigationBarColor,
-                            darkIcons = false
+                            darkIcons = true
                         )
                     }
                     val snackbarHostState = remember { SnackbarHostState() }
