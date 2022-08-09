@@ -26,18 +26,20 @@ class PersonDetailsViewModel @Inject constructor(
     private val getPersonExternalIdsUseCase: GetPersonExternalIdsUseCaseImpl,
     private val savedStateHandle: SavedStateHandle
 ) : BaseViewModel() {
+
     private val navArgs: PersonDetailsScreenArgs =
         PersonDetailsScreenDestination.argsFrom(savedStateHandle)
-    private val deviceLanguage = getDeviceLanguageUseCase()
+    private val deviceLanguage: Flow<DeviceLanguage> = getDeviceLanguageUseCase()
+
     private val personDetails: MutableStateFlow<PersonDetails?> = MutableStateFlow(null)
     private val combinedCredits: MutableStateFlow<CombinedCredits?> = MutableStateFlow(null)
-    private val _externalIds: MutableStateFlow<ExternalIds?> = MutableStateFlow(null)
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    private val _externalIds: MutableStateFlow<ExternalIds?> = MutableStateFlow(null)
     private val externalIds: StateFlow<List<ExternalId>?> =
         _externalIds.filterNotNull().mapLatest { externalIds ->
             externalIds.toExternalIdList(type = ExternalContentType.Person)
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(10), null)
+
     val uiState: StateFlow<PersonDetailsScreenUIState> = combine(
         personDetails, combinedCredits, externalIds, error
     ) { details, combinedCredits, externalIds, error ->
@@ -48,7 +50,6 @@ class PersonDetailsViewModel @Inject constructor(
             credits = combinedCredits,
             error = error
         )
-
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,

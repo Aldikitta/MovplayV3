@@ -31,6 +31,7 @@ import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
 import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
+import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsTopContent
@@ -83,14 +84,14 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
             video = video
         )
     }
-//    val onCreatorClicked = { personId: Int ->
-//        val destination = PersonDetailsScreenDestination(
-//            personId = personId,
-//            startRoute = uiState.startRoute
-//        )
-//
-//        navigator.navigate(destination)
-//    }
+    val onCreatorClicked = { personId: Int ->
+        val destination = PersonDetailsScreenDestination(
+            personId = personId,
+            startRoute = uiState.startRoute
+        )
+
+        navigator.navigate(destination)
+    }
     val onTvShowClicked = { tvShowId: Int ->
         val destination =
             TvShowDetailsScreenDestination(
@@ -161,7 +162,7 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
         onVideoClicked = onVideoClicked,
         onFavoriteClicked = onFavoriteClicked,
         onCloseClicked = onCloseClicked,
-        onCreatorClicked = {},
+        onCreatorClicked = onCreatorClicked,
         onTvShowClicked = onTvShowClicked,
         onSeasonClicked = {},
         onSimilarMoreClicked = {},

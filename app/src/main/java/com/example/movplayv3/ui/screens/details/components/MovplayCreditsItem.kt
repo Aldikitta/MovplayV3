@@ -70,27 +70,9 @@ fun MovplayCreditsItem(
                                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.5f),
                                 shape = MaterialTheme.shapes.medium
                             ),
-//                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center
                     ) {
                         Image(imageVector = Icons.Filled.NoPhotography, contentDescription = null)
-                    }
-                }
-                title?.let { title ->
-                    Box(
-                        modifier = Modifier
-                            .align(Alignment.BottomCenter)
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.5f))
-                    ) {
-                        Text(
-                            modifier = Modifier
-                                .align(Alignment.BottomCenter)
-                                .padding(MaterialTheme.spacing.extraSmall),
-                            text = title,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis,
-                            fontWeight = FontWeight.Bold
-                        )
                     }
                 }
             }
@@ -107,8 +89,6 @@ fun MovplayCreditsItem(
                             infoTextExpanded = !infoTextExpanded
                         },
                     text = text,
-//                    fontSize = 12.sp,
-                    color = Color.White,
                     textAlign = TextAlign.Center,
                     maxLines = if (infoTextExpanded) Int.MAX_VALUE else 2,
                     overflow = TextOverflow.Ellipsis
