@@ -139,7 +139,8 @@ fun DiscoverMoviesScreenContent(
                     onSaveFilterClicked(filterState)
                 }
             )
-        }
+        },
+        sheetBackgroundColor = MaterialTheme.colorScheme.surface
     ) {
         Box(
             modifier = Modifier
