@@ -169,4 +169,10 @@
     <string name="vote_count" formatted="true">(%d votes)</string>
 
     <string name="episode_chip_no_info_text">No additional info</string>
+
+    <string name="reviews_screen_appbar_title">Reviews</string>
+
+    <string name="review_item_created_text" formatted="true">Published %s</string>
+    <string name="review_item_last_modified_text" formatted="true">Last modified %s</string>
+
 </resources>

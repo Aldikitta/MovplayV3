@@ -22,6 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.ExternalId
+import com.example.movplayv3.data.model.MediaType
 import com.example.movplayv3.data.model.ShareDetails
 import com.example.movplayv3.data.model.Video
 import com.example.movplayv3.data.model.movie.MovieDetails
@@ -33,6 +34,7 @@ import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
+import com.example.movplayv3.ui.screens.destinations.ReviewsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
@@ -98,21 +100,20 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
         navigator.navigate(destination)
     }
 
-//    val onReviewsClicked: () -> Unit = {
-//        val movieId = uiState.movieDetails?.id
-//
-//        if (movieId != null) {
-//            val destination = ReviewsScreenDestination(
-//                startRoute = uiState.startRoute,
-//                mediaId = movieId,
-//                type = MediaType.Movie
-//            )
-//
-//            navigator.navigate(destination)
-//        }
-//    }
-//
-//
+    val onReviewsClicked: () -> Unit = {
+        val movieId = uiState.movieDetails?.id
+
+        if (movieId != null) {
+            val destination = ReviewsScreenDestination(
+                startRoute = uiState.startRoute,
+                mediaId = movieId,
+                type = MediaType.Movie
+            )
+
+            navigator.navigate(destination)
+        }
+    }
+
 //    val onSimilarMoreClicked = {
 //        val movieId = uiState.movieDetails?.id
 //
@@ -152,7 +153,7 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
         onMovieClicked = onMovieClicked,
         onSimilarMoreClicked = {},
         onRecommendationsMoreClicked = {},
-        onReviewsClicked = {}
+        onReviewsClicked = onReviewsClicked
     )
 }
 
