@@ -21,10 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
-import com.example.movplayv3.data.model.ExternalId
-import com.example.movplayv3.data.model.MediaType
-import com.example.movplayv3.data.model.ShareDetails
-import com.example.movplayv3.data.model.Video
+import com.example.movplayv3.data.model.*
 import com.example.movplayv3.data.model.tvshow.TvShowDetails
 import com.example.movplayv3.ui.components.button.MovplayBackButton
 import com.example.movplayv3.ui.components.button.MovplayLikeButton
@@ -32,10 +29,7 @@ import com.example.movplayv3.ui.components.dialogs.MovplayErrorDialog
 import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContainer
 import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
-import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
-import com.example.movplayv3.ui.screens.destinations.ReviewsScreenDestination
-import com.example.movplayv3.ui.screens.destinations.SeasonDetailsScreenDestination
-import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
+import com.example.movplayv3.ui.screens.destinations.*
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
@@ -130,33 +124,33 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
             navigator.navigate(destination)
         }
     }
-//    val onSimilarMoreClicked = {
-//        val tvSeriesId = uiState.tvSeriesDetails?.id
-//
-//        if (tvSeriesId != null) {
-//            val destination = RelatedTvSeriesScreenDestination(
-//                tvSeriesId = tvSeriesId,
-//                type = RelationType.Similar,
-//                startRoute = uiState.startRoute
-//            )
-//
-//            navigator.navigate(destination)
-//        }
-//    }
+    val onSimilarMoreClicked = {
+        val tvShowId = uiState.tvShowDetails?.id
 
-//    val onRecommendationsMoreClicked = {
-//        val tvSeriesId = uiState.tvSeriesDetails?.id
-//
-//        if (tvSeriesId != null) {
-//            val destination = RelatedTvShowScreenDestination(
-//                tvSeriesId = tvSeriesId,
-//                type = RelationType.Recommended,
-//                startRoute = uiState.startRoute
-//            )
-//
-//            navigator.navigate(destination)
-//        }
-//    }
+        if (tvShowId != null) {
+            val destination = RelatedTvShowScreenDestination(
+                tvShowId = tvShowId,
+                type = RelationType.Similar,
+                startRoute = uiState.startRoute
+            )
+
+            navigator.navigate(destination)
+        }
+    }
+
+    val onRecommendationsMoreClicked = {
+        val tvShowId = uiState.tvShowDetails?.id
+
+        if (tvShowId != null) {
+            val destination = RelatedTvShowScreenDestination(
+                tvShowId = tvShowId,
+                type = RelationType.Recommended,
+                startRoute = uiState.startRoute
+            )
+
+            navigator.navigate(destination)
+        }
+    }
     TvShowDetailsScreenContent(
         uiState = uiState,
         onBackClicked = onBackClicked,
@@ -168,9 +162,9 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
         onCreatorClicked = onCreatorClicked,
         onTvShowClicked = onTvShowClicked,
         onSeasonClicked = onSeasonClicked,
-        onSimilarMoreClicked = {},
-        onRecommendationsMoreClicked = {},
-        onReviewsClicked = {}
+        onSimilarMoreClicked = onSimilarMoreClicked,
+        onRecommendationsMoreClicked = onRecommendationsMoreClicked,
+        onReviewsClicked = onReviewsClicked
     )
 }
 

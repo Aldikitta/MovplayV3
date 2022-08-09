@@ -175,4 +175,9 @@
     <string name="review_item_created_text" formatted="true">Published %s</string>
     <string name="review_item_last_modified_text" formatted="true">Last modified %s</string>
 
+    <string name="related_movies_screen_similar_appbar_label">Similar</string>
+    <string name="related_movies_screen_recommendations_appbar_label">Recommendations</string>
+    <string name="related_tv_series_screen_similar_appbar_label">Similar</string>
+    <string name="related_tv_series_screen_recommendations_appbar_label">Recommendations</string>
+
 </resources>
