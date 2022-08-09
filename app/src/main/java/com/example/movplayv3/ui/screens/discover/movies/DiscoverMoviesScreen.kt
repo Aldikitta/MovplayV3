@@ -118,7 +118,6 @@ fun DiscoverMoviesScreenContent(
     ModalBottomSheetLayout(
         modifier = Modifier.fillMaxSize(),
         sheetState = sheetState,
-        scrimColor = Color.Black.copy(0.5f),
         sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         sheetContent = {
             FilterMoviesModalBottomSheetContent(
