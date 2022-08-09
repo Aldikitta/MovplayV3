@@ -32,6 +32,7 @@ import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContaine
 import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
+import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayMovieDetailsTopContent
 import com.example.movplayv3.ui.theme.spacing
@@ -80,14 +81,14 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
             video = video
         )
     }
-//    val onMemberClicked = { personId: Int ->
-//        val destination = PersonDetailsScreenDestination(
-//            personId = personId,
-//            startRoute = uiState.startRoute
-//        )
-//
-//        navigator.navigate(destination)
-//    }
+    val onMemberClicked = { personId: Int ->
+        val destination = PersonDetailsScreenDestination(
+            personId = personId,
+            startRoute = uiState.startRoute
+        )
+
+        navigator.navigate(destination)
+    }
     val onMovieClicked = { movieId: Int ->
         val destination = MovieDetailsScreenDestination(
             movieId = movieId,
@@ -96,6 +97,7 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
 
         navigator.navigate(destination)
     }
+
 //    val onReviewsClicked: () -> Unit = {
 //        val movieId = uiState.movieDetails?.id
 //
@@ -109,6 +111,35 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
 //            navigator.navigate(destination)
 //        }
 //    }
+//
+//
+//    val onSimilarMoreClicked = {
+//        val movieId = uiState.movieDetails?.id
+//
+//        if (movieId != null) {
+//            val destination = RelatedMoviesScreenDestination(
+//                movieId = movieId,
+//                type = RelationType.Similar,
+//                startRoute = uiState.startRoute
+//            )
+//
+//            navigator.navigate(destination)
+//        }
+//    }
+//
+//    val onRecommendationsMoreClicked = {
+//        val movieId = uiState.movieDetails?.id
+//
+//        if (movieId != null) {
+//            val destination = RelatedMoviesScreenDestination(
+//                movieId = movieId,
+//                type = RelationType.Recommended,
+//                startRoute = uiState.startRoute
+//            )
+//
+//            navigator.navigate(destination)
+//        }
+//    }
     MovieDetailsScreenContent(
         uiState = uiState,
         onBackClicked = onBackClicked,
@@ -117,7 +148,7 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
         onVideoClicked = onVideoClicked,
         onFavouriteClicked = onFavouriteClicked,
         onCloseClicked = onCloseClicked,
-        onMemberClicked = {},
+        onMemberClicked = onMemberClicked,
         onMovieClicked = onMovieClicked,
         onSimilarMoreClicked = {},
         onRecommendationsMoreClicked = {},

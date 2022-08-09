@@ -6,7 +6,7 @@ import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.model.PersonDetails
 
 @Stable
-data class PersonDetailsScreenUiState(
+data class PersonDetailsScreenUIState(
     val startRoute: String,
     val details: PersonDetails?,
     val externalIds: List<ExternalId>?,
@@ -14,8 +14,8 @@ data class PersonDetailsScreenUiState(
     val error: String?
 ) {
     companion object {
-        fun getDefault(startRoute: String): PersonDetailsScreenUiState {
-            return PersonDetailsScreenUiState(
+        fun getDefault(startRoute: String): PersonDetailsScreenUIState {
+            return PersonDetailsScreenUIState(
                 startRoute = startRoute,
                 details = null,
                 externalIds = null,

@@ -38,10 +38,10 @@ class PersonDetailsViewModel @Inject constructor(
         _externalIds.filterNotNull().mapLatest { externalIds ->
             externalIds.toExternalIdList(type = ExternalContentType.Person)
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(10), null)
-    val uiState: StateFlow<PersonDetailsScreenUiState> = combine(
+    val uiState: StateFlow<PersonDetailsScreenUIState> = combine(
         personDetails, combinedCredits, externalIds, error
     ) { details, combinedCredits, externalIds, error ->
-        PersonDetailsScreenUiState(
+        PersonDetailsScreenUIState(
             startRoute = navArgs.startRoute,
             details = details,
             externalIds = externalIds,
@@ -52,7 +52,7 @@ class PersonDetailsViewModel @Inject constructor(
     }.stateIn(
         viewModelScope,
         SharingStarted.Eagerly,
-        PersonDetailsScreenUiState.getDefault(navArgs.startRoute)
+        PersonDetailsScreenUIState.getDefault(navArgs.startRoute)
     )
 
     init {
