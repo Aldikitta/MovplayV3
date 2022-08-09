@@ -107,6 +107,7 @@ fun FilterMoviesModalBottomSheetContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
+                            top = MaterialTheme.spacing.extraSmall,
                             start = MaterialTheme.spacing.medium,
                             end = MaterialTheme.spacing.medium,
                         ),
@@ -120,7 +121,6 @@ fun FilterMoviesModalBottomSheetContent(
                                 plus(genre)
                             }
                         }
-
                         currentFilterState = currentFilterState.copy(
                             selectedGenres = selectedGenres
                         )
@@ -157,12 +157,10 @@ fun FilterMoviesModalBottomSheetContent(
                             plus(selectedProvider)
                         }
                     }
-
                     currentFilterState = currentFilterState.copy(
                         selectedWatchProviders = selectedProviders
                     )
                 }
-
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 
@@ -193,7 +191,6 @@ fun FilterMoviesModalBottomSheetContent(
                         )
                     }
                 )
-
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
             }
 

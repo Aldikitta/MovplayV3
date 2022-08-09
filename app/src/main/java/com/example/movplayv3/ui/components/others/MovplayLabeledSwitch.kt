@@ -35,7 +35,6 @@ fun MovplayLabeledSwitch(
         Switch(
             checked = checked,
             onCheckedChange = onCheckedChanged,
-            colors = SwitchDefaults.colors(checkedThumbColor = MaterialTheme.colorScheme.primary)
         )
     }
 }

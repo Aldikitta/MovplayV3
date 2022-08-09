@@ -46,7 +46,6 @@ fun MovplayDateRangeSelector(
 
     ConstraintLayout(modifier = modifier) {
         val (fromLabel, fromDateChip, arrowIcon, toLabel, toDateChip) = createRefs()
-
         Icon(
             modifier = Modifier.constrainAs(arrowIcon) {
                 start.linkTo(parent.start)
@@ -56,7 +55,6 @@ fun MovplayDateRangeSelector(
             },
             imageVector = Icons.Filled.ArrowForward,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary
         )
 
         DateChip(
@@ -143,7 +141,7 @@ fun DateChip(
                 ).show()
             }
             .background(
-                color = MaterialTheme.colorScheme.primary.copy(0.5f),
+                color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = MaterialTheme.shapes.small
             )
             .padding(MaterialTheme.spacing.small),
@@ -161,7 +159,6 @@ fun DateChip(
                 fontSize = 12.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = if (initialDate != null) Color.White else Color.White.copy(0.5f)
             )
             Spacer(modifier = Modifier.weight(1f))
             AnimatedVisibility(
