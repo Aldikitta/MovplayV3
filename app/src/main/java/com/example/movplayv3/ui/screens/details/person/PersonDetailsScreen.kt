@@ -168,7 +168,7 @@ fun PersonDetailsScreenContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(
-                                color = MaterialTheme.colorScheme.surfaceVariant,
+                                color = MaterialTheme.colorScheme.surface,
                                 shape = MaterialTheme.shapes.small
                             )
                             .padding(MaterialTheme.spacing.small)

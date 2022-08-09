@@ -180,4 +180,46 @@
     <string name="related_tv_series_screen_similar_appbar_label">Similar</string>
     <string name="related_tv_series_screen_recommendations_appbar_label">Recommendations</string>
 
+    <string name="movie_filter_bottom_sheet_genres_section_label">Movie genres</string>
+    <string name="movie_filter_bottom_sheet_score_section_label">Average score</string>
+    <string name="movie_filter_bottom_sheet_date_section_label">Release date</string>
+    <string name="movie_filter_bottom_sheet_other_section_label">Others</string>
+    <string name="movie_filter_bottom_sheet_posters_switch_text">Only with poster</string>
+    <string name="movie_filter_bottom_sheet_scores_switch_text">Only with score</string>
+    <string name="movie_filter_bottom_sheet_overview_switch_text">Only with overview</string>
+    <string name="movie_filter_bottom_sheet_clear_button_label">Clear</string>
+    <string name="movie_filter_bottom_sheet_save_button_label">Save</string>
+    <string name="movie_filter_bottom_sheet_genres_info_label">Select one or more genres</string>
+    <string name="movie_filter_bottom_sheet_score_info_label">Set score range</string>
+    <string name="movie_filter_bottom_sheet_date_info_label">Set release date range</string>
+    <string name="movie_filter_bottom_sheet_other_info_label">Customize other filters</string>
+    <string name="movie_filter_bottom_sheet_availability_label">Sources</string>
+    <string name="movie_filter_bottom_sheet_availability_info_label">Select one or more sources</string>
+
+    <string name="tv_series_filter_bottom_sheet_genres_section_label">Genres</string>
+    <string name="tv_series_filter_bottom_sheet_score_section_label">Average score</string>
+    <string name="tv_series_filter_bottom_sheet_date_section_label">Air date</string>
+    <string name="tv_series_filter_bottom_sheet_other_section_label">Others</string>
+    <string name="tv_series_filter_bottom_sheet_posters_switch_text">Only with poster</string>
+    <string name="tv_series_filter_bottom_sheet_scores_switch_text">Only with score</string>
+    <string name="tv_series_filter_bottom_sheet_overview_switch_text">Only with overview</string>
+    <string name="tv_series_filter_bottom_sheet_clear_button_label">Clear</string>
+    <string name="tv_series_filter_bottom_sheet_save_button_label">Save</string>
+    <string name="tv_series_filter_bottom_sheet_genres_info_label">Select one or more genres</string>
+    <string name="tv_series_filter_bottom_sheet_score_info_label">Set score range</string>
+    <string name="tv_series_filter_bottom_sheet_date_info_label">Set air date range</string>
+    <string name="tv_series_filter_bottom_sheet_other_info_label">Customize other filters</string>
+    <string name="tv_series_filter_bottom_sheet_availability_label">Sources</string>
+    <string name="tv_series_filter_bottom_sheet_availability_info_label">Select one or more sources</string>
+
+    <string name="date_range_selector_from_label">From</string>
+    <string name="date_range_selector_to_label">To</string>
+    <string name="date_range_selector_select_hint">Select</string>
+
+    <string name="discover_movies_appbar_title">Explore</string>
+    <string name="discover_tv_series_appbar_title">Explore</string>
+
+    <string name="filter_empty_info_text">No results</string>
+    <string name="filter_empty_button_change_filters_label">Edit filters</string>
+
 </resources>

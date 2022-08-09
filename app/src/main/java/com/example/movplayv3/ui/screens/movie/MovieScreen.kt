@@ -26,6 +26,7 @@ import com.example.movplayv3.ui.components.dialogs.MovplayExitDialog
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.BrowseMoviesScreenDestination
+import com.example.movplayv3.ui.screens.destinations.DiscoverMoviesScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.MovieScreenDestination
 import com.example.movplayv3.ui.theme.spacing
@@ -71,15 +72,15 @@ fun AnimatedVisibilityScope.MovieScreen(
         navigator.navigate(BrowseMoviesScreenDestination(type))
     }
 
-//    val onDiscoverMoviesClicked = {
-//        navigator.navigate(DiscoverMoviesScreenDestination)
-//    }
+    val onDiscoverMoviesClicked = {
+        navigator.navigate(DiscoverMoviesScreenDestination)
+    }
     MoviesScreenContent(
         uiState = uiState,
         scrollState = scrollState,
         onMovieClicked = onMovieClicked,
         onBrowseMoviesClicked = onBrowseMoviesClicked,
-        onDiscoverMoviesClicked = {}
+        onDiscoverMoviesClicked = onDiscoverMoviesClicked
     )
 }
 
@@ -202,7 +203,7 @@ fun MoviesScreenContent(
                 title = stringResource(R.string.explore_movies),
                 state = discoverLazyItems,
                 onPresentableClick = onMovieClicked,
-//                onMoreClick = onDiscoverMoviesClicked
+                onMoreClick = onDiscoverMoviesClicked
             )
             MovplayPresentableSection(
                 modifier = Modifier
