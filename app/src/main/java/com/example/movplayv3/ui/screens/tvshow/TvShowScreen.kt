@@ -28,6 +28,7 @@ import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestinat
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.spacing
 import com.example.movplayv3.utils.isAnyRefreshing
+import com.example.movplayv3.utils.isNotEmpty
 import com.example.movplayv3.utils.refreshAll
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
@@ -183,7 +184,6 @@ fun TvShowsScreenContent(
                 title = stringResource(R.string.top_rated_tv_series),
                 state = topRatedLazyItems,
                 onPresentableClick = onTvShowClicked,
-
                 onMoreClick = {
                     onBrowseTvShowClicked(TvShowType.TopRated)
                 }
@@ -204,6 +204,26 @@ fun TvShowsScreenContent(
                     onBrowseTvShowClicked(TvShowType.AiringToday)
                 }
             )
+            if(favoritesLazyItems.isNotEmpty()){
+                MovplayPresentableSection(
+                    title = stringResource(R.string.favourites_tv_series),
+                    state = favoritesLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(TvShowType.Favorite)
+                    }
+                )
+            }
+            if (recentlyBrowsedLazyItems.isNotEmpty()){
+                MovplayPresentableSection(
+                    title = stringResource(R.string.recently_browsed_tv_series),
+                    state = recentlyBrowsedLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(TvShowType.RecentlyBrowsed)
+                    }
+                )
+            }
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
         }
     }
