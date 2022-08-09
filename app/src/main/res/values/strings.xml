@@ -157,4 +157,16 @@
     <string name="person_details_screen_cast">Cast</string>
     <string name="person_details_screen_crew">Crew</string>
 
+    <string name="season_details_appbar_label">Season details</string>
+    <string name="season_details_episodes_count_label">Episodes count</string>
+    <string name="season_details_air_date_label">Air date</string>
+    <string name="season_details_season_number_label">Season number</string>
+    <string name="season_details_cast_label">Cast</string>
+    <string name="season_details_crew_label">Crew</string>
+    <string name="season_details_episodes_label">Episodes</string>
+
+    <string name="rating" formatted="true" translatable="false">%.1f/%d</string>
+    <string name="vote_count" formatted="true">(%d votes)</string>
+
+    <string name="episode_chip_no_info_text">No additional info</string>
 </resources>

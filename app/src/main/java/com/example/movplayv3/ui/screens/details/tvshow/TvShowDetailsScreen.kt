@@ -32,6 +32,7 @@ import com.example.movplayv3.ui.components.others.MovplayAnimatedContentContaine
 import com.example.movplayv3.ui.components.others.MovplayDetailsAppBar
 import com.example.movplayv3.ui.components.sections.*
 import com.example.movplayv3.ui.screens.destinations.PersonDetailsScreenDestination
+import com.example.movplayv3.ui.screens.destinations.SeasonDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsInfoSection
 import com.example.movplayv3.ui.screens.details.components.MovplayTvShowDetailsTopContent
@@ -114,19 +115,19 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
 //            navigator.navigate(destination)
 //        }
 //    }
-//    val onSeasonClicked = { seasonNumber: Int ->
-//        val tvSeriesId = uiState.tvSeriesDetails?.id
-//
-//        if (tvSeriesId != null) {
-//            val destination = SeasonDetailsScreenDestination(
-//                tvSeriesId = tvSeriesId,
-//                seasonNumber = seasonNumber,
-//                startRoute = uiState.startRoute
-//            )
-//
-//            navigator.navigate(destination)
-//        }
-//    }
+    val onSeasonClicked = { seasonNumber: Int ->
+        val tvShowId = uiState.tvShowDetails?.id
+
+        if (tvShowId != null) {
+            val destination = SeasonDetailsScreenDestination(
+                tvShowId = tvShowId,
+                seasonNumber = seasonNumber,
+                startRoute = uiState.startRoute
+            )
+
+            navigator.navigate(destination)
+        }
+    }
 //    val onSimilarMoreClicked = {
 //        val tvSeriesId = uiState.tvSeriesDetails?.id
 //
@@ -164,7 +165,7 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
         onCloseClicked = onCloseClicked,
         onCreatorClicked = onCreatorClicked,
         onTvShowClicked = onTvShowClicked,
-        onSeasonClicked = {},
+        onSeasonClicked = onSeasonClicked,
         onSimilarMoreClicked = {},
         onRecommendationsMoreClicked = {},
         onReviewsClicked = {}

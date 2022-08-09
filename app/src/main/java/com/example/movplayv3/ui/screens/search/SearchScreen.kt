@@ -16,10 +16,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
+import com.example.movplayv3.data.model.MediaType
 import com.example.movplayv3.data.model.SearchQuery
 import com.example.movplayv3.ui.components.sections.MovplayPresentableGridSection
 import com.example.movplayv3.ui.components.sections.MovplaySearchGridSection
+import com.example.movplayv3.ui.screens.destinations.MovieDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.ScannerScreenDestination
+import com.example.movplayv3.ui.screens.destinations.SearchScreenDestination
+import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.search.components.MovplayQueryTextField
 import com.example.movplayv3.ui.screens.search.components.MovplaySearchEmptyState
 import com.example.movplayv3.ui.theme.spacing
@@ -47,35 +51,35 @@ fun AnimatedVisibilityScope.SearchScreen(
     val onCameraClicked = {
         navigator.navigate(ScannerScreenDestination)
     }
-//    val onResultClicked: (id: Int, type: MediaType) -> Unit = { id, type ->
-//        val destination = when (type) {
-//            MediaType.Movie -> {
-//                MovieDetailsScreenDestination(
-//                    movieId = id,
-//                    startRoute = SearchScreenDestination.route
-//                )
-//            }
-//
-//            MediaType.Tv -> {
-//                TvSeriesDetailsScreenDestination(
-//                    tvSeriesId = id,
-//                    startRoute = SearchScreenDestination.route
-//                )
-//            }
-//
-//            else -> null
-//        }
-//
-//        if (destination != null) {
-//            val searchQuery = SearchQuery(
-//                query = uiState.query.orEmpty(),
-//                lastUseDate = Date()
-//            )
-//            onAddSearchQuerySuggestion(searchQuery)
-//
-//            navigator.navigate(destination)
-//        }
-//    }
+    val onResultClicked: (id: Int, type: MediaType) -> Unit = { id, type ->
+        val destination = when (type) {
+            MediaType.Movie -> {
+                MovieDetailsScreenDestination(
+                    movieId = id,
+                    startRoute = SearchScreenDestination.route
+                )
+            }
+
+            MediaType.Tv -> {
+                TvShowDetailsScreenDestination(
+                    tvShowId = id,
+                    startRoute = SearchScreenDestination.route
+                )
+            }
+
+            else -> null
+        }
+
+        if (destination != null) {
+            val searchQuery = SearchQuery(
+                query = uiState.query.orEmpty(),
+                lastUseDate = Date()
+            )
+            onAddSearchQuerySuggestions(searchQuery)
+
+            navigator.navigate(destination)
+        }
+    }
     val onQuerySuggestionSelected: (String) -> Unit = viewModel::onQuerySuggestionSelected
     resultRecipient.onNavResult { result ->
         when (result) {
