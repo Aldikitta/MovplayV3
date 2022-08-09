@@ -149,4 +149,12 @@
     <string name="favourite_empty_navigate_to_movies_button_label">Navigate to movies</string>
     <string name="favourite_empty_navigate_to_tv_series_button_label">Navigate to tv series</string>
 
+    <string name="person_details_screen_appbar_label">Person details</string>
+    <string name="person_details_screen_know_for_label">Known for</string>
+    <string name="person_details_screen_birthplace">Birthplace</string>
+    <string name="person_details_screen_birthday">Birthday</string>
+    <string name="person_details_screen_death_date">Death date</string>
+    <string name="person_details_screen_cast">Cast</string>
+    <string name="person_details_screen_crew">Crew</string>
+
 </resources>
