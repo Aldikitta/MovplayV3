@@ -96,14 +96,14 @@ fun MovplayQueryTextField(
                                         )
                                     }
                                 }
-                                if (cameraSearchAvailable) {
-                                    IconButton(onClick = onCameraSearchClick) {
-                                        Icon(
-                                            imageVector = Icons.Filled.CameraAlt,
-                                            contentDescription = "camera"
-                                        )
-                                    }
-                                }
+//                                if (cameraSearchAvailable) {
+//                                    IconButton(onClick = onCameraSearchClick) {
+//                                        Icon(
+//                                            imageVector = Icons.Filled.CameraAlt,
+//                                            contentDescription = "camera"
+//                                        )
+//                                    }
+//                                }
                             }
                         }
                     }
