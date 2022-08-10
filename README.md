@@ -1,8 +1,11 @@
 <p align="center"><img src="screenshots/movColored.png" alt="Movplay"</p>
 <p align="center"><img src="screenshots/summary.png" alt="Movplay"></p>
+<p align="center"><img src="screenshots/studio.png" alt="Movplay"></p>
+<p align="center"><img src="screenshots/kotlin.png" alt="Movplay"></p>
+<p align="center"><img src="screenshots/jetpack.png" alt="Movplay"></p>
 
 
-# Movplay V2
+# Movplay V3
 This is the version 3 (Final) of An Android app built with Jetpack Compose consuming [TMDB API](https://www.themoviedb.org/documentation/api) to help users to have current information of the trending, popular, upcoming many other films.
 
 
