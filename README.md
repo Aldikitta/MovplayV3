@@ -36,20 +36,9 @@ The app is built with the Model-View-ViewModel (MVVM) is its structural design p
 - [Timber](https://github.com/JakeWharton/timber)- A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 
 
-## Demo
-<img src="screenshots/Movplayv2Comp.gif" width="250"/>
 
-|         Movies Home Screen           |           Tv Shows Home Screen            |               Favorite Screen             |
+|         Movies Home Screen           |           Tv Shows Home Screen            |                Search Screen              |
 | :----------------------------------: | :---------------------------------------: | :---------------------------------------: |
-|      ![](screenshots/Movie.png)      |       ![](screenshots/TvShow.png)         |       ![](screenshots/Favorite.png)       |
-
-|             Movie Detail             |               Tv Show Detail              |            Search Screen Detail           |
-| :----------------------------------: | :---------------------------------------: | :---------------------------------------: |
-|   ![](screenshots/MovieDetails.png)  |        ![](screenshots/Details.png)       |        ![](screenshots/Search.png)        |
-
-|            Account Screen            |          Dark Theme + Dynamic On          |          Light Theme + Dynamic On         |
-| :----------------------------------: | :---------------------------------------: | :---------------------------------------: |
-|     ![](screenshots/Account.png)     |     ![](screenshots/MovieDynamic.png)     |     ![](screenshots/TvShowDynamic.png)    |
-
+|      ![](screenshots/movie.png)      |        ![](screenshots/show.png)          |        ![](screenshots/search.png)        |
 
 
