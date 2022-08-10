@@ -80,6 +80,14 @@ fun AnimatedVisibilityScope.SearchScreen(
             navigator.navigate(destination)
         }
     }
+    val onMovieClicked = { movieId: Int ->
+        val destination = MovieDetailsScreenDestination(
+            movieId = movieId,
+            startRoute = SearchScreenDestination.route
+        )
+
+        navigator.navigate(destination)
+    }
     val onQuerySuggestionSelected: (String) -> Unit = viewModel::onQuerySuggestionSelected
     resultRecipient.onNavResult { result ->
         when (result) {
@@ -94,7 +102,9 @@ fun AnimatedVisibilityScope.SearchScreen(
         onQueryChanged = onQueryChanged,
         onQueryCleared = onQueryCleared,
         onQuerySuggestionSelected = onQuerySuggestionSelected,
-        onCameraClicked = onCameraClicked
+        onCameraClicked = onCameraClicked,
+        onResultClicked = onResultClicked,
+        onMovieClicked = onMovieClicked
     )
 }
 
@@ -103,9 +113,9 @@ fun SearchScreenContent(
     uiState: SearchScreenUIState,
     onQueryChanged: (query: String) -> Unit,
     onQueryCleared: () -> Unit,
-//    onResultClicked: (id: Int, type: MediaType) -> Unit,
+    onResultClicked: (id: Int, type: MediaType) -> Unit,
     onCameraClicked: () -> Unit = {},
-//    onMovieClicked: (Int) -> Unit,
+    onMovieClicked: (Int) -> Unit,
     onQuerySuggestionSelected: (String) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
@@ -182,7 +192,7 @@ fun SearchScreenContent(
                                 bottom = MaterialTheme.spacing.large
                             ),
                             state = popular,
-//                            onPresentableClick = onMovieClicked
+                            onPresentableClick = onMovieClicked
                         )
                     }
                 }
@@ -199,10 +209,10 @@ fun SearchScreenContent(
                                 bottom = MaterialTheme.spacing.large
                             ),
                             state = result,
-//                            onSearchResultClick = { id, mediaType ->
-//                                clearFocus()
-//                                onResultClicked(id, mediaType)
-//                            }
+                            onSearchResultClick = { id, mediaType ->
+                                clearFocus()
+                                onResultClicked(id, mediaType)
+                            }
                         )
                     } else {
                         MovplaySearchEmptyState(
