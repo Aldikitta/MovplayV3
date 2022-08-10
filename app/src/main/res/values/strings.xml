@@ -68,7 +68,7 @@
     <string name="trending_movies">Trending this month</string>
     <string name="available_at">Available at</string>
 
-    <string name="now_airing_tv_series">Now airing</string>
+    <string name="now_airing_tv_series">Now airing on platform</string>
     <string name="top_rated_tv_series">Top rated of all time</string>
     <string name="explore_tv_series">Explore Series</string>
     <string name="today_airing_tv_series">Airing today</string>
@@ -144,10 +144,10 @@
     <string name="clear_recent_tv_series_dialog_text">Are you sure you want to clear recent browsed tv series?</string>
 
 
-    <string name="favourite_empty_movies_info_text">Currently you don\'t have favourite movies</string>
-    <string name="favourite_empty_tv_series_info_text">Currently you don\'t have favourite tv series</string>
-    <string name="favourite_empty_navigate_to_movies_button_label">Navigate to movies</string>
-    <string name="favourite_empty_navigate_to_tv_series_button_label">Navigate to tv series</string>
+    <string name="favourite_empty_movies_info_text">Add some favorite movies</string>
+    <string name="favourite_empty_tv_series_info_text">Add some favorite series</string>
+    <string name="favourite_empty_navigate_to_movies_button_label">Explore movies</string>
+    <string name="favourite_empty_navigate_to_tv_series_button_label">Explore series</string>
 
     <string name="person_details_screen_appbar_label">Person details</string>
     <string name="person_details_screen_know_for_label">Known for</string>
