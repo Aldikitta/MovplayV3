@@ -15,13 +15,13 @@ import kotlinx.coroutines.flow.emptyFlow
 data class DiscoverTvShowsScreenUiState(
     val sortInfo: SortInfo,
     val filterState: TvShowFilterState,
-    val tvSeries: Flow<PagingData<TvShow>>
+    val tvShow: Flow<PagingData<TvShow>>
 ) {
     companion object {
         val default: DiscoverTvShowsScreenUiState = DiscoverTvShowsScreenUiState(
             sortInfo = SortInfo.default,
             filterState = TvShowFilterState.default,
-            tvSeries = emptyFlow()
+            tvShow = emptyFlow()
         )
     }
 }

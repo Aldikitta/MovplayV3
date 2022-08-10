@@ -46,7 +46,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
-@Destination
+@Destination(style = DiscoverMoviesScreenTransitions::class)
 @Composable
 fun DiscoverMoviesScreen(
     viewModel: DiscoverMoviesViewModel = hiltViewModel(),
