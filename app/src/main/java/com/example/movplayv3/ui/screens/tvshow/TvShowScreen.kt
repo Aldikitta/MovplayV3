@@ -24,6 +24,7 @@ import com.example.movplayv3.data.model.tvshow.TvShowType
 import com.example.movplayv3.ui.components.sections.MovplayPresentableSection
 import com.example.movplayv3.ui.components.sections.MovplayPresentableTopSection
 import com.example.movplayv3.ui.screens.destinations.BrowseTvShowsScreenDestination
+import com.example.movplayv3.ui.screens.destinations.DiscoverTvShowScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowDetailsScreenDestination
 import com.example.movplayv3.ui.screens.destinations.TvShowScreenDestination
 import com.example.movplayv3.ui.theme.spacing
@@ -68,15 +69,16 @@ fun AnimatedVisibilityScope.TvShowScreen(
     val onBrowseTvShowClicked: (TvShowType) -> Unit = { type ->
         navigator.navigate(BrowseTvShowsScreenDestination(type))
     }
-//
-//    val onDiscoverTvSeriesClicked = {
-//        navigator.navigate(DiscoverTvSeriesScreenDestination)
-//    }
+
+    val onDiscoverTvShowClicked = {
+        navigator.navigate(DiscoverTvShowScreenDestination)
+    }
     TvShowsScreenContent(
         uiState = uiState,
         scrollState = scrollState,
         onTvShowClicked = onTvShowClicked,
-        onBrowseTvShowClicked = onBrowseTvShowClicked
+        onBrowseTvShowClicked = onBrowseTvShowClicked,
+        onDiscoverTvShowClicked = onDiscoverTvShowClicked
     )
 }
 
@@ -87,7 +89,7 @@ fun TvShowsScreenContent(
     scrollState: ScrollState,
     onTvShowClicked: (tvShowId: Int) -> Unit,
     onBrowseTvShowClicked: (type: TvShowType) -> Unit,
-//    onDiscoverTvSeriesClicked: () -> Unit
+    onDiscoverTvShowClicked: () -> Unit
 ) {
     val density = LocalDensity.current
 
@@ -175,10 +177,7 @@ fun TvShowsScreenContent(
                 title = stringResource(R.string.explore_tv_series),
                 state = discoverLazyItems,
                 onPresentableClick = onTvShowClicked,
-
-//                onMoreClick = {
-//                    onBrowseTvShowClicked(TvShowType.EX)
-//                }
+                onMoreClick = onDiscoverTvShowClicked
             )
             MovplayPresentableSection(
                 title = stringResource(R.string.top_rated_tv_series),

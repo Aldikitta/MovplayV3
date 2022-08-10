@@ -29,7 +29,7 @@ import com.example.movplayv3.ui.theme.spacing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun FilterTvShowModalBottomSheetContent(
+fun FilterTvShowsModalBottomSheetContent(
     filterState: TvShowFilterState,
     sheetState: ModalBottomSheetState,
     modifier: Modifier = Modifier,
