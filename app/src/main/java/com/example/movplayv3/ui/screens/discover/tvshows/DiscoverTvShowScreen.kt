@@ -31,6 +31,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.SortOrder
@@ -50,7 +52,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
 
-@OptIn(FlowPreview::class)
+@OptIn(FlowPreview::class, ExperimentalLifecycleComposeApi::class)
 @Destination(
     style = DiscoverTvShowsScreenTransitions::class
 )
@@ -59,7 +61,7 @@ fun AnimatedVisibilityScope.DiscoverTvShowScreen(
     viewModel: DiscoverTvShowsViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onSortOrderChanged: (order: SortOrder) -> Unit = viewModel::onSortOrderChange
     val onSortTypeChanged: (type: SortType) -> Unit = viewModel::onSortTypeChange

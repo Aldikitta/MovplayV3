@@ -25,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.ExternalId
 import com.example.movplayv3.data.model.MediaType
@@ -44,6 +46,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import timber.log.Timber
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = PersonDetailsScreenArgs::class,
     style = PersonDetailsScreenTransitions::class
@@ -54,7 +57,7 @@ fun AnimatedVisibilityScope.PersonDetailsScreen(
     navigator: DestinationsNavigator
 ) {
     val context = LocalContext.current
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onCloseClicked: () -> Unit = {
         navigator.popBackStack(uiState.startRoute, inclusive = false)

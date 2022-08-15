@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.SortOrder
@@ -46,13 +48,14 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(style = DiscoverMoviesScreenTransitions::class)
 @Composable
 fun DiscoverMoviesScreen(
     viewModel: DiscoverMoviesViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = {navigator.navigateUp()}
     val onSortOrderChanged: (order: SortOrder) -> Unit = viewModel::onSortOrderChange
     val onSortTypeChanged: (type: SortType) -> Unit = viewModel::onSortTypeChange

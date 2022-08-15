@@ -17,6 +17,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.tvshow.TvShowType
@@ -29,6 +31,7 @@ import com.example.movplayv3.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = BrowseTvShowsScreenArgs::class,
     style = BrowseTvShowsScreenTransitions::class
@@ -38,7 +41,7 @@ fun BrowseTvShowsScreen(
     viewModel: BrowseTvShowsViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onClearDialogConfirmClicked: () -> Unit = viewModel::onClearClicked
     val onTvShowClicked = { tvShowId: Int ->

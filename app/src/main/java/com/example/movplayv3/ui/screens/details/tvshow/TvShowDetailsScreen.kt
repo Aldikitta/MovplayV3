@@ -19,6 +19,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.*
@@ -41,6 +43,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = TvShowDetailsScreenArgs::class,
     style = TvShowDetailsScreenTransitions::class
@@ -51,7 +54,7 @@ fun AnimatedVisibilityScope.TvShowDetailsScreen(
     navigator: DestinationsNavigator
 ) {
     val context = LocalContext.current
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onFavoriteClicked: (details: TvShowDetails) -> Unit = { details ->
         if (uiState.additionalTvShowDetailsInfo.isFavorite) {

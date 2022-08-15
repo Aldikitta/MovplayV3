@@ -22,6 +22,8 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.movplayv3.data.model.SnackBarEvent
 import com.example.movplayv3.data.paging.ConfigDataSource
@@ -56,7 +58,8 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("UnrememberedMutableState")
     @OptIn(
         ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class,
-        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class
+        ExperimentalMaterialNavigationApi::class, ExperimentalMaterial3Api::class,
+        ExperimentalLifecycleComposeApi::class
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,9 +70,9 @@ class MainActivity : ComponentActivity() {
             val mainViewModel: MainViewModel = hiltViewModel(this)
             val lifeCycleOwner = LocalLifecycleOwner.current
             val keyboardController = LocalSoftwareKeyboardController.current
-            val imageUrlParser by mainViewModel.imageUrlParser.collectAsState()
+            val imageUrlParser by mainViewModel.imageUrlParser.collectAsStateWithLifecycle()
             val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
-            val snackBarEvent: SnackBarEvent? by mainViewModel.networkSnackBarEvent.collectAsState()
+            val snackBarEvent: SnackBarEvent? by mainViewModel.networkSnackBarEvent.collectAsStateWithLifecycle()
 
             //val useDarkIcons = MaterialTheme.colors.isLight
             val navController = rememberAnimatedNavController()

@@ -14,6 +14,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.MediaType
@@ -35,6 +37,7 @@ import com.ramcosta.composedestinations.result.NavResult
 import com.ramcosta.composedestinations.result.ResultRecipient
 import java.util.*
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination
 @Composable
 fun AnimatedVisibilityScope.SearchScreen(
@@ -43,7 +46,7 @@ fun AnimatedVisibilityScope.SearchScreen(
     resultRecipient: ResultRecipient<ScannerScreenDestination, String>
 
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onQueryChanged: (query: String) -> Unit = viewModel::onQueryChange
     val onQueryCleared: () -> Unit = viewModel::onQueryClear
     val onAddSearchQuerySuggestions: (SearchQuery) -> Unit = viewModel::addQuerySuggestion

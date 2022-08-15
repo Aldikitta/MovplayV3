@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.data.model.movie.MovieType
@@ -36,7 +38,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.FlowPreview
 
-@OptIn(FlowPreview::class)
+@OptIn(FlowPreview::class, ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = BrowseMoviesScreenArgs::class,
     style = BrowseMoviesScreenTransitions::class
@@ -46,7 +48,7 @@ fun AnimatedVisibilityScope.BrowseMoviesScreen(
     viewModel: BrowseMoviesViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onClearDialogConfirmClick: () -> Unit = viewModel::onClearClicked
     val onMovieClicked = { movieId: Int ->

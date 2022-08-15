@@ -9,6 +9,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.data.model.FavoriteType
 import com.example.movplayv3.ui.components.others.MovplayFavoriteEmptyState
@@ -20,13 +22,14 @@ import com.example.movplayv3.utils.isNotEmpty
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination
 @Composable
 fun AnimatedVisibilityScope.FavoriteScreen(
     viewModel: FavoritesScreenViewModel = hiltViewModel(),
     navigator: DestinationsNavigator
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onFavoriteTypeSelected: (type: FavoriteType) -> Unit = viewModel::onFavoriteTypeSelected
     val onFavoriteClicked: (favoriteId: Int) -> Unit = { id ->
         val destination = when (uiState.selectedFavouriteType) {

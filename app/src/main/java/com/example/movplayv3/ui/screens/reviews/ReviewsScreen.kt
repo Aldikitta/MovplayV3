@@ -14,6 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.movplayv3.R
 import com.example.movplayv3.ui.components.lists.MovplayReviewsList
@@ -22,6 +24,7 @@ import com.example.movplayv3.ui.theme.spacing
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Destination(
     navArgsDelegate = ReviewsScreenNavArgs::class,
     style = ReviewsScreenTransitions::class
@@ -31,7 +34,7 @@ fun AnimatedVisibilityScope.ReviewsScreen(
     viewModel: ReviewsViewModel = hiltViewModel(),
     navigator: DestinationsNavigator,
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val onBackClicked: () -> Unit = { navigator.navigateUp() }
     val onCloseClicked: () -> Unit = {
         navigator.popBackStack(uiState.startRoute, inclusive = false)

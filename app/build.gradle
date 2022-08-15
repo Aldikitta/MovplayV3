@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-//    id 'com.github.ben-manes.versions'
+    id 'com.github.ben-manes.versions'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'com.google.firebase.crashlytics'
@@ -69,6 +69,7 @@ dependencies {
 //    implementation "androidx.compose.material:material:1.2.0"
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha01"
     implementation "com.airbnb.android:lottie-compose:5.2.0"
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01'
     implementation 'androidx.activity:activity-compose:1.6.0-alpha05'
