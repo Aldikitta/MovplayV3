@@ -58,7 +58,7 @@ fun MovplayBottomBar(
         exit = slideOutVertically { it }
     ) {
         NavigationBar(
-            modifier = modifier.padding(paddingValues),
+            modifier = modifier
             ) {
             MovplayNavBarItem(
                 selected = selectedRoute == MovieScreenDestination.route,

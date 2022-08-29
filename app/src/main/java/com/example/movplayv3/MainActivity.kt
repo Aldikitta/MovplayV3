@@ -10,6 +10,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -151,9 +152,11 @@ class MainActivity : ComponentActivity() {
                     }
                     val snackbarHostState = remember { SnackbarHostState() }
                     Scaffold(
+
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         bottomBar = {
                             MovplayBottomBar(
+                                modifier = Modifier.navigationBarsPadding(),
                                 currentRoute = currentRoute,
                                 backQueueRoutes = backQueueRoutes,
                                 visible = showBottomBar
@@ -171,10 +174,11 @@ class MainActivity : ComponentActivity() {
                         Surface(
                             modifier = Modifier
                                 .fillMaxSize()
+//                                .padding(innerPadding),
                                 .padding(
                                     bottom = if (showBottomBar) {
                                         innerPadding.calculateBottomPadding()
-                                    } else MaterialTheme.spacing.default
+                                    } else MaterialTheme.spacing.small
                                 ),
                             color = MaterialTheme.colorScheme.background
                         ) {

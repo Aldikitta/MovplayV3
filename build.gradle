@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        compose_version = '1.3.0-alpha03'
+        compose_version = '1.3.0-beta01'
     }
     repositories {
         mavenCentral()
