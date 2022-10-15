@@ -6,6 +6,7 @@ import androidx.paging.cachedIn
 import com.example.movplayv3.data.model.FavoriteType
 import com.example.movplayv3.domain.usecase.GetFavoritesUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,6 +18,7 @@ class FavoritesScreenViewModel @Inject constructor(
     private val _selectedFavouriteType: MutableStateFlow<FavoriteType> =
         MutableStateFlow(FavoriteType.Movie)
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     val uiState: StateFlow<FavoritesScreenUIState> = _selectedFavouriteType.mapLatest { type ->
         val favorites = getFavouritesUseCaseImpl(type).cachedIn(viewModelScope)
 

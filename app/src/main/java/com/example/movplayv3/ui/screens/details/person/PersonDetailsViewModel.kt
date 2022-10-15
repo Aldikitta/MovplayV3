@@ -35,6 +35,7 @@ class PersonDetailsViewModel @Inject constructor(
     private val combinedCredits: MutableStateFlow<CombinedCredits?> = MutableStateFlow(null)
 
     private val _externalIds: MutableStateFlow<ExternalIds?> = MutableStateFlow(null)
+    @OptIn(ExperimentalCoroutinesApi::class)
     private val externalIds: StateFlow<List<ExternalId>?> =
         _externalIds.filterNotNull().mapLatest { externalIds ->
             externalIds.toExternalIdList(type = ExternalContentType.Person)
