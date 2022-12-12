@@ -9,6 +9,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+
+//ktor
 interface TmdbMoviesApi {
     @GET("configuration")
     fun getConfig(): Call<Config>
