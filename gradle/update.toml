@@ -1,4 +1,5 @@
 [versions]
+androidGradlePlugin = "7.3.1"
 androidx-activity = "1.7.0-alpha01"
 androidx-arch-core = "2.1.0"
 androidx-camera = "1.1.0"
@@ -25,6 +26,11 @@ io-github-aakira = "1.4.1"
 io-github-raamcosta-compose-destinations = "1.7.22-beta"
 org-jetbrains-kotlin = "1.7.10"
 org-jetbrains-kotlinx = "1.6.4"
+ksp = "1.7.20-1.0.6"
+kotlin = "1.7.20"
+hilt = "2.42"
+protobufPlugin = "0.8.19"
+secrets = "2.0.1"
 
 [libraries]
 androidx-activity = { module = "androidx.activity:activity", version.ref = "androidx-activity" }
@@ -249,15 +255,26 @@ org-jetbrains-kotlinx-kotlinx-coroutines-bom = { module = "org.jetbrains.kotlinx
 org-jetbrains-kotlinx-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx" }
 org-jetbrains-kotlinx-kotlinx-coroutines-core-jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "org-jetbrains-kotlinx" }
 
+
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+
 [plugins]
-com-android-application = "com.android.application:7.3.1"
-com-android-library = "com.android.library:7.3.1"
+com-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+com-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+com-android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 com-github-ben-manes-versions = "com.github.ben-manes.versions:0.42.0"
-com-google-dagger-hilt-android = "com.google.dagger.hilt.android:2.43.2"
-com-google-devtools-ksp = "com.google.devtools.ksp:1.7.10-1.0.6"
+com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 com-google-firebase-crashlytics = "com.google.firebase.crashlytics:2.9.2"
 com-google-firebase-firebase-perf = "com.google.firebase.firebase-perf:1.4.2"
 com-google-gms-google-services = "com.google.gms.google-services:4.3.14"
-dagger-hilt-android-plugin = "dagger.hilt.android.plugin:2.43.2"
+dagger-hilt-android-plugin = { id = "dagger.hilt.android.plugin:2.43.2", version.ref = "hilt" }
 nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.7.0"
-org-jetbrains-kotlin-android = "org.jetbrains.kotlin.android:1.7.10"
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android:1.7.10", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobufPlugin" }
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secrets" }

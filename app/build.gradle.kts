@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.com.airbnb.android.lottie.compose)
     implementation(libs.androidx.lifecycle.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.activity.compose)
+    implementation("androidx.test:runner:1.4.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.espresso.core)
@@ -100,6 +101,8 @@ dependencies {
     kapt(libs.com.google.dagger.hilt.android.compiler)
     implementation(libs.androidx.hilt.hilt.navigation.compose)
     kapt(libs.androidx.hilt.hilt.compiler)
+
+    //Unit-test
 
     //Moshi
     implementation(libs.com.squareup.moshi)

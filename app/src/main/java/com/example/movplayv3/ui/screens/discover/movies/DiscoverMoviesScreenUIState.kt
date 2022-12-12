@@ -7,6 +7,7 @@ import com.example.movplayv3.data.model.movie.Movie
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
+//State
 @Stable
 class DiscoverMoviesScreenUIState(
     val sortInfo: SortInfo,
@@ -22,6 +23,7 @@ class DiscoverMoviesScreenUIState(
     }
 }
 
+//Event
 @Stable
 data class SortInfo(
     val sortType: SortType,
